@@ -6,7 +6,7 @@ import by.bsuir.phoneshop.core.beans.Color;
 
 public interface ColorDAO
 {
-	Optional<Color> get(Long key);
+	Optional<Color> get(final Long key);
 
-	void save(Color color);
+	void save(final Color color);
 }

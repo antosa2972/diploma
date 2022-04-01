@@ -27,7 +27,7 @@ public class OrderItem
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}

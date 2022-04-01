@@ -20,7 +20,7 @@ public class CartItem
 		return phone;
 	}
 
-	public void setPhone(Phone phone)
+	public void setPhone(final Phone phone)
 	{
 		this.phone = phone;
 	}
@@ -30,7 +30,7 @@ public class CartItem
 		return quantity;
 	}
 
-	public void setQuantity(Long quantity)
+	public void setQuantity(final Long quantity)
 	{
 		this.quantity = quantity;
 	}
@@ -40,7 +40,7 @@ public class CartItem
 		return price;
 	}
 
-	public void setPrice(BigDecimal price)
+	public void setPrice(final BigDecimal price)
 	{
 		this.price = price;
 	}

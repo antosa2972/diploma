@@ -25,7 +25,7 @@ public class OrderOverviewPageControllerAdmin
 	private OrderService orderServiceImpl;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getOrderOverview(@PathVariable("id") Long id, Model model)
+	public String getOrderOverview(final @PathVariable("id") Long id, final Model model)
 	{
 		jdbcOrderDao.get(id).ifPresent(order -> model.addAttribute("order", order));
 		model.addAttribute("id", id);
@@ -33,8 +33,8 @@ public class OrderOverviewPageControllerAdmin
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String changeOrderStatus(@PathVariable("id") Long orderId,
-											  @RequestParam(name = "orderStatus") String orderStatus)
+	public String changeOrderStatus(final @PathVariable("id") Long orderId,
+											  final @RequestParam(name = "orderStatus") String orderStatus)
 	{
 		if (OrderStatus.DELIVERED.name().equals(orderStatus))
 		{

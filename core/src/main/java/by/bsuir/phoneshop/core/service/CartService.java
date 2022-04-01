@@ -14,9 +14,9 @@ public interface CartService
 
 	void addPhone(final Long phoneId, final Long quantity, final Cart cart) throws OutOfStockException, IllegalArgumentException;
 
-	void update(final Map<Long, Long> items,final Cart cart);
+	void update(final Map<Long, Long> items, final Cart cart);
 
-	void remove(final Long phoneId, Cart cart);
+	void remove(final Long phoneId, final Cart cart);
 
 	void deleteCart(final HttpSession httpSession);
 }

@@ -45,7 +45,7 @@ public class Order
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -55,7 +55,7 @@ public class Order
 		return orderItems;
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems)
+	public void setOrderItems(final List<OrderItem> orderItems)
 	{
 		this.orderItems = orderItems;
 	}
@@ -65,7 +65,7 @@ public class Order
 		return subtotal;
 	}
 
-	public void setSubtotal(BigDecimal subtotal)
+	public void setSubtotal(final BigDecimal subtotal)
 	{
 		this.subtotal = subtotal;
 	}
@@ -75,7 +75,7 @@ public class Order
 		return deliveryPrice;
 	}
 
-	public void setDeliveryPrice(BigDecimal deliveryPrice)
+	public void setDeliveryPrice(final BigDecimal deliveryPrice)
 	{
 		this.deliveryPrice = deliveryPrice;
 	}
@@ -85,7 +85,7 @@ public class Order
 		return totalPrice;
 	}
 
-	public void setTotalPrice(BigDecimal totalPrice)
+	public void setTotalPrice(final BigDecimal totalPrice)
 	{
 		this.totalPrice = totalPrice;
 	}
@@ -95,7 +95,7 @@ public class Order
 		return firstName;
 	}
 
-	public void setFirstName(String firstName)
+	public void setFirstName(final String firstName)
 	{
 		this.firstName = firstName;
 	}
@@ -105,7 +105,7 @@ public class Order
 		return lastName;
 	}
 
-	public void setLastName(String lastName)
+	public void setLastName(final String lastName)
 	{
 		this.lastName = lastName;
 	}
@@ -115,7 +115,7 @@ public class Order
 		return deliveryAddress;
 	}
 
-	public void setDeliveryAddress(String deliveryAddress)
+	public void setDeliveryAddress(final String deliveryAddress)
 	{
 		this.deliveryAddress = deliveryAddress;
 	}
@@ -125,7 +125,7 @@ public class Order
 		return contactPhoneNo;
 	}
 
-	public void setContactPhoneNo(String contactPhoneNo)
+	public void setContactPhoneNo(final String contactPhoneNo)
 	{
 		this.contactPhoneNo = contactPhoneNo;
 	}
@@ -140,12 +140,12 @@ public class Order
 		return date;
 	}
 
-	public void setDate(Timestamp date)
+	public void setDate(final Timestamp date)
 	{
 		this.date = date;
 	}
 
-	public void setStatus(OrderStatus status)
+	public void setStatus(final OrderStatus status)
 	{
 		this.status = status;
 	}
@@ -155,7 +155,7 @@ public class Order
 		return additionalInfo;
 	}
 
-	public void setAdditionalInfo(String additionalInfo)
+	public void setAdditionalInfo(final String additionalInfo)
 	{
 		this.additionalInfo = additionalInfo;
 	}
@@ -170,7 +170,7 @@ public class Order
 	}
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(final Object obj)
 	{
 		if (obj == this)
 		{

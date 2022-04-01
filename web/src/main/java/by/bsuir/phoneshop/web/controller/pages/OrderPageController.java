@@ -42,54 +42,62 @@ public class OrderPageController
 	private Environment environment;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getOrder(Model model)
+	public String getOrder(final Model model)
 	{
 		model.addAttribute("errors", model.asMap().get("errors"));
 		model.addAttribute("error", model.asMap().get("error"));
+
 		Cart cart = cartService.getCart(httpSession);
 		showCartAsOrder(cart, model);
+
 		return "order";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String placeOrder(@Validated @ModelAttribute(name = "orderDataDto") OrderDataDto orderDataDto,
-									 Model model,
-									 BindingResult bindingResult,
-									 RedirectAttributes redirectAttributes) throws OutOfStockException
+	public String placeOrder(final @Validated @ModelAttribute(name = "orderDataDto") OrderDataDto orderDataDto,
+									 final Model model,
+									 final BindingResult bindingResult,
+									 final RedirectAttributes redirectAttributes) throws OutOfStockException
 	{
-		Cart cart = cartService.getCart(httpSession);
+		final Cart cart = cartService.getCart(httpSession);
 		if (cart.getCartItems().isEmpty())
 		{
-			return prepareModelForEmptyCart(cart, model, redirectAttributes);
+			return prepareModelForEmptyCart(redirectAttributes);
 		}
+
 		orderDataDtoValidator.validate(orderDataDto, bindingResult);
+
 		if (bindingResult.hasErrors())
 		{
-			return prepareModelForValidationErrors(cart, model, bindingResult, redirectAttributes);
+			return prepareModelForValidationErrors(bindingResult, redirectAttributes);
 		}
-		Long id = orderService.placeOrder(cart, orderDataDto, Long.parseLong(environment.getProperty("delivery.price")));
+
+		final Long id = orderService.placeOrder(cart, orderDataDto, Long.parseLong(environment.getProperty("delivery.price")));
 		cartService.deleteCart(httpSession);
+
 		return "redirect:/orderOverview/" + id;
 	}
 
-	private String prepareModelForValidationErrors(Cart cart, Model model, BindingResult bindingResult,
-																  RedirectAttributes redirectAttributes)
+	private String prepareModelForValidationErrors(final BindingResult bindingResult,
+																  final RedirectAttributes redirectAttributes)
 	{
 		redirectAttributes.addFlashAttribute("error", true);
 		redirectAttributes.addFlashAttribute("errors", bindingResult);
 		return "redirect:/order";
 	}
 
-	private String prepareModelForEmptyCart(Cart cart, Model model, RedirectAttributes redirectAttributes)
+	private String prepareModelForEmptyCart(final RedirectAttributes redirectAttributes)
 	{
 		redirectAttributes.addFlashAttribute("error", true);
 		return "redirect:/order";
 	}
 
-	private void showCartAsOrder(Cart cart, Model model)
+	private void showCartAsOrder(final Cart cart,final Model model)
 	{
 		model.addAttribute("cart", cart);
-		BigDecimal deliveryPrice = BigDecimal.valueOf(Long.parseLong(environment.getProperty("delivery.price")));
+		final BigDecimal deliveryPrice = BigDecimal.valueOf(Long.parseLong(
+					 environment.getProperty("delivery.price")));
+
 		model.addAttribute("deliveryPrice", deliveryPrice);
 		model.addAttribute("totalCost", cart.getTotalCost().add(deliveryPrice));
 	}

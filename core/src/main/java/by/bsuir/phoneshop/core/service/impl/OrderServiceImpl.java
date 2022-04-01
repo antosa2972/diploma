@@ -33,13 +33,13 @@ public class OrderServiceImpl implements OrderService
 
 	@Override
 	@Transactional(rollbackFor = DataAccessException.class)
-	public Long placeOrder(Cart cart, OrderDataDto orderDataDto, Long deliveryPrice) throws OutOfStockException
+	public Long placeOrder(final Cart cart, OrderDataDto orderDataDto, final Long deliveryPrice) throws OutOfStockException
 	{
-		AtomicBoolean check = new AtomicBoolean(false);
-		Order order = getOrder(cart, orderDataDto, deliveryPrice);
+		final AtomicBoolean isOutOfStock = new AtomicBoolean(false);
+		final Order order = createOrderFromCart(cart, orderDataDto, deliveryPrice);
 		order.getOrderItems().forEach(orderItem ->
 		{
-			Stock stock = jdbcStockDao.get(orderItem.getPhone().getId()).orElse(null);
+			final Stock stock = jdbcStockDao.get(orderItem.getPhone().getId()).orElse(null);
 			if (stock != null && stock.getStock() - orderItem.getQuantity() > 0)
 			{
 				jdbcStockDao.update(orderItem.getPhone().getId(), stock.getStock() - orderItem.getQuantity(),
@@ -47,33 +47,37 @@ public class OrderServiceImpl implements OrderService
 			}
 			else
 			{
-				check.set(true);
+				isOutOfStock.set(true);
 			}
 		});
-		if (check.get())
+
+		if (isOutOfStock.get())
 		{
 			throw new OutOfStockException();
 		}
+
 		order.setId(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+
 		return jdbcOrderDao.save(order);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Order> getOrders(int limit, int offset)
+	public List<Order> getOrders(final int limit,final int offset)
 	{
 		return jdbcOrderDao.getOrders(limit, offset);
 	}
 
 	@Override
-	public void updateStatus(OrderStatus orderStatus, Long orderId)
+	public void updateStatus(final OrderStatus orderStatus, final Long orderId)
 	{
 		jdbcOrderDao.updateStatus(orderStatus, orderId);
 	}
 
-	private Order getOrder(Cart cart, OrderDataDto orderDataDto, Long deliveryPrice)
+	private Order createOrderFromCart(final Cart cart, final OrderDataDto orderDataDto, final Long deliveryPrice)
 	{
-		Order order = new Order();
+		final Order order = new Order();
+
 		order.setSubtotal(cart.getTotalCost());
 		order.setDeliveryPrice(BigDecimal.valueOf(deliveryPrice));
 		order.setTotalPrice(order.getSubtotal().add(order.getDeliveryPrice()));
@@ -83,11 +87,13 @@ public class OrderServiceImpl implements OrderService
 		order.setContactPhoneNo(orderDataDto.getPhone());
 		order.setDeliveryAddress(orderDataDto.getAddress());
 		order.setAdditionalInfo(orderDataDto.getAdditionalInfo());
+
 		cart.getCartItems().forEach(cartItem ->
 		{
-			OrderItem orderItem = new OrderItem(cartItem, order);
+			final OrderItem orderItem = new OrderItem(cartItem, order);
 			order.getOrderItems().add(orderItem);
 		});
+
 		return order;
 	}
 }

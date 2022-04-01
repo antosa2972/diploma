@@ -32,10 +32,10 @@ public class ProductListPageController
 	private HttpSession httpSession;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String showProductList(@RequestParam(required = false) String search,
+	public String showProductList(final @RequestParam(required = false) String search,
 											@RequestParam(required = false) String field,
 											@RequestParam(required = false) String order,
-											@RequestParam(required = false) Long page, Model model)
+											@RequestParam(required = false) Long page, final Model model)
 	{
 		if (page == null)
 		{
@@ -55,15 +55,16 @@ public class ProductListPageController
 			}
 		}
 		long offset = (page - 1) * QUANTITY_ON_PAGE;
-		ParamsForSearch paramsForSearch = new ParamsForSearch(search, field, order, (int) offset,
+		final ParamsForSearch paramsForSearch = new ParamsForSearch(search, field, order, (int) offset,
 					 QUANTITY_ON_PAGE.intValue());
-		List<Phone> phoneList = phoneDao.findAll(paramsForSearch);
+		final List<Phone> phoneList = phoneDao.findAll(paramsForSearch);
 
-		Long phoneQuantity = phoneDao.count(paramsForSearch);
+		final Long phoneQuantity = phoneDao.count(paramsForSearch);
 
 		long numOfPages = phoneQuantity / QUANTITY_ON_PAGE;
 
 		long lastPage;
+
 		if (phoneQuantity % QUANTITY_ON_PAGE != 0)
 		{
 			lastPage = numOfPages + 1;
@@ -72,10 +73,12 @@ public class ProductListPageController
 		{
 			lastPage = numOfPages;
 		}
+
 		model.addAttribute("phones", phoneList);
 		model.addAttribute("cart", cartService.getCart(httpSession));
 		model.addAttribute("pages", lastPage);
 		model.addAttribute("phoneQuantity", phoneQuantity);
+
 		return "productList";
 	}
 }

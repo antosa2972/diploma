@@ -18,21 +18,21 @@ public class PhoneArrayDtoValidator implements Validator
 	private StockDao jdbcStockDao;
 
 	@Override
-	public boolean supports(Class<?> aClass)
+	public boolean supports(final Class<?> aClass)
 	{
 		return PhoneArrayDto.class.equals(aClass);
 	}
 
 	@Override
-	public void validate(Object o, Errors errors)
+	public void validate(final Object o, final Errors errors)
 	{
 		PhoneArrayDto dto = (PhoneArrayDto) o;
 		for (int i = 0; i < dto.getQuantity().length; i++)
 		{
 			try
 			{
-				Stock stock = jdbcStockDao.get(Long.parseLong(dto.getPhoneId()[i])).orElse(null);
-				long quantity = Long.parseLong(dto.getQuantity()[i]);
+				final Stock stock = jdbcStockDao.get(Long.parseLong(dto.getPhoneId()[i])).orElse(null);
+				final long quantity = Long.parseLong(dto.getQuantity()[i]);
 				if (quantity <= 0 || stock == null || quantity > (stock.getStock() - stock.getReserved()))
 				{
 					errors.rejectValue("quantity", dto.getPhoneId()[i]);

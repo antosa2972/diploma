@@ -21,13 +21,15 @@ public class OrdersPageController
 	private OrderService orderServiceImpl;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getCart(Model model)
+	public String getCart(final Model model)
 	{
-		List<Order> orders = orderServiceImpl.getOrders(Integer.MAX_VALUE, 0);
+		final List<Order> orders = orderServiceImpl.getOrders(Integer.MAX_VALUE, 0);
+
 		if (orders != null)
 		{
 			model.addAttribute(orders);
 		}
+
 		return "orders";
 	}
 }

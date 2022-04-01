@@ -1,4 +1,4 @@
-package by.bsuir.phoneshop.core.validator;
+package by.bsuir.phoneshop.core.beans.errors;
 
 
 import java.util.List;
@@ -10,7 +10,7 @@ public class ValidationErrors
 
 	private List<ObjectError> errors;
 
-	public ValidationErrors(List<ObjectError> errors)
+	public ValidationErrors(final List<ObjectError> errors)
 	{
 		this.errors = errors;
 	}
@@ -20,7 +20,7 @@ public class ValidationErrors
 		return errors;
 	}
 
-	public void setErrors(List<ObjectError> errors)
+	public void setErrors(final List<ObjectError> errors)
 	{
 		this.errors = errors;
 	}

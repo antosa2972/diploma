@@ -13,7 +13,7 @@ public class OrderDataDto
 		return firstName;
 	}
 
-	public void setFirstName(String firstName)
+	public void setFirstName(final String firstName)
 	{
 		this.firstName = firstName;
 	}
@@ -23,7 +23,7 @@ public class OrderDataDto
 		return lastName;
 	}
 
-	public void setLastName(String lastName)
+	public void setLastName(final String lastName)
 	{
 		this.lastName = lastName;
 	}
@@ -33,7 +33,7 @@ public class OrderDataDto
 		return address;
 	}
 
-	public void setAddress(String address)
+	public void setAddress(final String address)
 	{
 		this.address = address;
 	}
@@ -43,7 +43,7 @@ public class OrderDataDto
 		return phone;
 	}
 
-	public void setPhone(String phone)
+	public void setPhone(final String phone)
 	{
 		this.phone = phone;
 	}
@@ -53,7 +53,7 @@ public class OrderDataDto
 		return additionalInfo;
 	}
 
-	public void setAdditionalInfo(String additionalInfo)
+	public void setAdditionalInfo(final String additionalInfo)
 	{
 		this.additionalInfo = additionalInfo;
 	}

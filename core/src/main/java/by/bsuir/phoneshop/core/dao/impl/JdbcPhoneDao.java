@@ -55,18 +55,18 @@ public class JdbcPhoneDao implements PhoneDao
 	@Override
 	public Optional<Phone> get(final Long key)
 	{
-		String query = SQL_GET_PHONE + key;
+		final String query = SQL_GET_PHONE + key;
 		return getPhoneAndColors(query);
 	}
 
 	@Override
-	public Optional<Phone> get(String model)
+	public Optional<Phone> get(final String model)
 	{
-		String query = SQL_GET_PHONE_BY_MODEL + model + "'";
+		final String query = SQL_GET_PHONE_BY_MODEL + model + "'";
 		return getPhoneAndColors(query);
 	}
 
-	private Optional<Phone> getPhoneAndColors(String query)
+	private Optional<Phone> getPhoneAndColors(final String query)
 	{
 		Phone phone;
 		try
@@ -77,16 +77,16 @@ public class JdbcPhoneDao implements PhoneDao
 		{
 			return Optional.empty();
 		}
-		RowMapper<Long> idRowMapper = (rs, rowNum) -> rs.getLong("colorId");
-		String colorIdQuery = SQL_SELECT_COLOR_IDS + phone.getId();
-		List<Long> colorIds = jdbcTemplate.query(colorIdQuery, idRowMapper);
+		final RowMapper<Long> idRowMapper = (rs, rowNum) -> rs.getLong("colorId");
+		final String colorIdQuery = SQL_SELECT_COLOR_IDS + phone.getId();
+		final List<Long> colorIds = jdbcTemplate.query(colorIdQuery, idRowMapper);
 
 		if (colorIds != null && !colorIds.isEmpty())
 		{
-			Set<Color> colorSet = new HashSet<>();
+			final Set<Color> colorSet = new HashSet<>();
 			for (Long colorId : colorIds)
 			{
-				Optional<Color> colorOptional = jdbcColorDAO.get(colorId);
+				final Optional<Color> colorOptional = jdbcColorDAO.get(colorId);
 				colorOptional.ifPresent(colorSet::add);
 			}
 			phone.setColors(colorSet);
@@ -129,7 +129,7 @@ public class JdbcPhoneDao implements PhoneDao
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Phone> findAll(int offset, int limit)
+	public List<Phone> findAll(final int offset, final int limit)
 	{
 		String query = SQL_GET_ALL_PHONES + " offset " + offset + " limit " + limit;
 		return jdbcTemplate.query(query, phoneResultSetExtractor);
@@ -137,18 +137,19 @@ public class JdbcPhoneDao implements PhoneDao
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Phone> findAll(ParamsForSearch paramsForSearch)
+	public List<Phone> findAll(final ParamsForSearch paramsForSearch)
 	{
 
-		String search = paramsForSearch.getSearch();
-		String sortField = paramsForSearch.getSortField();
-		String order = paramsForSearch.getOrder();
-		int offset = paramsForSearch.getOffset();
-		int limit = paramsForSearch.getLimit();
+		final String search = paramsForSearch.getSearch();
+		final String sortField = paramsForSearch.getSortField();
+		final String order = paramsForSearch.getOrder();
+		final int offset = paramsForSearch.getOffset();
+		final int limit = paramsForSearch.getLimit();
+		final List<Object> objects = new ArrayList<>();
+		final List<Integer> types = new ArrayList<>();
 
 		String query = SQL_GET_ALL_PHONES + SQL_WHERE_SEARCH;
-		List<Object> objects = new ArrayList<>();
-		List<Integer> types = new ArrayList<>();
+
 		if (search != null)
 		{
 			query = query + "and lower(model) like lower(?) ";
@@ -162,19 +163,20 @@ public class JdbcPhoneDao implements PhoneDao
 
 		query = query + " limit " + limit + " offset " + offset;
 
-		int[] typesArray = types.stream()
+		final int[] typesArray = types.stream()
 					 .mapToInt(i -> i)
 					 .toArray();
 		return jdbcTemplate.query(query, objects.toArray(), typesArray, phoneResultSetExtractor);
 	}
 
 	@Override
-	public Long count(ParamsForSearch paramsForSearch)
+	public Long count(final ParamsForSearch paramsForSearch)
 	{
 
-		String search = paramsForSearch.getSearch();
+		final String search = paramsForSearch.getSearch();
 
 		String request = SQL_SELECT_COUNT_FIND_ALL_EXTENDED + SQL_WHERE_SEARCH;
+
 		if (search != null)
 		{
 			request = request + "and lower(model) like lower(?)";

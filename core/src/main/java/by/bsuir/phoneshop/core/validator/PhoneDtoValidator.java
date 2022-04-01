@@ -19,20 +19,20 @@ public class PhoneDtoValidator implements Validator
 	private StockDao jdbcStockDao;
 
 	@Override
-	public boolean supports(Class<?> aClass)
+	public boolean supports(final Class<?> aClass)
 	{
 		return PhoneDto.class.equals(aClass);
 	}
 
 	@Override
-	public void validate(Object o, Errors errors)
+	public void validate(final Object o, final Errors errors)
 	{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantity", "Empty quantity");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "Empty id");
 		if (!errors.hasErrors())
 		{
-			PhoneDto dto = (PhoneDto) o;
-			Stock stock = jdbcStockDao.get(dto.getId()).orElse(null);
+			final PhoneDto dto = (PhoneDto) o;
+			final Stock stock = jdbcStockDao.get(dto.getId()).orElse(null);
 			if (dto.getQuantity() <= 0)
 			{
 				errors.rejectValue("quantity", "Wrong input");

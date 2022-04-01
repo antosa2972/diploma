@@ -1,7 +1,5 @@
 package by.bsuir.phoneshop.core.beans;
 
-import by.bsuir.phoneshop.core.beans.Phone;
-
 public class Stock
 {
 	private Phone phone;
@@ -13,7 +11,7 @@ public class Stock
 		return phone;
 	}
 
-	public void setPhone(Phone phone)
+	public void setPhone(final Phone phone)
 	{
 		this.phone = phone;
 	}
@@ -23,7 +21,7 @@ public class Stock
 		return stock;
 	}
 
-	public void setStock(Integer stock)
+	public void setStock(final Integer stock)
 	{
 		this.stock = stock;
 	}
@@ -33,7 +31,7 @@ public class Stock
 		return reserved;
 	}
 
-	public void setReserved(Integer reserved)
+	public void setReserved(final Integer reserved)
 	{
 		this.reserved = reserved;
 	}

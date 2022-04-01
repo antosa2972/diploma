@@ -63,7 +63,7 @@ public class Phone
 		return brand;
 	}
 
-	public void setBrand(String brand)
+	public void setBrand(final String brand)
 	{
 		this.brand = brand;
 	}
@@ -73,7 +73,7 @@ public class Phone
 		return displaySizeInches;
 	}
 
-	public void setDisplaySizeInches(BigDecimal displaySizeInches)
+	public void setDisplaySizeInches(final BigDecimal displaySizeInches)
 	{
 		this.displaySizeInches = displaySizeInches;
 	}
@@ -83,7 +83,7 @@ public class Phone
 		return weightGr;
 	}
 
-	public void setWeightGr(Integer weightGr)
+	public void setWeightGr(final Integer weightGr)
 	{
 		this.weightGr = weightGr;
 	}
@@ -93,7 +93,7 @@ public class Phone
 		return announced;
 	}
 
-	public void setAnnounced(Date announced)
+	public void setAnnounced(final Date announced)
 	{
 		this.announced = announced;
 	}
@@ -103,7 +103,7 @@ public class Phone
 		return deviceType;
 	}
 
-	public void setDeviceType(String deviceType)
+	public void setDeviceType(final String deviceType)
 	{
 		this.deviceType = deviceType;
 	}
@@ -113,7 +113,7 @@ public class Phone
 		return os;
 	}
 
-	public void setOs(String os)
+	public void setOs(final String os)
 	{
 		this.os = os;
 	}
@@ -123,7 +123,7 @@ public class Phone
 		return colors;
 	}
 
-	public void setColors(Set<Color> colors)
+	public void setColors(final Set<Color> colors)
 	{
 		this.colors = colors;
 	}
@@ -133,7 +133,7 @@ public class Phone
 		return displayResolution;
 	}
 
-	public void setDisplayResolution(String displayResolution)
+	public void setDisplayResolution(final String displayResolution)
 	{
 		this.displayResolution = displayResolution;
 	}
@@ -143,7 +143,7 @@ public class Phone
 		return pixelDensity;
 	}
 
-	public void setPixelDensity(Integer pixelDensity)
+	public void setPixelDensity(final Integer pixelDensity)
 	{
 		this.pixelDensity = pixelDensity;
 	}
@@ -153,7 +153,7 @@ public class Phone
 		return displayTechnology;
 	}
 
-	public void setDisplayTechnology(String displayTechnology)
+	public void setDisplayTechnology(final String displayTechnology)
 	{
 		this.displayTechnology = displayTechnology;
 	}
@@ -163,7 +163,7 @@ public class Phone
 		return backCameraMegapixels;
 	}
 
-	public void setBackCameraMegapixels(BigDecimal backCameraMegapixels)
+	public void setBackCameraMegapixels(final BigDecimal backCameraMegapixels)
 	{
 		this.backCameraMegapixels = backCameraMegapixels;
 	}
@@ -173,7 +173,7 @@ public class Phone
 		return frontCameraMegapixels;
 	}
 
-	public void setFrontCameraMegapixels(BigDecimal frontCameraMegapixels)
+	public void setFrontCameraMegapixels(final BigDecimal frontCameraMegapixels)
 	{
 		this.frontCameraMegapixels = frontCameraMegapixels;
 	}
@@ -183,7 +183,7 @@ public class Phone
 		return ramGb;
 	}
 
-	public void setRamGb(BigDecimal ramGb)
+	public void setRamGb(final BigDecimal ramGb)
 	{
 		this.ramGb = ramGb;
 	}
@@ -213,7 +213,7 @@ public class Phone
 		return internalStorageGb;
 	}
 
-	public void setInternalStorageGb(BigDecimal internalStorageGb)
+	public void setInternalStorageGb(final BigDecimal internalStorageGb)
 	{
 		this.internalStorageGb = internalStorageGb;
 	}
@@ -223,7 +223,7 @@ public class Phone
 		return batteryCapacityMah;
 	}
 
-	public void setBatteryCapacityMah(Integer batteryCapacityMah)
+	public void setBatteryCapacityMah(final Integer batteryCapacityMah)
 	{
 		this.batteryCapacityMah = batteryCapacityMah;
 	}
@@ -233,7 +233,7 @@ public class Phone
 		return talkTimeHours;
 	}
 
-	public void setTalkTimeHours(BigDecimal talkTimeHours)
+	public void setTalkTimeHours(final BigDecimal talkTimeHours)
 	{
 		this.talkTimeHours = talkTimeHours;
 	}
@@ -243,7 +243,7 @@ public class Phone
 		return standByTimeHours;
 	}
 
-	public void setStandByTimeHours(BigDecimal standByTimeHours)
+	public void setStandByTimeHours(final BigDecimal standByTimeHours)
 	{
 		this.standByTimeHours = standByTimeHours;
 	}
@@ -253,7 +253,7 @@ public class Phone
 		return bluetooth;
 	}
 
-	public void setBluetooth(String bluetooth)
+	public void setBluetooth(final String bluetooth)
 	{
 		this.bluetooth = bluetooth;
 	}
@@ -263,7 +263,7 @@ public class Phone
 		return positioning;
 	}
 
-	public void setPositioning(String positioning)
+	public void setPositioning(final String positioning)
 	{
 		this.positioning = positioning;
 	}
@@ -273,7 +273,7 @@ public class Phone
 		return imageUrl;
 	}
 
-	public void setImageUrl(String imageUrl)
+	public void setImageUrl(final String imageUrl)
 	{
 		this.imageUrl = imageUrl;
 	}
@@ -283,7 +283,7 @@ public class Phone
 		return description;
 	}
 
-	public void setDescription(String description)
+	public void setDescription(final String description)
 	{
 		this.description = description;
 	}
@@ -293,7 +293,7 @@ public class Phone
 		return lengthMm;
 	}
 
-	public void setLengthMm(BigDecimal lengthMm)
+	public void setLengthMm(final BigDecimal lengthMm)
 	{
 		this.lengthMm = lengthMm;
 	}
@@ -303,7 +303,7 @@ public class Phone
 		return widthMm;
 	}
 
-	public void setWidthMm(BigDecimal widthMm)
+	public void setWidthMm(final BigDecimal widthMm)
 	{
 		this.widthMm = widthMm;
 	}
@@ -313,7 +313,7 @@ public class Phone
 		return heightMm;
 	}
 
-	public void setHeightMm(BigDecimal heightMm)
+	public void setHeightMm(final BigDecimal heightMm)
 	{
 		this.heightMm = heightMm;
 	}
@@ -323,7 +323,7 @@ public class Phone
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -338,7 +338,7 @@ public class Phone
 	}
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(final Object obj)
 	{
 		if (obj == this)
 		{

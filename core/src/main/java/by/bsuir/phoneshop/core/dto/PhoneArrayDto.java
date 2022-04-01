@@ -11,7 +11,7 @@ public class PhoneArrayDto
 		return phoneId;
 	}
 
-	public void setPhoneId(String[] phoneId)
+	public void setPhoneId(final String[] phoneId)
 	{
 		this.phoneId = phoneId;
 	}
@@ -21,7 +21,7 @@ public class PhoneArrayDto
 		return quantity;
 	}
 
-	public void setQuantity(String[] quantity)
+	public void setQuantity(final String[] quantity)
 	{
 		this.quantity = quantity;
 	}

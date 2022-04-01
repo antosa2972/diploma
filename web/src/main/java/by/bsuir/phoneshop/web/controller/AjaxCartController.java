@@ -18,8 +18,8 @@ import by.bsuir.phoneshop.core.beans.Cart;
 import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.dto.PhoneDto;
 import by.bsuir.phoneshop.core.exception.OutOfStockException;
-import by.bsuir.phoneshop.core.validator.ResponseErrors;
-import by.bsuir.phoneshop.core.validator.ValidationErrors;
+import by.bsuir.phoneshop.core.beans.errors.ResponseErrors;
+import by.bsuir.phoneshop.core.beans.errors.ValidationErrors;
 
 @Controller
 @RequestMapping(value = "/ajaxCart")
@@ -36,7 +36,7 @@ public class AjaxCartController
 	private HttpSession httpSession;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<?> addPhone(@Validated @RequestBody PhoneDto phoneDto, BindingResult bindingResult)
+	public ResponseEntity<?> addPhone(final @Validated @RequestBody PhoneDto phoneDto, final BindingResult bindingResult)
 	{
 		quantityValidator.validate(phoneDto, bindingResult);
 		if (bindingResult.hasErrors())
@@ -44,18 +44,19 @@ public class AjaxCartController
 			ValidationErrors validationErrors = new ValidationErrors(bindingResult.getAllErrors());
 			return badRequest().body(validationErrors.getErrors().get(0).getCode());
 		}
+
 		try
 		{
-			Cart currentCart = cartService.getCart(httpSession);
+			final Cart currentCart = cartService.getCart(httpSession);
 			cartService.addPhone(phoneDto.getId(), phoneDto.getQuantity(), currentCart);
 			return ResponseEntity.ok(cartService.getCart(httpSession));
 		}
-		catch (OutOfStockException | IllegalArgumentException e)
+		catch (final OutOfStockException | IllegalArgumentException e)
 		{
-			ResponseErrors errors = new ResponseErrors(e.getMessage());
+			final ResponseErrors errors = new ResponseErrors(e.getMessage());
 			return ResponseEntity.badRequest().body(errors);
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			return ResponseEntity.status(500).build();
 		}

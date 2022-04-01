@@ -10,7 +10,7 @@ public class PhoneDto
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -20,7 +20,7 @@ public class PhoneDto
 		return quantity;
 	}
 
-	public void setQuantity(Long quantity)
+	public void setQuantity(final Long quantity)
 	{
 		this.quantity = quantity;
 	}

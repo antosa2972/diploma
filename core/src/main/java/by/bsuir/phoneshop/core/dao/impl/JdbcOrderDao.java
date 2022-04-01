@@ -44,14 +44,14 @@ public class JdbcOrderDao implements OrderDao
 	private OrderListResultSetExtractor orderListResultSetExtractor;
 
 	@Override
-	public Optional<Order> get(Long key)
+	public Optional<Order> get(final Long key)
 	{
 		String query = SELECT_ORDER_SQL + key;
 		return Optional.ofNullable(jdbcTemplate.query(query, orderResultSetExtractor));
 	}
 
 	@Override
-	public Long save(Order order)
+	public Long save(final Order order)
 	{
 		MapSqlParameterSource in = new MapSqlParameterSource();
 		in.addValue("id", order.getId());
@@ -74,7 +74,7 @@ public class JdbcOrderDao implements OrderDao
 	}
 
 	@Override
-	public List<Order> getOrders(int limit, int offset)
+	public List<Order> getOrders(final int limit, final int offset)
 	{
 		String query = SELECT_ORDERS + " limit " + limit + " offset " + offset;
 		return jdbcTemplate.query(query, orderListResultSetExtractor);

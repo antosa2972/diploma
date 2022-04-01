@@ -46,7 +46,7 @@ public class QuickOrderController
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getQuickOrderPage(Model model)
+	public String getQuickOrderPage(final Model model)
 	{
 		model.addAttribute("success", model.asMap().get("success"));
 		model.addAttribute("quickOrderElementsDto", new QuickOrderElementsDto());
@@ -54,10 +54,10 @@ public class QuickOrderController
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String makeQuickOrder(@ModelAttribute(name = "quickOrderElementsDto") @Validated QuickOrderElementsDto quickOrderElementsDto,
-										  BindingResult bindingResult,
-										  RedirectAttributes redirectAttributes,
-										  Model model)
+	public String makeQuickOrder(final @ModelAttribute(name = "quickOrderElementsDto") @Validated QuickOrderElementsDto quickOrderElementsDto,
+										  final BindingResult bindingResult,
+										  final RedirectAttributes redirectAttributes,
+										  final Model model)
 	{
 		Cart cart = httpSessionCartService.getCart(httpSession);
 		quickOrderElementsDto.getQuickOrderElements().forEach(quickOrderElement ->
@@ -65,27 +65,30 @@ public class QuickOrderController
 			int indexInList = quickOrderElementsDto.getQuickOrderElements().indexOf(quickOrderElement);
 			addToCart(quickOrderElementsDto, cart, bindingResult, indexInList);
 		});
+
 		if (bindingResult.hasFieldErrors())
 		{
 			model.addAttribute("successfulPhones", phoneList);
 			model.addAttribute("errors", bindingResult);
 			return "quickOrder";
 		}
+
 		redirectAttributes.addFlashAttribute("success", true);
+
 		return "redirect:quickOrder";
 	}
 
-	private void addToCart(QuickOrderElementsDto quickOrderElementsDto,
-								  Cart cart, BindingResult bindingResult, int indexInList)
+	private void addToCart(final QuickOrderElementsDto quickOrderElementsDto,
+								  final Cart cart, final BindingResult bindingResult, final int indexInList)
 	{
-		QuickOrderElement quickOrderElement = quickOrderElementsDto.getQuickOrderElements().get(indexInList);
-		Long quantity = quickOrderElement.getQuantity();
-		String modelPhone = quickOrderElement.getModel();
+		final QuickOrderElement quickOrderElement = quickOrderElementsDto.getQuickOrderElements().get(indexInList);
+		final Long quantity = quickOrderElement.getQuantity();
+		final String modelPhone = quickOrderElement.getModel();
 		if (quantity == null && modelPhone.isEmpty())
 		{
 			return;
 		}
-		Optional<Phone> optionalPhone = jdbcPhoneDao.get(modelPhone);
+		final Optional<Phone> optionalPhone = jdbcPhoneDao.get(modelPhone);
 		optionalPhone.ifPresent(phone ->
 		{
 			if (quantity != null)

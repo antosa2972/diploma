@@ -22,7 +22,7 @@ public class ParamsForSearch
 		return search;
 	}
 
-	public void setSearch(String search)
+	public void setSearch(final String search)
 	{
 		this.search = search;
 	}
@@ -32,7 +32,7 @@ public class ParamsForSearch
 		return sortField;
 	}
 
-	public void setSortField(String sortField)
+	public void setSortField(final String sortField)
 	{
 		this.sortField = sortField;
 	}
@@ -42,7 +42,7 @@ public class ParamsForSearch
 		return order;
 	}
 
-	public void setOrder(String order)
+	public void setOrder(final String order)
 	{
 		this.order = order;
 	}
@@ -52,7 +52,7 @@ public class ParamsForSearch
 		return offset;
 	}
 
-	public void setOffset(int offset)
+	public void setOffset(final int offset)
 	{
 		this.offset = offset;
 	}
@@ -62,7 +62,7 @@ public class ParamsForSearch
 		return limit;
 	}
 
-	public void setLimit(int limit)
+	public void setLimit(final int limit)
 	{
 		this.limit = limit;
 	}

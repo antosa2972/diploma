@@ -40,14 +40,14 @@ public class CartPageController
 	private PhoneArrayDtoValidator phoneArrayDtoValidator;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getCart(@RequestParam(value = "successDelete", required = false) boolean successDelete,
-								 @RequestParam(value = "successUpdate", required = false) boolean successUpdate,
-								 @RequestParam(value = "isOutOfStock", required = false) boolean isOutOfStock,
-								 @RequestParam(value = "error", required = false) boolean error,
-								 @RequestParam(value = "errorsId", required = false) List<Long> errorsId,
-								 Model model)
+	public String getCart(final @RequestParam(value = "successDelete", required = false) boolean successDelete,
+								 final @RequestParam(value = "successUpdate", required = false) boolean successUpdate,
+								 final @RequestParam(value = "isOutOfStock", required = false) boolean isOutOfStock,
+								 final @RequestParam(value = "error", required = false) boolean error,
+								 final @RequestParam(value = "errorsId", required = false) List<Long> errorsId,
+								 final Model model)
 	{
-		Cart cart = cartService.getCart(httpSession);
+		final Cart cart = cartService.getCart(httpSession);
 
 		model.addAttribute("successDelete", successDelete);
 		model.addAttribute("successUpdate", successUpdate);
@@ -60,24 +60,29 @@ public class CartPageController
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String updateCart(@Validated @ModelAttribute(name = "phoneArrayDto") PhoneArrayDto phoneArrayDto, Model model, BindingResult bindingResult)
+	public String updateCart(final @Validated @ModelAttribute(name = "phoneArrayDto") PhoneArrayDto phoneArrayDto, final Model model, final BindingResult bindingResult)
 	{
-		Cart cart = cartService.getCart(httpSession);
+		final Cart cart = cartService.getCart(httpSession);
+
 		if (cart.getCartItems().isEmpty())
 		{
 			return prepareModelForEmptyCart(cart, model);
 		}
+
 		phoneArrayDtoValidator.validate(phoneArrayDto, bindingResult);
+
 		if (bindingResult.hasErrors())
 		{
 			return validationFailed(cart, bindingResult, model);
 		}
-		HashMap<Long, Long> idAndQuantity = new HashMap<>();
+
+		final HashMap<Long, Long> idAndQuantity = new HashMap<>();
 		for (int i = 0; i < phoneArrayDto.getQuantity().length; i++)
 		{
 			idAndQuantity.put(Long.parseLong(phoneArrayDto.getPhoneId()[i]),
 						 Long.parseLong(phoneArrayDto.getQuantity()[i]));
 		}
+
 		cartService.update(idAndQuantity, cart);
 		model.addAttribute("successUpdate", true);
 		model.addAttribute("cart", cart);
@@ -85,14 +90,16 @@ public class CartPageController
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.POST)
-	public String deleteFromCart(@PathVariable("id") Long id, Model model) throws IllegalArgumentException
+	public String deleteFromCart(final @PathVariable("id") Long id, final Model model) throws IllegalArgumentException
 	{
-		Optional<Phone> optionalPhone = jdbcPhoneDao.get(id);
-		Cart cart = cartService.getCart(httpSession);
+		final Optional<Phone> optionalPhone = jdbcPhoneDao.get(id);
+		final Cart cart = cartService.getCart(httpSession);
+
 		if (cart.getCartItems().isEmpty())
 		{
 			return prepareModelForEmptyCart(cart, model);
 		}
+
 		if (optionalPhone.isPresent())
 		{
 			cartService.remove(id, cart);
@@ -104,25 +111,28 @@ public class CartPageController
 			model.addAttribute("error", true);
 			throw new IllegalArgumentException(String.valueOf(id));
 		}
+
 		return "redirect:/cart";
 	}
 
-	private String prepareModelForEmptyCart(Cart cart, Model model)
+	private String prepareModelForEmptyCart(final Cart cart, final Model model)
 	{
 		model.addAttribute("error", true);
 		model.addAttribute("cart", cart);
 		return "redirect:/cart";
 	}
 
-	private String validationFailed(Cart cart, BindingResult bindingResult, Model model)
+	private String validationFailed(final Cart cart, final BindingResult bindingResult, final Model model)
 	{
-		List<FieldError> errorList = bindingResult.getFieldErrors("quantity");
-		List<Long> errorsId = errorList.stream()
+		final List<FieldError> errorList = bindingResult.getFieldErrors("quantity");
+		final List<Long> errorsId = errorList.stream()
 					 .map(item -> Long.parseLong(item.getCode()))
 					 .collect(Collectors.toList());
+
 		model.addAttribute("cart", cart);
 		model.addAttribute("errorsId", errorsId);
 		model.addAttribute("error", true);
+
 		return "redirect:/cart";
 	}
 }

@@ -19,8 +19,8 @@ public class LoginPageController
 	private Environment environment;
 
 	@GetMapping
-	public String getLoginPage(@RequestParam(required = false) String error, Authentication authentication,
-										Model model)
+	public String getLoginPage(final @RequestParam(required = false) String error, final Authentication authentication,
+										final Model model)
 	{
 		if (authentication != null && authentication.isAuthenticated())
 		{

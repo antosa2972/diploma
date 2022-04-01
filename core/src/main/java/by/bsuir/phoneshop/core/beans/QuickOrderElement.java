@@ -13,7 +13,7 @@ public class QuickOrderElement
 		return model;
 	}
 
-	public void setModel(String model)
+	public void setModel(final String model)
 	{
 		this.model = model;
 	}
@@ -23,7 +23,7 @@ public class QuickOrderElement
 		return quantity;
 	}
 
-	public void setQuantity(Long quantity)
+	public void setQuantity(final Long quantity)
 	{
 		this.quantity = quantity;
 	}

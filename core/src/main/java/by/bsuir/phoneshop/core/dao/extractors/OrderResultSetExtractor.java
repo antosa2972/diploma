@@ -26,7 +26,7 @@ public class OrderResultSetExtractor extends AbstractOrderResultSetExtractor imp
 	{
 		resultSet.next();
 		List<OrderItem> orderItems = new ArrayList<>();
-		final Order order = configureOrder(resultSet);
+		final Order order = configureOrderFields(resultSet);
 		do
 		{
 			final Long orderItemId = resultSet.getLong("orderItems.id");

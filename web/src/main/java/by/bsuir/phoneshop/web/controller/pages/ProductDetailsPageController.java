@@ -25,11 +25,12 @@ public class ProductDetailsPageController
 	private HttpSession httpSession;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String showProductDetailsInfo(@PathVariable("id") Long phoneId, Model model)
+	public String showProductDetailsInfo(final @PathVariable("id") Long phoneId, Model model)
 	{
-		Phone phone = jdbcPhoneDao.get(phoneId).orElse(null);
+		final Phone phone = jdbcPhoneDao.get(phoneId).orElse(null);
 		model.addAttribute("phone", phone);
 		model.addAttribute("cart", httpSessionCartService.getCart(httpSession));
+
 		return "productDetails";
 	}
 }

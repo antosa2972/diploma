@@ -22,7 +22,7 @@ public class Cart
 		return cartItems;
 	}
 
-	public void setCartItems(List<CartItem> cartItems)
+	public void setCartItems(final List<CartItem> cartItems)
 	{
 		this.cartItems = cartItems;
 	}
@@ -32,7 +32,7 @@ public class Cart
 		return totalQuantity;
 	}
 
-	public void setTotalQuantity(Long totalQuantity)
+	public void setTotalQuantity(final Long totalQuantity)
 	{
 		this.totalQuantity = totalQuantity;
 	}
@@ -42,7 +42,7 @@ public class Cart
 		return totalCost;
 	}
 
-	public void setTotalCost(BigDecimal totalCost)
+	public void setTotalCost(final BigDecimal totalCost)
 	{
 		this.totalCost = totalCost;
 	}

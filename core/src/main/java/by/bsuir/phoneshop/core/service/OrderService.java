@@ -10,9 +10,9 @@ import by.bsuir.phoneshop.core.enums.OrderStatus;
 
 public interface OrderService
 {
-	Long placeOrder(Cart cart, OrderDataDto orderDataDto, Long deliveryPrice) throws OutOfStockException;
+	Long placeOrder(final Cart cart, final OrderDataDto orderDataDto, final Long deliveryPrice) throws OutOfStockException;
 
-	List<Order> getOrders(int limit, int offset);
+	List<Order> getOrders(final int limit, final int offset);
 
-	void updateStatus(OrderStatus orderStatus, Long orderId);
+	void updateStatus(final OrderStatus orderStatus, final Long orderId);
 }

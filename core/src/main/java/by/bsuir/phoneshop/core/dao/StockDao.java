@@ -6,7 +6,7 @@ import by.bsuir.phoneshop.core.beans.Stock;
 
 public interface StockDao
 {
-	Optional<Stock> get(Long key);
+	Optional<Stock> get(final Long key);
 
-	void update(Long key, Long stock, Long reserved);
+	void update(final Long key, final Long stock, final Long reserved);
 }

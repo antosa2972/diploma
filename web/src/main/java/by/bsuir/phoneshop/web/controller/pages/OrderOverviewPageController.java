@@ -19,10 +19,11 @@ public class OrderOverviewPageController
 	OrderDao jdbcOrderDao;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getOrderOverview(@PathVariable("id") Long id, Model model)
+	public String getOrderOverview(final @PathVariable("id") Long id, final Model model)
 	{
 		jdbcOrderDao.get(id).ifPresent(order -> model.addAttribute("order", order));
 		model.addAttribute("id", id);
+
 		return "orderOverview";
 	}
 

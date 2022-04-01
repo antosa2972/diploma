@@ -21,16 +21,16 @@ public class JdbcStockDao implements StockDao
 	private static final String SQL_UPDATE = "update stocks set stock = %d, reserved = %d where phoneId = %d";
 
 	@Override
-	public Optional<Stock> get(Long key)
+	public Optional<Stock> get(final Long key)
 	{
-		List<Stock> stocks = jdbcTemplate.query(SQL_GET_STOCK + key, new BeanPropertyRowMapper<>(Stock.class));
+		final List<Stock> stocks = jdbcTemplate.query(SQL_GET_STOCK + key, new BeanPropertyRowMapper<>(Stock.class));
 		return stocks.stream().findFirst();
 	}
 
 	@Override
-	public void update(Long key, Long stock, Long reserved)
+	public void update(final Long key, final Long stock, final Long reserved)
 	{
-		String query = String.format(SQL_UPDATE, stock, reserved, key);
+		final String query = String.format(SQL_UPDATE, stock, reserved, key);
 		jdbcTemplate.update(query);
 	}
 }

@@ -10,7 +10,7 @@ import by.bsuir.phoneshop.core.enums.OrderStatus;
 
 public abstract class AbstractOrderResultSetExtractor
 {
-	public Order configureOrder(final ResultSet resultSet) throws SQLException
+	public Order configureOrderFields(final ResultSet resultSet) throws SQLException
 	{
 		final Order order = new Order();
 

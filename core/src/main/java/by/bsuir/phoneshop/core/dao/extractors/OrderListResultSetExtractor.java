@@ -30,7 +30,7 @@ public class OrderListResultSetExtractor extends AbstractOrderResultSetExtractor
 		final List<Order> orders = new ArrayList<>();
 		while (resultSet.next())
 		{
-			final Order order = configureOrder(resultSet);
+			final Order order = configureOrderFields(resultSet);
 
 			final Long orderItemId = resultSet.getLong("orderItems.id");
 			final Long phoneId = resultSet.getLong("orderItems.phoneId");

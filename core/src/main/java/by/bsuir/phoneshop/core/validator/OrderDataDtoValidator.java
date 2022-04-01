@@ -18,13 +18,13 @@ public class OrderDataDtoValidator implements Validator
 
 
 	@Override
-	public boolean supports(Class<?> aClass)
+	public boolean supports(final Class<?> aClass)
 	{
 		return OrderDataDto.class.equals(aClass);
 	}
 
 	@Override
-	public void validate(Object o, Errors errors)
+	public void validate(final Object o, final Errors errors)
 	{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "Empty first name");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "Empty last name");

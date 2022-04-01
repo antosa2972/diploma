@@ -13,7 +13,7 @@ public interface OrderDao
 
 	Long save(final Order order);
 
-	List<Order> getOrders(int limit, int offset);
+	List<Order> getOrders(final int limit, final int offset);
 
-	void updateStatus(OrderStatus orderStatus, Long key);
+	void updateStatus(final OrderStatus orderStatus, final Long key);
 }

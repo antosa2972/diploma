@@ -1,11 +1,11 @@
-package by.bsuir.phoneshop.core.validator;
+package by.bsuir.phoneshop.core.beans.errors;
 
 public class ResponseErrors
 {
 
 	private String errorMessage;
 
-	public ResponseErrors(String errorMessage)
+	public ResponseErrors(final String errorMessage)
 	{
 		this.errorMessage = errorMessage;
 	}
@@ -15,7 +15,7 @@ public class ResponseErrors
 		return errorMessage;
 	}
 
-	public void setErrorsMessage(String errorMessage)
+	public void setErrorsMessage(final String errorMessage)
 	{
 		this.errorMessage = errorMessage;
 	}

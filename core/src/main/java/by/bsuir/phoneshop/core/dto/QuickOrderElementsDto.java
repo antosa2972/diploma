@@ -19,7 +19,7 @@ public class QuickOrderElementsDto
 		return quickOrderElements;
 	}
 
-	public void setQuickOrderElements(List<QuickOrderElement> quickOrderElements)
+	public void setQuickOrderElements(final List<QuickOrderElement> quickOrderElements)
 	{
 		this.quickOrderElements = quickOrderElements;
 	}

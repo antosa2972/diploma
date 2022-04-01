@@ -125,9 +125,9 @@ public class HttpSessionCartService implements CartService
 
 	@Override
 	@Transactional(rollbackFor = DataAccessException.class)
-	public synchronized void remove(Long phoneId, Cart cart)
+	public synchronized void remove(final Long phoneId, final Cart cart)
 	{
-		Optional<CartItem> optionalCartItem = findCartItem(phoneId, cart);
+		final Optional<CartItem> optionalCartItem = findCartItem(phoneId, cart);
 		if (optionalCartItem.isPresent())
 		{
 			cart.getCartItems().remove(optionalCartItem.get());
@@ -137,11 +137,11 @@ public class HttpSessionCartService implements CartService
 			throw new IllegalArgumentException(phoneId.toString());
 		}
 
-		Optional<Stock> optionalStock = jdbcStockDao.get(phoneId);
+		final Optional<Stock> optionalStock = jdbcStockDao.get(phoneId);
 		if (optionalStock.isPresent() && optionalCartItem.isPresent())
 		{
-			Stock stock = optionalStock.get();
-			CartItem cartItem = optionalCartItem.get();
+			final Stock stock = optionalStock.get();
+			final CartItem cartItem = optionalCartItem.get();
 			jdbcStockDao.update(phoneId, stock.getStock() + cartItem.getQuantity(),
 						 stock.getReserved() - cartItem.getQuantity());
 		}
@@ -149,28 +149,29 @@ public class HttpSessionCartService implements CartService
 	}
 
 	@Override
-	public void deleteCart(HttpSession httpSession)
+	public void deleteCart(final HttpSession httpSession)
 	{
 		httpSession.removeAttribute("cart");
 	}
 
 
-	private Optional<CartItem> findCartItem(Long phoneId, Cart cart)
+	private Optional<CartItem> findCartItem(final Long phoneId, final Cart cart)
 	{
 		return cart.getCartItems().stream()
 					 .filter(cartItem -> cartItem.getPhone().getId().equals(phoneId))
 					 .findFirst();
 	}
 
-	private void calculateCart(Cart cart)
+	private void calculateCart(final Cart cart)
 	{
-		Long totalQuantity = cart.getCartItems().stream()
+		final Long totalQuantity = cart.getCartItems().stream()
 					 .mapToLong(CartItem::getQuantity)
 					 .sum();
 		cart.setTotalQuantity(totalQuantity);
-		BigDecimal totalCost = cart.getCartItems().stream()
+		final BigDecimal totalCost = cart.getCartItems().stream()
 					 .map(cartItem -> cartItem.getPhone().getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())))
 					 .reduce(BigDecimal.ZERO, BigDecimal::add);
+
 		cart.setTotalCost(totalCost);
 	}
 }
