@@ -62,10 +62,10 @@
             "src/main/java"
           ],
           "git.repository.remotes":[
-            "https://github.com/andrewosipenko/phoneshop"
+            "https://github.com/antosa2972/diploma"
           ],
           "maven.groupId":[
-            "com.es"
+            "by.bsuir"
           ],
           "containsJavaFiles":[
             "true"

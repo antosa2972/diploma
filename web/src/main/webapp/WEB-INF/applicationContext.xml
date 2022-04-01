@@ -16,7 +16,7 @@
 
     <context:annotation-config/>
 
-    <bean name="SecurityConfig" class="com.es.phoneshop.web.controller.WebSecurityConfig"/>
+    <bean name="SecurityConfig" class="by.bsuir.phoneshop.web.controller.WebSecurityConfig"/>
 
     <bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
         <property name="basenamePrefix" value="lang-"/>
