@@ -8,15 +8,15 @@
 <tags:master pageTitle="Quick Order">
     <html>
     <head>
-        <title><spring:theme code="page.fastOrder"/></title>
+        <title><spring:message code="page.fastOrder"/></title>
     </head>
     <br>
     <h2>
-        <spring:theme code="page.fastOrder"/>
+        <spring:message code="page.fastOrder"/>
     </h2>
     <div id="success-result">
         <c:if test="${not empty success}">
-            <spring:theme code="cart.update.success"/>
+            <spring:message code="cart.update.success"/>
         </c:if>
         <c:if test="${not empty successfulPhones}">
             <c:forEach var="phone" items="${successfulPhones}">
@@ -27,16 +27,16 @@
     </div>
     <div class="result-error">
         <c:if test="${not empty errors}">
-            <spring:theme code="cart.update.error"/>
+            <spring:message code="cart.update.error"/>
         </c:if>
     </div>
     <table>
         <tr>
             <td>
-                <spring:theme code="model"/>
+                <spring:message code="model"/>
             </td>
             <td>
-                <spring:theme code="quantity"/>
+                <spring:message code="quantity"/>
             </td>
         </tr>
         <form:form id="add-form" action="${pageContext.servletContext.contextPath}/quickOrder" method="post"
@@ -62,7 +62,7 @@
     </table>
     <br>
     <button form="add-form" class="btn btn-outline-primary" type="submit">
-        <spring:theme code="addToCart"/>
+        <spring:message code="addToCart"/>
     </button>
     </html>
 </tags:master>

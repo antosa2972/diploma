@@ -5,34 +5,34 @@
 <tags:masterLogged pageTitle="Orders">
     <html>
     <head>
-        <title><spring:theme code="admin.ordersPage"/></title>
+        <title><spring:message code="admin.ordersPage"/></title>
     </head>
     <body>
     <h2>
-        <spring:theme code="admin.ordersPage"/>:
+        <spring:message code="admin.ordersPage"/>:
     </h2>
     <table>
         <tr>
             <td>
-                <spring:theme code="admin.orderNumber"/>
+                <spring:message code="admin.orderNumber"/>
             </td>
             <td>
-                <spring:theme code="admin.customer"/>
+                <spring:message code="admin.customer"/>
             </td>
             <td>
-                <spring:theme code="admin.phoneNum"/>
+                <spring:message code="admin.phoneNum"/>
             </td>
             <td>
-                <spring:theme code="admin.address"/>
+                <spring:message code="admin.address"/>
             </td>
             <td>
-                <spring:theme code="admin.date"/>
+                <spring:message code="admin.date"/>
             </td>
             <td>
-                <spring:theme code="admin.totalPrice"/>
+                <spring:message code="admin.totalPrice"/>
             </td>
             <td>
-                <spring:theme code="admin.status"/>
+                <spring:message code="admin.status"/>
             </td>
         </tr>
         <c:forEach var="order" items="${orderList}">

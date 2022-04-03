@@ -5,11 +5,11 @@
 <tags:master pageTitle="404">
 <html>
 <head>
-  <title><spring:theme code="error404title"/></title>
+  <title><spring:message code="error404title"/></title>
 </head>
 <body>
 <h3>
-  <spring:theme code="error404message"/>
+  <spring:message code="error404message"/>
 </h3>
 <h2>
   <c:if test="${not empty param.message}">

@@ -7,10 +7,10 @@
 <div class="result-error">
     <c:if test="${not empty errors.getFieldErrors(name)}">
         <c:if test="${errors.getFieldErrors(name)[0].code eq 'emptyField'}">
-            <spring:theme code="order.error.noValue"/>
+            <spring:message code="order.error.noValue"/>
         </c:if>
         <c:if test="${errors.getFieldErrors(name)[0].code ne 'emptyField'}">
-            <spring:theme code="order.error.wrongInput"/>
+            <spring:message code="order.error.wrongInput"/>
         </c:if>
     </c:if>
 </div>

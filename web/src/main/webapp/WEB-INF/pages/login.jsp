@@ -5,7 +5,7 @@
 <tags:masterLogged pageTitle="404">
     <html>
     <head>
-        <title><spring:theme code="loginPage"/></title>
+        <title><spring:message code="loginPage"/></title>
     </head>
     <body>
     <br>

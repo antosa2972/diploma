@@ -33,7 +33,7 @@
             PhoneShop
         </a>
     </h2>
-    <spring:theme code="helloMessage"/>
+    <spring:message code="helloMessage"/>
 </header>
 <main>
     <jsp:doBody/>

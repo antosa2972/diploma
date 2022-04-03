@@ -26,22 +26,22 @@
             <a href="${pageContext.servletContext.contextPath}/admin/orders">
                 <sec:authentication property="principal.username"/>
             </a>,
-            <a href="${pageContext.servletContext.contextPath}/logout">Logout</a>
+            <a href="${pageContext.servletContext.contextPath}/logout"><spring:message code="page.logout"/></a>
         </sec:authorize>
         <sec:authorize access="hasRole('ADMIN') eq false">
-                <a href="${pageContext.servletContext.contextPath}/login">Login</a>
+                <a href="${pageContext.servletContext.contextPath}/login"><spring:message code="page.login"/> </a>
         </sec:authorize>
         <a href="${pageContext.servletContext.contextPath}/cart">
             <h2>
-                <spring:theme code="cart"/>
+                <spring:message code="cart"/>
                 <div id="cart-quantity" class="l">
                     <c:out value="${cart.totalQuantity}"/>,
                 </div>
-                <spring:theme code="items"/>:
+                <spring:message code="items"/>:
                 <div id="cart-totalCost" class="l">
                     <c:out value="${cart.totalCost}"/>
                 </div>
-                <spring:theme code="usd"/>
+                <spring:message code="usd"/>
             </h2>
         </a>
     </div>
@@ -50,7 +50,7 @@
             PhoneShop
         </a>
     </h2>
-    <spring:theme code="helloMessage"/>
+    <spring:message code="helloMessage"/>
 </header>
 <main>
     <jsp:doBody/>

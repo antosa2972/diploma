@@ -8,21 +8,21 @@
 
 <tags:masterLogged pageTitle="Order overview">
     <head>
-        <title><spring:theme code="page.order.overview"/></title>
+        <title><spring:message code="page.order.overview"/></title>
     </head>
     <body>
     <br>
     <h2>
-        <spring:theme code="order.page"/> ${id}, <spring:theme code="admin.status"/> : ${order.status}
+        <spring:message code="order.page"/> ${id}, <spring:message code="admin.status"/> : ${order.status}
     </h2>
     <table class="table-bordered w-50">
         <tr>
-            <td><spring:theme code="brand"/></td>
-            <td><spring:theme code="model"/></td>
-            <td><spring:theme code="color"/></td>
-            <td><spring:theme code="displaySize"/></td>
-            <td><spring:theme code="quantity"/></td>
-            <td><spring:theme code="price"/></td>
+            <td><spring:message code="brand"/></td>
+            <td><spring:message code="model"/></td>
+            <td><spring:message code="color"/></td>
+            <td><spring:message code="displaySize"/></td>
+            <td><spring:message code="quantity"/></td>
+            <td><spring:message code="price"/></td>
         </tr>
         <c:forEach var="orderItem" items="${order.orderItems}">
             <tr>
@@ -44,7 +44,7 @@
                 </td>
                 <td><c:out value="${orderItem.phone.displaySizeInches}"/>"</td>
                 <td><c:out value="${orderItem.quantity}"/></td>
-                <td><c:out value="${orderItem.phone.price.multiply(orderItem.quantity)}"/> <spring:theme
+                <td><c:out value="${orderItem.phone.price.multiply(orderItem.quantity)}"/> <spring:message
                         code="usd"/></td>
             </tr>
         </c:forEach>
@@ -53,7 +53,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
-            <td><spring:theme code="order.subtotal"/></td>
+            <td><spring:message code="order.subtotal"/></td>
             <td><c:out value="${order.subtotal} $"/></td>
         </tr>
         <tr>
@@ -61,7 +61,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
-            <td><spring:theme code="order.delivery"/></td>
+            <td><spring:message code="order.delivery"/></td>
             <td><c:out value="${order.deliveryPrice} $"/></td>
         </tr>
         <tr>
@@ -69,7 +69,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
-            <td><spring:theme code="order.total"/></td>
+            <td><spring:message code="order.total"/></td>
             <td><c:out value="${order.totalPrice} $"/></td>
         </tr>
     </table>
@@ -78,7 +78,7 @@
     <table class="table table-bordered table-borderless w-25">
         <tr>
             <td>
-                <spring:theme code="order.data.firstName"/>
+                <spring:message code="order.data.firstName"/>
             </td>
             <td>
                 <c:out value="${order.firstName}"/>
@@ -86,7 +86,7 @@
         </tr>
         <tr>
             <td>
-                <spring:theme code="order.data.lastName"/>
+                <spring:message code="order.data.lastName"/>
             </td>
             <td>
                 <c:out value="${order.lastName}"/>
@@ -94,7 +94,7 @@
         </tr>
         <tr>
             <td>
-                <spring:theme code="order.data.address"/>
+                <spring:message code="order.data.address"/>
             </td>
             <td>
                 <c:out value="${order.deliveryAddress}"/>
@@ -102,7 +102,7 @@
         </tr>
         <tr>
             <td>
-                <spring:theme code="order.data.phone"/>
+                <spring:message code="order.data.phone"/>
             </td>
             <td>
                 <c:out value="${order.contactPhoneNo}"/>
@@ -110,7 +110,7 @@
         </tr>
         <tr>
             <td>
-                <spring:theme code="order.data.additionalInfo"/>
+                <spring:message code="order.data.additionalInfo"/>
             </td>
             <td>
                 <c:out value="${order.additionalInfo}"/>
@@ -121,7 +121,7 @@
     <form id="back-form"></form>
     <button form="back-form" formmethod="get" formaction="${pageContext.servletContext.contextPath}/admin/orders"
             class="btn btn-secondary">
-        <spring:theme code="admin.button.back"/>
+        <spring:message code="admin.button.back"/>
     </button>
     <c:if test="${order.status.name().equals('NEW')}">
         <form id="change-status-delivered" action="${pageContext.servletContext.contextPath}/admin/orders/${order.id}">
@@ -136,24 +136,24 @@
 
         <c:if test="${order.status.name().equals('REJECTED')}">
             <button disabled form="change-status-delivered" formmethod="post" class="btn btn-secondary">
-                <spring:theme code="admin.button.delivered"/>
+                <spring:message code="admin.button.delivered"/>
             </button>
         </c:if>
         <c:if test="${!(order.status.name().equals('REJECTED'))}">
             <button form="change-status-delivered" formmethod="post" class="btn btn-secondary">
-                <spring:theme code="admin.button.delivered"/>
+                <spring:message code="admin.button.delivered"/>
             </button>
         </c:if>
 
         <c:if test="${order.status.name().equals('DELIVERED')}">
             <button disabled form="change-status-rejected" formmethod="post" class="btn btn-secondary">
-                <spring:theme code="admin.button.rejected"/>
+                <spring:message code="admin.button.rejected"/>
             </button>
         </c:if>
 
         <c:if test="${!(order.status.name().equals('DELIVERED'))}">
             <button form="change-status-rejected" formmethod="post" class="btn btn-secondary">
-                <spring:theme code="admin.button.rejected"/>
+                <spring:message code="admin.button.rejected"/>
             </button>
         </c:if>
     </c:if>

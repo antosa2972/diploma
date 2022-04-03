@@ -7,34 +7,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <tags:master pageTitle="Cart">
     <head>
-        <title><spring:theme code="cartPage"/></title>
+        <title><spring:message code="cartPage"/></title>
     </head>
     <body>
     <br>
     <form method="get" action="${pageContext.servletContext.contextPath}/productList">
         <button class="btn btn-outline-primary">
-            <spring:theme code="button.back.to.productList"/>
+            <spring:message code="button.back.to.productList"/>
         </button>
     </form>
-    <h2><spring:theme code="cart"/></h2>
+    <h2><spring:message code="cart"/></h2>
     <div id="error-result">
         <c:if test="${error eq true}">
-            <spring:theme code="cart.update.error"/>
+            <spring:message code="cart.update.error"/>
         </c:if>
     </div>
     <div id="error-result">
         <c:if test="${empty cart}">
-            <spring:theme code="cart.empty.msg"/>
+            <spring:message code="cart.empty.msg"/>
         </c:if>
     </div>
     <div id="success-result">
         <c:if test="${successUpdate eq true}">
-            <spring:theme code="cart.update.success"/>
+            <spring:message code="cart.update.success"/>
         </c:if>
     </div>
     <div id="success-result">
         <c:if test="${successDelete eq true}">
-            <spring:theme code="cart.delete.success"/>
+            <spring:message code="cart.delete.success"/>
         </c:if>
     </div>
     <form:form id="update-form" method="post" action="${pageContext.servletContext.contextPath}/cart"
@@ -43,25 +43,25 @@
             <thead>
             <tr>
                 <td>
-                    <spring:theme code="brand"/>
+                    <spring:message code="brand"/>
                 </td>
                 <td>
-                    <spring:theme code="model"/>
+                    <spring:message code="model"/>
                 </td>
                 <td>
-                    <spring:theme code="color"/>
+                    <spring:message code="color"/>
                 </td>
                 <td>
-                    <spring:theme code="displaySize"/>
+                    <spring:message code="displaySize"/>
                 </td>
                 <td>
-                    <spring:theme code="price"/>
+                    <spring:message code="price"/>
                 </td>
                 <td>
-                    <spring:theme code="quantity"/>
+                    <spring:message code="quantity"/>
                 </td>
                 <td>
-                    <spring:theme code="action"/>
+                    <spring:message code="action"/>
                 </td>
             </tr>
             </thead>
@@ -99,7 +99,7 @@
                         <div class="result-error" id="result${cartItem.phone.id}"></div>
                         <c:if test="${fn:contains(errorsId, cartItem.phone.id)}">
                             <div class="result-error">
-                                <spring:theme code="wrongInputOrStock"/>
+                                <spring:message code="wrongInputOrStock"/>
                             </div>
                         </c:if>
                         <input id="phoneId${cartItem.phone.id}" name="phoneId" type="hidden"
@@ -108,7 +108,7 @@
                     <td>
                         <button class="btn btn-danger"
                                 formaction="${pageContext.servletContext.contextPath}/cart/${cartItem.phone.id}">
-                            <spring:theme code="deleteFromCartBtn"/>
+                            <spring:message code="deleteFromCartBtn"/>
                         </button>
                     </td>
                 </tr>
@@ -116,10 +116,10 @@
         </table>
     </form:form>
     <button form="update-form" class="btn btn-secondary">
-        <spring:theme code="updateCart"/>
+        <spring:message code="updateCart"/>
     </button>
     <button form="goToOrder" class="btn btn-secondary">
-        <spring:theme code="makeOrder"/>
+        <spring:message code="makeOrder"/>
     </button>
 
     <form id="goToOrder" action="${pageContext.servletContext.contextPath}/order" method="get"/>

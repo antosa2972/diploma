@@ -8,36 +8,36 @@
 
 <tags:master pageTitle="Order confirmation">
     <head>
-        <title><spring:theme code="page.order.confirmation"/></title>
+        <title><spring:message code="page.order.confirmation"/></title>
     </head>
     <body>
     <br>
     <h2>
-        <spring:theme code="order.page"/>
+        <spring:message code="order.page"/>
     </h2>
     <form method="get" action="${pageContext.servletContext.contextPath}/cart">
         <button class="btn btn-outline-primary">
-            <spring:theme code="button.back.to.cartPage"/>
+            <spring:message code="button.back.to.cartPage"/>
         </button>
     </form>
     <div id="error-result">
         <c:if test="${error eq true}">
-            <spring:theme code="order.error"/>
+            <spring:message code="order.error"/>
         </c:if>
     </div>
     <div id="error-result">
         <c:if test="${cart.cartItems.size() eq 0 }">
-            <spring:theme code="cart.empty.msg"/>
+            <spring:message code="cart.empty.msg"/>
         </c:if>
     </div>
     <table class="table-bordered w-50">
         <tr>
-            <td><spring:theme code="brand"/></td>
-            <td><spring:theme code="model"/></td>
-            <td><spring:theme code="color"/></td>
-            <td><spring:theme code="displaySize"/></td>
-            <td><spring:theme code="quantity"/></td>
-            <td><spring:theme code="price"/></td>
+            <td><spring:message code="brand"/></td>
+            <td><spring:message code="model"/></td>
+            <td><spring:message code="color"/></td>
+            <td><spring:message code="displaySize"/></td>
+            <td><spring:message code="quantity"/></td>
+            <td><spring:message code="price"/></td>
         </tr>
         <c:forEach var="cartItem" items="${cart.cartItems}">
             <tr>
@@ -59,7 +59,7 @@
                 </td>
                 <td><c:out value="${cartItem.phone.displaySizeInches}"/>"</td>
                 <td><c:out value="${cartItem.quantity}"/></td>
-                <td><c:out value="${cartItem.price}"/> <spring:theme code="usd"/></td>
+                <td><c:out value="${cartItem.price}"/> <spring:message code="usd"/></td>
             </tr>
         </c:forEach>
         <tr>
@@ -67,7 +67,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
-            <td><spring:theme code="order.subtotal"/></td>
+            <td><spring:message code="order.subtotal"/></td>
             <td><c:out value="${cart.totalCost} $"/></td>
         </tr>
         <tr>
@@ -75,7 +75,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
-            <td><spring:theme code="order.delivery"/></td>
+            <td><spring:message code="order.delivery"/></td>
             <td><c:out value="${deliveryPrice} $"/></td>
         </tr>
         <tr>
@@ -83,7 +83,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
-            <td><spring:theme code="order.total"/></td>
+            <td><spring:message code="order.total"/></td>
             <td><c:out value="${totalCost} $"/></td>
         </tr>
     </table>
@@ -94,7 +94,7 @@
         <table class="table table-bordered table-borderless w-25">
             <tr>
                 <td>
-                    <spring:theme code="order.data.firstName"/>
+                    <spring:message code="order.data.firstName"/>
                 </td>
                 <td>
                     <input type="text" name="firstName"/>
@@ -103,7 +103,7 @@
             </tr>
             <tr>
                 <td>
-                    <spring:theme code="order.data.lastName"/>
+                    <spring:message code="order.data.lastName"/>
                 </td>
                 <td>
                     <input type="text" name="lastName"/>
@@ -112,7 +112,7 @@
             </tr>
             <tr>
                 <td>
-                    <spring:theme code="order.data.address"/>
+                    <spring:message code="order.data.address"/>
                 </td>
                 <td>
                     <input type="text" name="address"/>
@@ -121,7 +121,7 @@
             </tr>
             <tr>
                 <td>
-                    <spring:theme code="order.data.phone"/>
+                    <spring:message code="order.data.phone"/>
                 </td>
                 <td>
                     <input type="text" name="phone"/>
@@ -130,7 +130,7 @@
             </tr>
             <tr>
                 <td>
-                    <spring:theme code="order.data.additionalInfo"/>
+                    <spring:message code="order.data.additionalInfo"/>
                 </td>
                 <td>
                     <textarea placeholder="Additional information" aria-label="Additional information" name="additionalInfo"></textarea>
@@ -139,7 +139,7 @@
         </table>
     </form:form>
     <button form="place-order" class="btn btn-outline-primary">
-        <spring:theme code="makeOrder"/>
+        <spring:message code="makeOrder"/>
     </button>
     </body>
 </tags:master>
