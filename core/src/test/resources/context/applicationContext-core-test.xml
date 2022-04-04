@@ -24,7 +24,7 @@
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
-    <jdbc:initialize-database enabled="true" data-source="dataSource">
-        <jdbc:script location="classpath:db/schema.sql"/>
-    </jdbc:initialize-database>
+<!--    <jdbc:initialize-database enabled="true" data-source="dataSource">-->
+<!--        <jdbc:script location="classpath:db/schema.sql"/>-->
+<!--    </jdbc:initialize-database>-->
 </beans>

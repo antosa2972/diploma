@@ -11,6 +11,7 @@
                            http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 	<context:component-scan base-package="by.bsuir.phoneshop.core"/>
+
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${db.driver}"/>
 		<property name="url" value="${db.ulr}"/>
@@ -21,10 +22,12 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+
 	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg name="dataSource" ref="dataSource"/>
 	</bean>
-	<jdbc:initialize-database enabled="${db.insertSchema}" data-source="dataSource">
-		<jdbc:script location="classpath:db/schema.sql"/>
-	</jdbc:initialize-database>
+
+<!--	<jdbc:initialize-database enabled="${db.insertSchema}" data-source="dataSource">-->
+<!--		<jdbc:script location="classpath:db/schema.sql"/>-->
+<!--	</jdbc:initialize-database>-->
 </beans>
