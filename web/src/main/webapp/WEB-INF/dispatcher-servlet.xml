@@ -13,5 +13,6 @@
     </bean>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/styles/**" location="/styles/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
 
 </beans>

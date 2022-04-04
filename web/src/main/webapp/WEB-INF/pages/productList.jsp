@@ -12,16 +12,6 @@
     <body>
     <hr>
     <p>
-    <form method="get">
-        <div class="input-group mb-3 w-25">
-            <input name="search" class="form-control" placeholder="search" aria-label="search"
-                   aria-describedby="basic-addon2"
-                   value="${not empty param.search ? param.search : ''}">
-            <div class="input-group-append">
-                <button class="btn btn-info"><spring:message code="search"/></button>
-            </div>
-        </div>
-    </form>
     <h2>
         <spring:message code="found"/>
         <c:out value="${phoneQuantity}"/> <spring:message code="phones"/>

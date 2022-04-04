@@ -57,6 +57,8 @@ public class ProductListPageController
 		long offset = (page - 1) * QUANTITY_ON_PAGE;
 		final ParamsForSearch paramsForSearch = new ParamsForSearch(search, field, order, (int) offset,
 					 QUANTITY_ON_PAGE.intValue());
+
+
 		final List<Phone> phoneList = phoneDao.findAll(paramsForSearch);
 
 		final Long phoneQuantity = phoneDao.count(paramsForSearch);
