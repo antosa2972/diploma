@@ -8,6 +8,7 @@
 <html>
 <head>
 	<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
 	<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 	<script type="text/javascript">
@@ -27,13 +28,15 @@
 	<div class="collapse navbar-collapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a href="#" class="nav-link">Homepage</a>
+				<a href="${pageContext.servletContext.contextPath}/productList" class="nav-link"><spring:message
+						code="page.homepage"/> </a>
 			</li>
 			<li class="nav-item">
 				<a href="#" class="nav-link">Hot Prices</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="nav-link">Contacts</a>
+				<a href="${pageContext.servletContext.contextPath}/contacts" class="nav-link"><spring:message
+						code="page.contacts"/></a>
 			</li>
 			<li class="nav-item">
 				<a href="#" class="nav-link">About us</a>
@@ -41,10 +44,10 @@
 		</ul>
 		<form method="get" class="form-inline my-2 my-lg-0 mr-auto"
 				action="${pageContext.servletContext.contextPath}/productList">
-			<input name="search" class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search"
+			<input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search"
 					 aria-describedby="basic-addon2"
 					 value="${not empty param.search ? param.search : ''}">
-			<button class="btn btn-outline-success my-2 my-sm-0"><spring:message code="search"/></button>
+			<button class="btn btn-outline-primary my-2 my-sm-0"><spring:message code="search"/></button>
 		</form>
 		<span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
@@ -58,6 +61,7 @@
 					class="btn btn-outline-primary btn-sm"><spring:message
 						code="page.login"/></a>
 			</sec:authorize>
+			<sec:authorize access="!hasRole('ADMIN')">
 			<a href="${pageContext.servletContext.contextPath}/cart">
 				<spring:message code="cart"/>
 				<div id="cart-quantity" class="l">
@@ -69,16 +73,24 @@
 				</div>
 				<spring:message code="usd"/>
 			</a>
+			</sec:authorize>
 		</span>
 	</div>
 </nav>
 <main>
 	<jsp:doBody/>
 </main>
-<footer>
-	<p>
-		(c) Expert soft
-	</p>
+<footer class="card-footer">
+	<div class="bg-light align-content-lg-center" style="text-align:center; position: center;">
+		<a href="https://facebook.com" class="fa fa-facebook"></a>
+		<a href="https://twitter.com" class="fa fa-twitter"></a>
+		<a href="https://youtube.com" class="fa fa-youtube"></a>
+		<a href="https://instagram.com" class="fa fa-instagram"></a>
+		<br>
+		<h5>
+			(c) Anton Pushnenkov (BSUIR)
+		</h5>
+	</div>
 </footer>
 </body>
 </html>

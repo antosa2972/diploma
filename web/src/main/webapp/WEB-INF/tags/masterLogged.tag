@@ -7,6 +7,7 @@
 <html>
 <head>
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
     <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
     <script type="text/javascript">
@@ -19,29 +20,54 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
-    <div id="cart-div">
-        <sec:authorize access="hasRole('ADMIN')">
-            <a href="${pageContext.servletContext.contextPath}/admin/orders">
-                <sec:authentication property="principal.username"/>
-            </a>,
-            <a href="${pageContext.servletContext.contextPath}/logout">logout</a>
-        </sec:authorize>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="${pageContext.servletContext.contextPath}/productList" class="navbar-brand"><spring:message
+          code="page.phoneshop.logo"/>
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Homepage</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Hot Prices</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">About us</a>
+            </li>
+        </ul>
+        <form method="get" class="form-inline my-2 my-lg-0 mr-auto"
+              action="${pageContext.servletContext.contextPath}/productList">
+            <input name="search" class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search"
+                   aria-describedby="basic-addon2"
+                   value="${not empty param.search ? param.search : ''}">
+            <button class="btn btn-outline-success my-2 my-sm-0"><spring:message code="search"/></button>
+        </form>
+        <span class="navbar-text">
+			<sec:authorize access="hasRole('ADMIN')">
+				<a href="${pageContext.servletContext.contextPath}/admin/orders">
+					<sec:authentication property="principal.username"/>
+				</a>,
+             <a href="${pageContext.servletContext.contextPath}/logout"><spring:message code="page.logout"/></a>
+         </sec:authorize>
+			<sec:authorize access="hasRole('ADMIN') eq false">
+				<a href="${pageContext.servletContext.contextPath}/login"
+               class="btn btn-outline-primary btn-sm"><spring:message
+                  code="page.login"/></a>
+         </sec:authorize>
+		</span>
     </div>
-    <h2>
-        <a href="${pageContext.servletContext.contextPath}">
-            PhoneShop
-        </a>
-    </h2>
-    <spring:message code="helloMessage"/>
-</header>
+</nav>
 <main>
     <jsp:doBody/>
 </main>
-<footer>
-    <p>
-        (c) Expert soft
-    </p>
+<footer class="card-footer">
+    <div class="bg-light a">
+        (c) Anton Pushnenkov (BSUIR)
+    </div>
 </footer>
 </body>
 </html>
