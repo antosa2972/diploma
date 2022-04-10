@@ -18,6 +18,7 @@ create table phones
     brand                 VARCHAR(50)  NOT NULL,
     model                 VARCHAR(254) NOT NULL,
     price                 FLOAT,
+    discountPercent       SMALLINT,
     displaySizeInches     FLOAT,
     weightGr              SMALLINT,
     lengthMm              FLOAT,

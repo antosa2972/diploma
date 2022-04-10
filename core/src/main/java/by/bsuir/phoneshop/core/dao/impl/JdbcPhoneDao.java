@@ -72,6 +72,7 @@ public class JdbcPhoneDao implements PhoneDao
 		try
 		{
 			phone = jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Phone.class));
+			phone.setActualPrice();
 		}
 		catch (EmptyResultDataAccessException e)
 		{
@@ -102,6 +103,7 @@ public class JdbcPhoneDao implements PhoneDao
 		in.addValue("brand", phone.getBrand());
 		in.addValue("model", phone.getModel());
 		in.addValue("price", phone.getPrice());
+		in.addValue("discountPercent", phone.getDiscountPercent());
 		in.addValue("displaySizeInches", phone.getDisplaySizeInches());
 		in.addValue("weightGr", phone.getWeightGr());
 		in.addValue("lengthMm", phone.getLengthMm());

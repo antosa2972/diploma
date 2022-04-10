@@ -80,7 +80,7 @@ public class HttpSessionCartService implements CartService
 		}
 		else
 		{
-			final BigDecimal price = phone.getPrice().multiply(BigDecimal.valueOf(quantity));
+			final BigDecimal price = phone.getActualPrice().multiply(BigDecimal.valueOf(quantity));
 			cart.getCartItems().add(new CartItem(phone, quantity, price));
 		}
 		calculateCart(cart);
@@ -169,7 +169,7 @@ public class HttpSessionCartService implements CartService
 					 .sum();
 		cart.setTotalQuantity(totalQuantity);
 		final BigDecimal totalCost = cart.getCartItems().stream()
-					 .map(cartItem -> cartItem.getPhone().getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())))
+					 .map(cartItem -> cartItem.getPhone().getActualPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())))
 					 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
 		cart.setTotalCost(totalCost);

@@ -8,9 +8,16 @@ import java.util.Set;
 public class Phone
 {
 	private Long id;
+
 	private String brand;
+
 	private String model;
+
 	private BigDecimal price;
+
+	private Integer discountPercent;
+
+	private BigDecimal actualPrice;
 
 	private BigDecimal displaySizeInches;
 
@@ -328,6 +335,26 @@ public class Phone
 		this.id = id;
 	}
 
+	public BigDecimal getActualPrice()
+	{
+		return actualPrice;
+	}
+
+	public void setActualPrice()
+	{
+		if (discountPercent != null)
+		{
+
+			final float discountPercent = this.discountPercent;
+			final BigDecimal discountAmount = (this.price).multiply(BigDecimal.valueOf(discountPercent / 100.0));
+			this.actualPrice = this.price.subtract(discountAmount);
+		}
+		else
+		{
+			this.actualPrice = this.price;
+		}
+	}
+
 	@Override
 	public int hashCode()
 	{
@@ -335,6 +362,16 @@ public class Phone
 		int result = 1;
 		result = prime * result + id.hashCode() + brand.hashCode() + model.hashCode();
 		return result;
+	}
+
+	public Integer getDiscountPercent()
+	{
+		return discountPercent;
+	}
+
+	public void setDiscountPercent(Integer discountPercent)
+	{
+		this.discountPercent = discountPercent;
 	}
 
 	@Override

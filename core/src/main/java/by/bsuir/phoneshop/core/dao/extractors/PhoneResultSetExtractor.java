@@ -52,6 +52,8 @@ public class PhoneResultSetExtractor implements ResultSetExtractor<List<Phone>>
 		phone.setBrand(resultSet.getString("brand"));
 		phone.setModel(resultSet.getString("model"));
 		phone.setPrice(BigDecimal.valueOf(resultSet.getLong("price")));
+		phone.setDiscountPercent(resultSet.getInt("discountPercent"));
+		phone.setActualPrice();
 		phone.setDisplaySizeInches(BigDecimal.valueOf(resultSet.getLong("displaySizeInches")));
 		phone.setWeightGr(resultSet.getInt("weightGr"));
 		phone.setWidthMm(BigDecimal.valueOf(resultSet.getFloat("lengthMm")));

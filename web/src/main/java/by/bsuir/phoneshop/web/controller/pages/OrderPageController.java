@@ -26,7 +26,7 @@ import by.bsuir.phoneshop.core.service.OrderService;
 import by.bsuir.phoneshop.core.validator.OrderDataDtoValidator;
 
 @Controller
-@PropertySource("classpath:/locales/msg.properties")
+@PropertySource("classpath:/locales/msg_ru.properties")
 @RequestMapping(value = "/order")
 public class OrderPageController
 {
