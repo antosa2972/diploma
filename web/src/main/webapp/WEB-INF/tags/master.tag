@@ -32,7 +32,8 @@
 						code="page.homepage"/> </a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="nav-link">Hot Prices</a>
+				<a href="${pageContext.servletContext.contextPath}/hot-prices" class="nav-link"><spring:message
+						code="page.hot.prices"/></a>
 			</li>
 			<li class="nav-item">
 				<a href="${pageContext.servletContext.contextPath}/contacts" class="nav-link"><spring:message
@@ -49,6 +50,12 @@
 					 value="${not empty param.search ? param.search : ''}">
 			<button class="btn btn-outline-primary my-2 my-sm-0"><spring:message code="search"/></button>
 		</form>
+		<div class="mr-lg-auto">
+			<a href="?lang=en"><img src="${pageContext.servletContext.contextPath}/images/english.svg" alt="English"
+											width="55" height="40"></a>
+			<a href="?lang=ru"><img src="${pageContext.servletContext.contextPath}/images/russian.svg" alt="English"
+											width="55" height="40"></a>
+		</div>
 		<span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
 				<a href="${pageContext.servletContext.contextPath}/admin/orders">

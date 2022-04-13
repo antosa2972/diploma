@@ -12,40 +12,20 @@
 
 
 	<context:property-placeholder location="/WEB-INF/conf/application.properties"/>
+	<mvc:annotation-driven/>
 
 	<import resource="classpath:context/applicationContext-core.xml"/>
 	<import resource="classpath:context/applicationContext-demoda.xml"/>
 
-	<context:annotation-config/>
-
 	<bean name="SecurityConfig" class="by.bsuir.phoneshop.web.controller.WebSecurityConfig"/>
 
-	<bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
-		<property name="basenamePrefix" value="msg_"/>
-	</bean>
-
-	<bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">
-		<property name="defaultThemeName" value="ru"/>
-	</bean>
-
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/*"/>
-			<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-				<property name="paramName" value="languageVar"/>
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
-
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="defaultLocale" value="ru"/>
-		<property name="cookieMaxAge" value="-1"/>
-	</bean>
-
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basenames" value="classpath:/locales/msg"/>
-		<property name="cacheSeconds" value="1"/>
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages"/>
 		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en"/>
 	</bean>
 
 </beans>

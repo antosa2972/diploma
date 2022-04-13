@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.service.CartService;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
 import by.bsuir.phoneshop.core.beans.Phone;
-import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.beans.QuickOrderElement;
 import by.bsuir.phoneshop.core.dto.QuickOrderElementsDto;
+import by.bsuir.phoneshop.core.exception.OutOfStockException;
+import by.bsuir.phoneshop.core.service.CartService;
+import by.bsuir.phoneshop.core.service.PhoneService;
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
 @RequestMapping(value = "/quickOrder")
@@ -33,7 +34,7 @@ public class QuickOrderController
 	private HttpSession httpSession;
 
 	@Resource
-	private PhoneDao jdbcPhoneDao;
+	private PhoneService phoneServiceImpl;
 
 	@Resource
 	private CartService httpSessionCartService;
@@ -70,12 +71,12 @@ public class QuickOrderController
 		{
 			model.addAttribute("successfulPhones", phoneList);
 			model.addAttribute("errors", bindingResult);
-			return "quickOrder";
+			return PhoneshopPages.UserPages.QuickOrderPage;
 		}
 
 		redirectAttributes.addFlashAttribute("success", true);
 
-		return "redirect:quickOrder";
+		return "redirect:" + PhoneshopPages.UserPages.QuickOrderPage;
 	}
 
 	private void addToCart(final QuickOrderElementsDto quickOrderElementsDto,
@@ -88,7 +89,7 @@ public class QuickOrderController
 		{
 			return;
 		}
-		final Optional<Phone> optionalPhone = jdbcPhoneDao.get(modelPhone);
+		final Optional<Phone> optionalPhone = phoneServiceImpl.getPhoneByModel(modelPhone);
 		optionalPhone.ifPresent(phone ->
 		{
 			if (quantity != null)

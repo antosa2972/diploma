@@ -96,9 +96,9 @@ public class HttpSessionCartService implements CartService
 					 .map(Optional::get)
 					 .forEach(cartItem ->
 					 {
-						 Long phoneId = cartItem.getPhone().getId();
-						 Long quantity = items.get(cartItem.getPhone().getId());
-						 Long quantityDifference = quantity - cartItem.getQuantity();
+						 final Long phoneId = cartItem.getPhone().getId();
+						 final Long quantity = items.get(cartItem.getPhone().getId());
+						 final Long quantityDifference = quantity - cartItem.getQuantity();
 						 if (checkQuantity(phoneId, quantityDifference))
 						 {
 							 cartItem.setQuantity(cartItem.getQuantity() + quantityDifference);

@@ -19,4 +19,6 @@ public interface PhoneDao
 	List<Phone> findAll(final ParamsForSearch paramsForSearch);
 
 	Long count(final ParamsForSearch paramsForSearch);
+
+	List<Phone> findMaxDiscountPercentPhones(final int amount);
 }

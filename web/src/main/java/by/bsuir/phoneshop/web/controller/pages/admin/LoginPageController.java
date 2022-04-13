@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
+
 
 @Controller
 @RequestMapping("/login")
@@ -30,6 +32,6 @@ public class LoginPageController
 		{
 			model.addAttribute("error", environment.getProperty("invalidCredentials"));
 		}
-		return "login";
+		return PhoneshopPages.UserPages.LoginPage;
 	}
 }

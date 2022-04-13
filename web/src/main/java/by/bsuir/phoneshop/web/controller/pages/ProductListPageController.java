@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.beans.ParamsForSearch;
 import by.bsuir.phoneshop.core.beans.Phone;
-import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.enums.SortField;
 import by.bsuir.phoneshop.core.enums.SortOrder;
+import by.bsuir.phoneshop.core.service.CartService;
+import by.bsuir.phoneshop.core.service.PhoneService;
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
 @RequestMapping(value = "/productList")
@@ -25,9 +26,11 @@ public class ProductListPageController
 {
 	public static final Long QUANTITY_ON_PAGE = 20L;
 	@Resource
-	private PhoneDao phoneDao;
+	private PhoneService phoneServiceImpl;
+
 	@Resource
 	private CartService cartService;
+
 	@Resource
 	private HttpSession httpSession;
 
@@ -59,9 +62,9 @@ public class ProductListPageController
 					 QUANTITY_ON_PAGE.intValue());
 
 
-		final List<Phone> phoneList = phoneDao.findAll(paramsForSearch);
+		final List<Phone> phoneList = phoneServiceImpl.getPhones(paramsForSearch);
 
-		final Long phoneQuantity = phoneDao.count(paramsForSearch);
+		final Long phoneQuantity = phoneServiceImpl.countPhoneQuantity(paramsForSearch);
 
 		long numOfPages = phoneQuantity / QUANTITY_ON_PAGE;
 
@@ -81,6 +84,6 @@ public class ProductListPageController
 		model.addAttribute("pages", lastPage);
 		model.addAttribute("phoneQuantity", phoneQuantity);
 
-		return "productList";
+		return PhoneshopPages.UserPages.ProductListPage;
 	}
 }

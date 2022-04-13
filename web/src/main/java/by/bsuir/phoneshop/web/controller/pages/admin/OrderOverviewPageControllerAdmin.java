@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.bsuir.phoneshop.core.dao.OrderDao;
 import by.bsuir.phoneshop.core.enums.OrderStatus;
 import by.bsuir.phoneshop.core.service.OrderService;
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
 @RequestMapping(value = "/admin/orders/{id}")
@@ -20,16 +20,14 @@ public class OrderOverviewPageControllerAdmin
 {
 
 	@Resource
-	private OrderDao jdbcOrderDao;
-	@Resource
 	private OrderService orderServiceImpl;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getOrderOverview(final @PathVariable("id") Long id, final Model model)
 	{
-		jdbcOrderDao.get(id).ifPresent(order -> model.addAttribute("order", order));
+		orderServiceImpl.getOrderById(id).ifPresent(order -> model.addAttribute("order", order));
 		model.addAttribute("id", id);
-		return "orderOverviewAdmin";
+		return PhoneshopPages.AdminPages.OrderOverviewPageAdmin;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -44,7 +42,7 @@ public class OrderOverviewPageControllerAdmin
 		{
 			orderServiceImpl.updateStatus(OrderStatus.REJECTED, orderId);
 		}
-		return "redirect:/admin/orders/" + orderId;
+		return "redirect:" + PhoneshopPages.AdminPages.OrdersPage + orderId;
 	}
 
 	@ExceptionHandler(RuntimeException.class)

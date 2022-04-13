@@ -19,14 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.service.CartService;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
 import by.bsuir.phoneshop.core.dto.OrderDataDto;
+import by.bsuir.phoneshop.core.exception.OutOfStockException;
+import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.service.OrderService;
 import by.bsuir.phoneshop.core.validator.OrderDataDtoValidator;
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
-@PropertySource("classpath:/locales/msg_ru.properties")
+@PropertySource("classpath:/msg.properties")
 @RequestMapping(value = "/order")
 public class OrderPageController
 {
@@ -50,7 +51,7 @@ public class OrderPageController
 		Cart cart = cartService.getCart(httpSession);
 		showCartAsOrder(cart, model);
 
-		return "order";
+		return PhoneshopPages.UserPages.OrderPage;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -75,7 +76,7 @@ public class OrderPageController
 		final Long id = orderService.placeOrder(cart, orderDataDto, Long.parseLong(environment.getProperty("delivery.price")));
 		cartService.deleteCart(httpSession);
 
-		return "redirect:/orderOverview/" + id;
+		return "redirect:/" + PhoneshopPages.UserPages.OrderOverviewPage + "/" + id;
 	}
 
 	private String prepareModelForValidationErrors(final BindingResult bindingResult,
@@ -83,16 +84,16 @@ public class OrderPageController
 	{
 		redirectAttributes.addFlashAttribute("error", true);
 		redirectAttributes.addFlashAttribute("errors", bindingResult);
-		return "redirect:/order";
+		return "redirect:/" + PhoneshopPages.UserPages.OrderPage;
 	}
 
 	private String prepareModelForEmptyCart(final RedirectAttributes redirectAttributes)
 	{
 		redirectAttributes.addFlashAttribute("error", true);
-		return "redirect:/order";
+		return "redirect:/" + PhoneshopPages.UserPages.OrderPage;
 	}
 
-	private void showCartAsOrder(final Cart cart,final Model model)
+	private void showCartAsOrder(final Cart cart, final Model model)
 	{
 		model.addAttribute("cart", cart);
 		final BigDecimal deliveryPrice = BigDecimal.valueOf(Long.parseLong(

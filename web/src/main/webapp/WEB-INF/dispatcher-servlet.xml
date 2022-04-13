@@ -15,4 +15,10 @@
     <mvc:resources mapping="/styles/**" location="/styles/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
 
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+
 </beans>

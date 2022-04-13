@@ -20,22 +20,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.service.CartService;
-import by.bsuir.phoneshop.core.dto.PhoneArrayDto;
 import by.bsuir.phoneshop.core.beans.Phone;
-import by.bsuir.phoneshop.core.dao.PhoneDao;
+import by.bsuir.phoneshop.core.dto.PhoneArrayDto;
+import by.bsuir.phoneshop.core.service.CartService;
+import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.core.validator.PhoneArrayDtoValidator;
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
 @RequestMapping(value = "/cart")
 public class CartPageController
 {
+	public static final String REDIRECT_TO_CART_PAGE = "redirect:/" + PhoneshopPages.UserPages.CartPage;
+
 	@Resource
 	private CartService cartService;
 	@Resource
 	private HttpSession httpSession;
 	@Resource
-	private PhoneDao jdbcPhoneDao;
+	private PhoneService phoneServiceImpl;
 	@Resource
 	private PhoneArrayDtoValidator phoneArrayDtoValidator;
 
@@ -56,7 +59,7 @@ public class CartPageController
 		model.addAttribute("errorsId", errorsId);
 		model.addAttribute("cart", cart);
 
-		return "cart";
+		return PhoneshopPages.UserPages.CartPage;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -86,13 +89,13 @@ public class CartPageController
 		cartService.update(idAndQuantity, cart);
 		model.addAttribute("successUpdate", true);
 		model.addAttribute("cart", cart);
-		return "redirect:/cart";
+		return REDIRECT_TO_CART_PAGE;
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.POST)
 	public String deleteFromCart(final @PathVariable("id") Long id, final Model model) throws IllegalArgumentException
 	{
-		final Optional<Phone> optionalPhone = jdbcPhoneDao.get(id);
+		final Optional<Phone> optionalPhone = phoneServiceImpl.getPhoneByKey(id);
 		final Cart cart = cartService.getCart(httpSession);
 
 		if (cart.getCartItems().isEmpty())
@@ -112,14 +115,14 @@ public class CartPageController
 			throw new IllegalArgumentException(String.valueOf(id));
 		}
 
-		return "redirect:/cart";
+		return REDIRECT_TO_CART_PAGE;
 	}
 
 	private String prepareModelForEmptyCart(final Cart cart, final Model model)
 	{
 		model.addAttribute("error", true);
 		model.addAttribute("cart", cart);
-		return "redirect:/cart";
+		return REDIRECT_TO_CART_PAGE;
 	}
 
 	private String validationFailed(final Cart cart, final BindingResult bindingResult, final Model model)
@@ -133,6 +136,6 @@ public class CartPageController
 		model.addAttribute("errorsId", errorsId);
 		model.addAttribute("error", true);
 
-		return "redirect:/cart";
+		return REDIRECT_TO_CART_PAGE;
 	}
 }

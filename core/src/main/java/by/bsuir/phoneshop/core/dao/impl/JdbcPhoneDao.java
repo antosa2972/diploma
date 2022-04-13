@@ -36,6 +36,8 @@ public class JdbcPhoneDao implements PhoneDao
 				 ":batteryCapacityMah,:talkTimeHours,:standByTimeHours,:bluetooth,:positioning,:imageUrl,:description)";
 	private static final String SQL_GET_ALL_PHONES = "select * from phones left join phone2color " +
 				 "on phones.id=phone2color.phoneId left join colors on colors.id = phone2color.colorId ";
+	private static final String SQL_GET_MAX_DISCOUNTED_PHONES = "select * from phones left join phone2color " +
+				 "on phones.id=phone2color.phoneId left join colors on colors.id = phone2color.colorId where phones.discountPercent!=0  ORDER BY phones.discountPercent DESC";
 	public static final String SQL_GET_PHONE = "select * from phones where id= ";
 	private static final String SQL_SELECT_COUNT_FIND_ALL_EXTENDED = "select count(*) from phones ";
 	private static final String SQL_WHERE_SEARCH = "where (phones.id in (select phoneId from stocks) and " +
@@ -189,6 +191,14 @@ public class JdbcPhoneDao implements PhoneDao
 		{
 			return jdbcTemplate.queryForObject(request, Long.class);
 		}
+	}
+
+	@Override
+	public List<Phone> findMaxDiscountPercentPhones(int amount)
+	{
+		final String query = SQL_GET_MAX_DISCOUNTED_PHONES + " limit " + amount;
+
+		return jdbcTemplate.query(query, phoneResultSetExtractor);
 	}
 }
 

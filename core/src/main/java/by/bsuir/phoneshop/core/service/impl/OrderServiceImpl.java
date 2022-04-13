@@ -2,6 +2,7 @@ package by.bsuir.phoneshop.core.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -72,6 +73,12 @@ public class OrderServiceImpl implements OrderService
 	public void updateStatus(final OrderStatus orderStatus, final Long orderId)
 	{
 		jdbcOrderDao.updateStatus(orderStatus, orderId);
+	}
+
+	@Override
+	public Optional<Order> getOrderById(final Long id)
+	{
+		return jdbcOrderDao.get(id);
 	}
 
 	private Order createOrderFromCart(final Cart cart, final OrderDataDto orderDataDto, final Long deliveryPrice)

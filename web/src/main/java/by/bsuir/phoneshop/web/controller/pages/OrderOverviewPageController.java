@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.bsuir.phoneshop.core.dao.OrderDao;
+import by.bsuir.phoneshop.core.service.OrderService;
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
 @RequestMapping(value = "/orderOverview/{id}")
 public class OrderOverviewPageController
 {
 	@Resource
-	OrderDao jdbcOrderDao;
+	OrderService orderServiceImpl;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getOrderOverview(final @PathVariable("id") Long id, final Model model)
 	{
-		jdbcOrderDao.get(id).ifPresent(order -> model.addAttribute("order", order));
+		orderServiceImpl.getOrderById(id).ifPresent(order -> model.addAttribute("order", order));
 		model.addAttribute("id", id);
 
-		return "orderOverview";
+		return PhoneshopPages.UserPages.OrderOverviewPage;
 	}
 
 	@ExceptionHandler(RuntimeException.class)

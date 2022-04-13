@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
+
 @Controller
 @RequestMapping("/contacts")
 public class ContactsPageController
@@ -11,6 +13,6 @@ public class ContactsPageController
 	@GetMapping
 	public String getContactsPage()
 	{
-		return "contactsPage";
+		return PhoneshopPages.UserPages.ContactsPage;
 	}
 }
