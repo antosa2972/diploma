@@ -19,6 +19,5 @@ public interface PhoneshopPages
 		String ProductListPage = "productList";
 		String QuickOrderPage = "quickOrder";
 		String ContactsPage = "contactsPage";
-
 	}
 }

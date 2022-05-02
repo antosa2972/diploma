@@ -25,6 +25,7 @@ import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 public class ProductListPageController
 {
 	public static final Long QUANTITY_ON_PAGE = 20L;
+
 	@Resource
 	private PhoneService phoneServiceImpl;
 

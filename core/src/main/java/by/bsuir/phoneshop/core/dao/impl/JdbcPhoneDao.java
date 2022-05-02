@@ -18,6 +18,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import by.bsuir.phoneshop.core.dao.ColorDAO;
 import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.beans.ParamsForSearch;
 import by.bsuir.phoneshop.core.beans.Phone;
@@ -27,7 +28,7 @@ import by.bsuir.phoneshop.core.beans.Color;
 @Component
 public class JdbcPhoneDao implements PhoneDao
 {
-	public static final String SQL_INSERT_PHONE = "insert into phones (id,brand,model,price,displaySizeInches,weightGr," +
+	private static final String SQL_INSERT_PHONE = "insert into phones (id,brand,model,price,displaySizeInches,weightGr," +
 				 "lengthMm,widthMm,heightMm,announced,deviceType,os,displayResolution,pixelDensity,displayTechnology," +
 				 "backCameraMegapixels,frontCameraMegapixels,ramGb,internalStorageGb,batteryCapacityMah,talkTimeHours," +
 				 "standByTimeHours,bluetooth,positioning,imageUrl,description) values (:id,:brand,:model,:price,:displaySizeInches,:weightGr," +
@@ -47,12 +48,15 @@ public class JdbcPhoneDao implements PhoneDao
 
 	@Resource
 	private JdbcTemplate jdbcTemplate;
+
 	@Resource
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
 	@Resource
 	private PhoneResultSetExtractor phoneResultSetExtractor;
+
 	@Resource
-	private JdbcColorDAO jdbcColorDAO;
+	private ColorDAO jdbcColorDAO;
 
 	@Override
 	public Optional<Phone> get(final Long key)

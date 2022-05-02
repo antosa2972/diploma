@@ -1,4 +1,4 @@
-<%@ tag trimDirectiveWhitespaces="true" %>
+<%@ tag trimDirectiveWhitespaces="true" pageEncoding="UTF-8" %>
 <%@ attribute name="pageTitle" required="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -11,9 +11,16 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/styles/main.css">
 	<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
-	<script type="text/javascript">
-      <%@include file="/js/main.js"%>
-	</script>
+	<c:if test="${pageContext.response.locale eq 'en'}">
+		<script type="text/javascript">
+         <%@include file="/js/main.js"%>
+		</script>
+	</c:if>
+	<c:if test="${pageContext.response.locale eq 'ru'}">
+		<script type="text/javascript" charset="UTF-8">
+         <%@include file="/js/main_ru.js"%>
+		</script>
+	</c:if>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
