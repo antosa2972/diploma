@@ -5,19 +5,20 @@ public interface PhoneshopPages
 	interface AdminPages
 	{
 		String OrdersPage = "orders";
-		String OrderOverviewPageAdmin = "orderOverviewAdmin";
+		String OrderOverviewPageAdmin = "order-overview-admin";
 	}
 
 	interface UserPages
 	{
-		String HotPricesPage = "hotPrices";
+		String HotPricesPage = "hot-prices";
 		String LoginPage = "login";
 		String CartPage = "cart";
-		String OrderOverviewPage = "orderOverview";
+		String OrderOverviewPage = "order-overview";
 		String OrderPage = "order";
-		String ProductDetailsPage = "productDetails";
-		String ProductListPage = "productList";
-		String QuickOrderPage = "quickOrder";
-		String ContactsPage = "contactsPage";
+		String ProductDetailsPage = "product-details";
+		String ProductListPage = "product-list";
+		String QuickOrderPage = "quick-order";
+		String ContactsPage = "contacts-page";
+		String AboutUsPage = "about-us";
 	}
 }

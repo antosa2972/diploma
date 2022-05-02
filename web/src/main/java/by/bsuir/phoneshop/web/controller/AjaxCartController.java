@@ -22,7 +22,7 @@ import by.bsuir.phoneshop.core.exception.OutOfStockException;
 import by.bsuir.phoneshop.core.service.CartService;
 
 @Controller
-@RequestMapping(value = "/ajaxCart")
+@RequestMapping(value = "/ajax-cart")
 public class AjaxCartController
 {
 

@@ -43,7 +43,7 @@
             </td>
             <td><c:out value="${phone.brand}"/></td>
             <td>
-                <a href="${pageContext.servletContext.contextPath}/productDetails/${phone.id}">
+                <a href="${pageContext.servletContext.contextPath}/product-details/${phone.id}">
                     <c:out value="${phone.model}"/>
                 </a>
             </td>

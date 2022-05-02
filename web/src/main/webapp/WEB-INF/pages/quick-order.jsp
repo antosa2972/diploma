@@ -39,7 +39,7 @@
                 <spring:message code="quantity"/>
             </td>
         </tr>
-        <form:form id="add-form" action="${pageContext.servletContext.contextPath}/quickOrder" method="post"
+        <form:form id="add-form" action="${pageContext.servletContext.contextPath}/quick-order" method="post"
                    modelAttribute="quickOrderElementsDto">
             <c:forEach begin="0" end="10" varStatus="status">
                 <c:set var="index" value="${status.index}"/>

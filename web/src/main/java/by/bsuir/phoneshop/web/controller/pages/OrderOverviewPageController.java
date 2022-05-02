@@ -13,7 +13,7 @@ import by.bsuir.phoneshop.core.service.OrderService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
-@RequestMapping(value = "/orderOverview/{id}")
+@RequestMapping(value = "/order-overview/{id}")
 public class OrderOverviewPageController
 {
 	@Resource

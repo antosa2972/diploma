@@ -26,7 +26,7 @@ import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
-@RequestMapping(value = "/quickOrder")
+@RequestMapping(value = "/quick-order")
 public class QuickOrderController
 {
 
@@ -39,7 +39,7 @@ public class QuickOrderController
 	@Resource
 	private CartService httpSessionCartService;
 
-	private List<Phone> phoneList;
+	private final List<Phone> phoneList;
 
 	private QuickOrderController()
 	{
@@ -51,7 +51,7 @@ public class QuickOrderController
 	{
 		model.addAttribute("success", model.asMap().get("success"));
 		model.addAttribute("quickOrderElementsDto", new QuickOrderElementsDto());
-		return "quickOrder";
+		return "quick-order";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

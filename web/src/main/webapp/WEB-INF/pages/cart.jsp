@@ -11,7 +11,7 @@
     </head>
     <body>
     <br>
-    <form method="get" action="${pageContext.servletContext.contextPath}/productList">
+    <form method="get" action="${pageContext.servletContext.contextPath}/product-list">
         <button class="btn btn-outline-primary">
             <spring:message code="button.back.to.productList"/>
         </button>
@@ -91,7 +91,7 @@
                         <c:out value="${cartItem.phone.displaySizeInches}"/>"
                     </td>
                     <td>
-                        <c:out value="${cartItem.phone.price}"/> $
+                        <c:out value="${cartItem.phone.actualPrice}"/> $
                     </td>
                     <td>
                         <input class="quantity-input" type="text" id="quantity${cartItem.phone.id}" name="quantity"

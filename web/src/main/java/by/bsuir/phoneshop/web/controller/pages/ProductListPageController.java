@@ -21,7 +21,7 @@ import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
-@RequestMapping(value = "/productList")
+@RequestMapping(value = "/product-list")
 public class ProductListPageController
 {
 	public static final Long QUANTITY_ON_PAGE = 20L;

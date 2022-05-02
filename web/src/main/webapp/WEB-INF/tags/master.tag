@@ -29,13 +29,13 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a href="${pageContext.servletContext.contextPath}/productList" class="navbar-brand"><spring:message
+	<a href="${pageContext.servletContext.contextPath}/product-list" class="navbar-brand"><spring:message
 			code="page.phoneshop.logo"/>
 	</a>
 	<div class="collapse navbar-collapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a href="${pageContext.servletContext.contextPath}/productList" class="nav-link"><spring:message
+				<a href="${pageContext.servletContext.contextPath}/product-list" class="nav-link"><spring:message
 						code="page.homepage"/> </a>
 			</li>
 			<li class="nav-item">
@@ -47,11 +47,11 @@
 						code="page.contacts"/></a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="nav-link">About us</a>
+				<a href="${pageContext.servletContext.contextPath}/about-us" class="nav-link"><spring:message code="page.about.us.page.name"/> </a>
 			</li>
 		</ul>
 		<form method="get" class="form-inline my-2 my-lg-0 mr-auto"
-				action="${pageContext.servletContext.contextPath}/productList">
+				action="${pageContext.servletContext.contextPath}/product-list">
 			<input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search"
 					 aria-describedby="basic-addon2"
 					 value="${not empty param.search ? param.search : ''}">
@@ -96,11 +96,15 @@
 </main>
 <footer class="card-footer">
 	<div class="bg-light align-content-lg-center" style="text-align:center; position: center;">
-		<a href="https://facebook.com" class="fa fa-facebook"></a>
-		<a href="https://twitter.com" class="fa fa-twitter"></a>
-		<a href="https://youtube.com" class="fa fa-youtube"></a>
-		<a href="https://instagram.com" class="fa fa-instagram"></a>
-		<br>
+		<ul class="social mb-0 list-inline mt-3">
+			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
+			</li>
+			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
+			</li>
+			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-youtube"></i></a>
+			</li>
+		</ul>
 		<h5>
 			(c) Anton Pushnenkov (BSUIR)
 		</h5>

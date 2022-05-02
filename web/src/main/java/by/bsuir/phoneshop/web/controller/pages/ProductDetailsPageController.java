@@ -15,7 +15,7 @@ import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
-@RequestMapping(value = "/productDetails/{id}")
+@RequestMapping(value = "/product-details/{id}")
 public class ProductDetailsPageController
 {
 	@Resource

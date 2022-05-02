@@ -13,7 +13,7 @@
 	<div class="body-details">
 		<div class="block-left">
 			<br>
-			<form action="${pageContext.servletContext.contextPath}/productList" method="get">
+			<form action="${pageContext.servletContext.contextPath}/product-list" method="get">
 				<button class="btn btn-outline-primary"><spring:message code="button.back.to.productList"/></button>
 			</form>
 			<div id="success-result">

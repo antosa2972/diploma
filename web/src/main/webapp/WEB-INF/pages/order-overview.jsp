@@ -116,7 +116,7 @@
             </td>
         </tr>
     </table>
-    <form action="${pageContext.servletContext.contextPath}/productList">
+    <form action="${pageContext.servletContext.contextPath}/product-list">
         <button class="btn btn-outline-primary">
             <spring:message code="button.back.to.productList"/>
         </button>

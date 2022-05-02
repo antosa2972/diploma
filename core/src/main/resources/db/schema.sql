@@ -4,6 +4,7 @@ drop table if exists stocks;
 drop table if exists phones;
 drop table if exists orders;
 drop table if exists orderItems;
+drop table if exists employees;
 
 create table colors
 (
@@ -82,4 +83,12 @@ create table orderItems
     quantity BIGINT NOT NULL,
     CONSTRAINT FK_orderItems_phoneId FOREIGN KEY (phoneId) REFERENCES phones (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FK_orderItems_orderId FOREIGN KEY (orderId) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+create table employees
+(
+    id        BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(50) NOT NULL,
+    lastName  VARCHAR(50) NOT NULL,
+    position  VARCHAR(50) NOT NULL,
+    employeeType ENUM('MALE','FEMALE','GEEK') NOT NULL
 );

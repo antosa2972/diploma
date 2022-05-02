@@ -36,3 +36,8 @@ insert into stocks (phoneId, stock, reserved) values (1002, 13, 2);
 insert into stocks (phoneId, stock, reserved) values (1003, 14, 3);
 insert into stocks (phoneId, stock, reserved) values (1005, 15, 4);
 insert into stocks (phoneId, stock, reserved) values (1006, 17, 6);
+
+insert into employees(firstName,lastName,position,employeeType) values('Anton', 'Pushnir','CEO','MALE');
+insert into employees(firstName,lastName,position,employeeType) values('Зина', 'Безевич','Директор по кадрам','FEMALE');
+insert into employees(firstName,lastName,position,employeeType) values('Влад', 'Чиллкун','Тех. специалист','MALE');
+insert into employees(firstName,lastName,position,employeeType) values('Артем', 'Славкун','Консультант','GEEK');
