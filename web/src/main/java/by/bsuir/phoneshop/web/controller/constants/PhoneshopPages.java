@@ -6,6 +6,7 @@ public interface PhoneshopPages
 	{
 		String OrdersPage = "orders";
 		String OrderOverviewPageAdmin = "order-overview-admin";
+		String AdminMainPage = "admin-main";
 	}
 
 	interface UserPages

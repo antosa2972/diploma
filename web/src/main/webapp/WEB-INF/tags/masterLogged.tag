@@ -21,31 +21,20 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="${pageContext.servletContext.contextPath}/product-list" class="navbar-brand"><spring:message
-          code="page.phoneshop.logo"/>
+    <a href="${pageContext.servletContext.contextPath}/admin/main" class="navbar-brand"><spring:message code="page.admin.console"/>
     </a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a href="#" class="nav-link">Homepage</a>
+                <a href="${pageContext.servletContext.contextPath}/admin/orders" class="nav-link"><spring:message code="page.admin.order.management"/></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Hot Prices</a>
+                <a href="#" class="nav-link"><spring:message code="page.admin.add.phone"/></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Contacts</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">About us</a>
+                <a href="#" class="nav-link"><spring:message code="page.admin.users"/></a>
             </li>
         </ul>
-        <form method="get" class="form-inline my-2 my-lg-0 mr-auto"
-              action="${pageContext.servletContext.contextPath}/product-list">
-            <input name="search" class="form-control mr-sm-2" type="search" placeholder="search" aria-label="search"
-                   aria-describedby="basic-addon2"
-                   value="${not empty param.search ? param.search : ''}">
-            <button class="btn btn-outline-success my-2 my-sm-0"><spring:message code="search"/></button>
-        </form>
         <span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
 				<a href="${pageContext.servletContext.contextPath}/admin/orders">
@@ -65,8 +54,19 @@
     <jsp:doBody/>
 </main>
 <footer class="card-footer">
-    <div class="bg-light a">
-        (c) Anton Pushnenkov (BSUIR)
+    <div class="bg-light align-content-lg-center" style="text-align:center; position: center;">
+        <ul class="social mb-0 list-inline mt-3">
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
+            </li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-youtube"></i></a>
+            </li>
+        </ul>
+        <h5>
+            (c) Anton Pushnenkov (BSUIR)
+        </h5>
     </div>
 </footer>
 </body>

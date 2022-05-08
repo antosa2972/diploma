@@ -7,9 +7,9 @@
 <table id="myTable">
     <thead style="border-top: none">
     <tr>
-        <td><spring:message code="image"/></td>
+        <td><spring:message code="phone.image"/></td>
         <td>
-            <spring:message code="brand"/>
+            <spring:message code="phone.brand"/>
             <tags:sortLink field="brand" order="asc"/>
             <tags:sortLink field="brand" order="desc"/>
         </td>
@@ -20,7 +20,7 @@
         </td>
         <td><spring:message code="color"/></td>
         <td>
-            <spring:message code="displaySize"/>
+            <spring:message code="phone.display.size"/>
             <tags:sortLink field="displaySizeInches" order="asc"/>
             <tags:sortLink field="displaySizeInches" order="desc"/>
         </td>

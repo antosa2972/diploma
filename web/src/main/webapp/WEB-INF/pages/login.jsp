@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
-<tags:masterLogged pageTitle="404">
+<tags:master pageTitle="404">
     <html>
     <head>
         <title><spring:message code="loginPage"/></title>
@@ -23,4 +23,4 @@
     </form>
     </body>
     </html>
-</tags:masterLogged>
+</tags:master>

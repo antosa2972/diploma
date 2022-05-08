@@ -72,7 +72,7 @@ create table orders
     deliveryAddress VARCHAR(100),
     contactPhoneNo  VARCHAR(15),
     additionalInfo  VARCHAR(500),
-    status          ENUM ('NEW', 'DELIVERED', 'REJECTED'),
+    status          ENUM ('NEW', 'DELIVERED', 'REJECTED','IN_DELIVERY'),
     date            TIMESTAMP
 );
 create table orderItems

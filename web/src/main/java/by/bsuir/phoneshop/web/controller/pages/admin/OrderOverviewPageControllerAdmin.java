@@ -34,15 +34,22 @@ public class OrderOverviewPageControllerAdmin
 	public String changeOrderStatus(final @PathVariable("id") Long orderId,
 											  final @RequestParam(name = "orderStatus") String orderStatus)
 	{
+		OrderStatus status = OrderStatus.REJECTED;
 		if (OrderStatus.DELIVERED.name().equals(orderStatus))
 		{
-			orderServiceImpl.updateStatus(OrderStatus.DELIVERED, orderId);
+			status = OrderStatus.DELIVERED;
+		}
+		else if (OrderStatus.IN_DELIVERY.name().equals(orderStatus))
+		{
+			status = OrderStatus.IN_DELIVERY;
 		}
 		else
 		{
-			orderServiceImpl.updateStatus(OrderStatus.REJECTED, orderId);
+			status = OrderStatus.REJECTED;
 		}
-		return "redirect:" + PhoneshopPages.AdminPages.OrdersPage + orderId;
+		orderServiceImpl.updateStatus(status, orderId);
+
+		return "redirect:/admin/orders/" + orderId;
 	}
 
 	@ExceptionHandler(RuntimeException.class)

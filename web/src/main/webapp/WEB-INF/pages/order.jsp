@@ -32,10 +32,10 @@
 	</div>
 	<table class="table-bordered w-50">
 		<tr>
-			<td><spring:message code="brand"/></td>
+			<td><spring:message code="phone.brand"/></td>
 			<td><spring:message code="model"/></td>
 			<td><spring:message code="color"/></td>
-			<td><spring:message code="displaySize"/></td>
+			<td><spring:message code="phone.display.size"/></td>
 			<td><spring:message code="quantity"/></td>
 			<td><spring:message code="price"/></td>
 		</tr>
@@ -140,7 +140,7 @@
 		</table>
 	</form:form>
 	<button form="place-order" class="btn btn-outline-primary">
-		<spring:message code="makeOrder"/>
+		<spring:message code="order.make.btn"/>
 	</button>
 	</body>
 </tags:master>

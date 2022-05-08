@@ -150,3 +150,7 @@ html, body {
     text-decoration: none;
     color: #555;
 }
+.admin-list {
+    margin-left: 37%;
+    list-style: inside;
+}

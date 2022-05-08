@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <tags:master pageTitle="Cart">
     <head>
-        <title><spring:message code="cartPage"/></title>
+        <title><spring:message code="cart.page"/></title>
     </head>
     <body>
     <br>
@@ -43,7 +43,7 @@
             <thead>
             <tr>
                 <td>
-                    <spring:message code="brand"/>
+                    <spring:message code="phone.brand"/>
                 </td>
                 <td>
                     <spring:message code="model"/>
@@ -52,7 +52,7 @@
                     <spring:message code="color"/>
                 </td>
                 <td>
-                    <spring:message code="displaySize"/>
+                    <spring:message code="phone.display.size"/>
                 </td>
                 <td>
                     <spring:message code="price"/>
@@ -99,7 +99,7 @@
                         <div class="result-error" id="result${cartItem.phone.id}"></div>
                         <c:if test="${fn:contains(errorsId, cartItem.phone.id)}">
                             <div class="result-error">
-                                <spring:message code="wrongInputOrStock"/>
+                                <spring:message code="cart.wrong.input.or.out.of.stock"/>
                             </div>
                         </c:if>
                         <input id="phoneId${cartItem.phone.id}" name="phoneId" type="hidden"
@@ -108,7 +108,7 @@
                     <td>
                         <button class="btn btn-danger"
                                 formaction="${pageContext.servletContext.contextPath}/cart/${cartItem.phone.id}">
-                            <spring:message code="deleteFromCartBtn"/>
+                            <spring:message code="cart.delete.btn"/>
                         </button>
                     </td>
                 </tr>
@@ -116,10 +116,10 @@
         </table>
     </form:form>
     <button form="update-form" class="btn btn-secondary">
-        <spring:message code="updateCart"/>
+        <spring:message code="cart.update.btn"/>
     </button>
     <button form="goToOrder" class="btn btn-secondary">
-        <spring:message code="makeOrder"/>
+        <spring:message code="order.make.btn"/>
     </button>
 
     <form id="goToOrder" action="${pageContext.servletContext.contextPath}/order" method="get"/>
