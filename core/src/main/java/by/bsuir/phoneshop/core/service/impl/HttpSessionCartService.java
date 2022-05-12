@@ -71,7 +71,7 @@ public class HttpSessionCartService implements CartService
 
 	private void addToCart(final Long quantity, final Stock stock, final Phone phone, Cart cart)
 	{
-		jdbcStockDao.update(phone.getId(), stock.getStock().longValue(), stock.getReserved() + quantity);
+		jdbcStockDao.update(phone.getId(), stock.getStock().longValue(), stock.getReserved() + quantity, false);
 		final Optional<CartItem> cartItem = findCartItem(phone.getId(), cart);
 		if (cartItem.isPresent())
 		{
@@ -116,7 +116,7 @@ public class HttpSessionCartService implements CartService
 			if (stock.getStock() - stock.getReserved() >= quantityDifference)
 			{
 				jdbcStockDao.update(phoneId, stock.getStock().longValue(),
-							 stock.getReserved() + quantityDifference);
+							 stock.getReserved() + quantityDifference, false);
 				return true;
 			}
 		}
@@ -143,7 +143,7 @@ public class HttpSessionCartService implements CartService
 			final Stock stock = optionalStock.get();
 			final CartItem cartItem = optionalCartItem.get();
 			jdbcStockDao.update(phoneId, stock.getStock() + cartItem.getQuantity(),
-						 stock.getReserved() - cartItem.getQuantity());
+						 stock.getReserved() - cartItem.getQuantity(), false);
 		}
 		calculateCart(cart);
 	}

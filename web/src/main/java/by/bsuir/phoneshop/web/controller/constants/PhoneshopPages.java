@@ -7,6 +7,9 @@ public interface PhoneshopPages
 		String OrdersPage = "orders";
 		String OrderOverviewPageAdmin = "order-overview-admin";
 		String AdminMainPage = "admin-main";
+		String ChooseOperationPage="choose-operation";
+		String AddDevicePage="add-device";
+		String UpdateDeletePage="update-delete";
 	}
 
 	interface UserPages

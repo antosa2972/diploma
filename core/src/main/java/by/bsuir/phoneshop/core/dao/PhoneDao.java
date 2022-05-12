@@ -12,7 +12,7 @@ public interface PhoneDao
 
 	Optional<Phone> get(final String model);
 
-	void save(final Phone phone);
+	void save(final Phone phone, final String[] colors);
 
 	List<Phone> findAll(final int offset, final int limit);
 
@@ -20,5 +20,7 @@ public interface PhoneDao
 
 	Long count(final ParamsForSearch paramsForSearch);
 
-	List<Phone> findMaxDiscountPercentPhones(final int amount);
+	List<Phone> findMaxDiscountPercentPhones();
+
+	void deletePhone(final Long id);
 }

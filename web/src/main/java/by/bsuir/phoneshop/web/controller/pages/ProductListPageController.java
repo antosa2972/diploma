@@ -24,7 +24,7 @@ import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 @RequestMapping(value = "/product-list")
 public class ProductListPageController
 {
-	public static final Long QUANTITY_ON_PAGE = 20L;
+	public static final Long QUANTITY_ON_PAGE = 10L;
 
 	@Resource
 	private PhoneService phoneServiceImpl;
@@ -73,11 +73,11 @@ public class ProductListPageController
 
 		if (phoneQuantity % QUANTITY_ON_PAGE != 0)
 		{
-			lastPage = numOfPages + 1;
+			lastPage = numOfPages + 2;
 		}
 		else
 		{
-			lastPage = numOfPages;
+			lastPage = numOfPages + 1;
 		}
 
 		model.addAttribute("phones", phoneList);

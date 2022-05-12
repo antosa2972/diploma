@@ -12,7 +12,7 @@ public interface PhoneService
 
 	Optional<Phone> getPhoneByModel(final String model);
 
-	void savePhone(final Phone phone);
+	void savePhone(final Phone phone, Long stock, final String[] colors);
 
 	List<Phone> getPhones(final int offset, final int limit);
 
@@ -21,4 +21,6 @@ public interface PhoneService
 	Long countPhoneQuantity(final ParamsForSearch paramsForSearch);
 
 	List<Phone> getHotPricedPhones(final int amount);
+
+	void deletePhone(final Long id);
 }

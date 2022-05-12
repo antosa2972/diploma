@@ -33,16 +33,16 @@ public class OrderDataDtoValidator implements Validator
 		if (!errors.hasErrors())
 		{
 			OrderDataDto orderDataDto = (OrderDataDto) o;
-			if (validateWithRegex(orderDataDto.getPhone(), REGEX_PHONE))
+			if (validateWithRegex(orderDataDto.getPhone()))
 			{
 				errors.rejectValue("phone", "phone");
 			}
 		}
 	}
 
-	private boolean validateWithRegex(String parameter, String regex)
+	private boolean validateWithRegex(final String parameter)
 	{
-		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+		Pattern pattern = Pattern.compile(OrderDataDtoValidator.REGEX_PHONE, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(parameter);
 		return matcher.find();
 	}

@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService
 			if (stock != null && stock.getStock() - orderItem.getQuantity() > 0)
 			{
 				jdbcStockDao.update(orderItem.getPhone().getId(), stock.getStock() - orderItem.getQuantity(),
-							 stock.getReserved() - orderItem.getQuantity());
+							 stock.getReserved() - orderItem.getQuantity(), false);
 			}
 			else
 			{

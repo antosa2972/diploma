@@ -18,20 +18,20 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.bsuir.phoneshop.core.dao.ColorDAO;
-import by.bsuir.phoneshop.core.dao.PhoneDao;
+import by.bsuir.phoneshop.core.beans.Color;
 import by.bsuir.phoneshop.core.beans.ParamsForSearch;
 import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.dao.ColorDAO;
+import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.dao.extractors.PhoneResultSetExtractor;
-import by.bsuir.phoneshop.core.beans.Color;
 
 @Component
 public class JdbcPhoneDao implements PhoneDao
 {
-	private static final String SQL_INSERT_PHONE = "insert into phones (id,brand,model,price,displaySizeInches,weightGr," +
+	private static final String SQL_INSERT_PHONE = "insert into phones (id,brand,model,price,discountPercent,displaySizeInches,weightGr," +
 				 "lengthMm,widthMm,heightMm,announced,deviceType,os,displayResolution,pixelDensity,displayTechnology," +
 				 "backCameraMegapixels,frontCameraMegapixels,ramGb,internalStorageGb,batteryCapacityMah,talkTimeHours," +
-				 "standByTimeHours,bluetooth,positioning,imageUrl,description) values (:id,:brand,:model,:price,:displaySizeInches,:weightGr," +
+				 "standByTimeHours,bluetooth,positioning,imageUrl,description) values (:id,:brand,:model,:price,:discountPercent,:displaySizeInches,:weightGr," +
 				 ":lengthMm,:widthMm,:heightMm,:announced,:deviceType,:os,:displayResolution,:pixelDensity," +
 				 ":displayTechnology,:backCameraMegapixels,:frontCameraMegapixels,:ramGb,:internalStorageGb," +
 				 ":batteryCapacityMah,:talkTimeHours,:standByTimeHours,:bluetooth,:positioning,:imageUrl,:description)";
@@ -45,6 +45,7 @@ public class JdbcPhoneDao implements PhoneDao
 				 "(SELECT STOCK FROM STOCKS WHERE PHONEID = PHONES.ID AND STOCK > 0) and price is not null) ";
 	public static final String SQL_SELECT_COLOR_IDS = "select colorId from phone2color where phoneId= ";
 	public static final String SQL_GET_PHONE_BY_MODEL = "select * from phones where phones.model = '";
+	public static final String DELETE_PHONE_SQL = "delete from phones where phones.id=?";
 
 	@Resource
 	private JdbcTemplate jdbcTemplate;
@@ -102,14 +103,14 @@ public class JdbcPhoneDao implements PhoneDao
 	}
 
 	@Override
-	public void save(final Phone phone)
+	public void save(final Phone phone, final String[] colors)
 	{
 		MapSqlParameterSource in = new MapSqlParameterSource();
 		in.addValue("id", phone.getId());
 		in.addValue("brand", phone.getBrand());
 		in.addValue("model", phone.getModel());
 		in.addValue("price", phone.getPrice());
-		in.addValue("discountPercent", phone.getDiscountPercent());
+		in.addValue("discountPercent", phone.getDiscountPercent().intValue());
 		in.addValue("displaySizeInches", phone.getDisplaySizeInches());
 		in.addValue("weightGr", phone.getWeightGr());
 		in.addValue("lengthMm", phone.getLengthMm());
@@ -158,7 +159,7 @@ public class JdbcPhoneDao implements PhoneDao
 
 		String query = SQL_GET_ALL_PHONES + SQL_WHERE_SEARCH;
 
-		if (search != null)
+		if (search != null && !search.isEmpty())
 		{
 			query = query + "and lower(model) like lower(?) ";
 			objects.add("%" + search + "%");
@@ -185,9 +186,9 @@ public class JdbcPhoneDao implements PhoneDao
 
 		String request = SQL_SELECT_COUNT_FIND_ALL_EXTENDED + SQL_WHERE_SEARCH;
 
-		if (search != null)
+		if (search != null && !search.isEmpty())
 		{
-			request = request + "and lower(model) like lower(?)";
+			request = request + "and (lower(model) like lower(?))";
 			return jdbcTemplate.queryForObject(request, new Object[]{"%" + search +
 						 "%"}, new int[]{Types.VARCHAR}, Long.class);
 		}
@@ -198,11 +199,17 @@ public class JdbcPhoneDao implements PhoneDao
 	}
 
 	@Override
-	public List<Phone> findMaxDiscountPercentPhones(int amount)
+	public List<Phone> findMaxDiscountPercentPhones()
 	{
-		final String query = SQL_GET_MAX_DISCOUNTED_PHONES + " limit " + amount;
 
-		return jdbcTemplate.query(query, phoneResultSetExtractor);
+
+		return jdbcTemplate.query(SQL_GET_MAX_DISCOUNTED_PHONES, phoneResultSetExtractor);
+	}
+
+	@Override
+	public void deletePhone(final Long id)
+	{
+		jdbcTemplate.update(DELETE_PHONE_SQL, id);
 	}
 }
 

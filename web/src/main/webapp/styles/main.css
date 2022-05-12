@@ -154,3 +154,6 @@ html, body {
     margin-left: 37%;
     list-style: inside;
 }
+.admin-list li{
+    margin-bottom: 2%;
+}

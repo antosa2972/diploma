@@ -9,12 +9,18 @@ function addToCart(phoneId) {
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (dataReceived) {
-            $('#cart-quantity').text(dataReceived['totalQuantity'] + ',');
-            $('#cart-totalCost').text(dataReceived['totalCost']);
+            $('#cart-quantity').fadeOut(700, function () {
+                $(this).text(dataReceived['totalQuantity'] + ',').fadeIn();
+            })
+            $('#cart-totalCost').fadeOut(700, function () {
+                $(this).text(dataReceived['totalCost'] + ',').fadeIn();
+            })
             $('#result' + phoneId).text('');
             $('#error-result').text('');
             $('#ajax-errors').text('');
-            $('#success-result').text('\u041f\u0440\u043e\u0434\u0443\u043a\u0442\u0020\u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0020\u0432\u0020\u043a\u043e\u0440\u0437\u0438\u043d\u0443');
+            $('#success-result').fadeOut(700, function () {
+                $(this).text('\u041f\u0440\u043e\u0434\u0443\u043a\u0442\u0020\u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0020\u0432\u0020\u043a\u043e\u0440\u0437\u0438\u043d\u0443').fadeIn();
+            })
         },
         error: function (message) {
             $('#success-result').text('');
