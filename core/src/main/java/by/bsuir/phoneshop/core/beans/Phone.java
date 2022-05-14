@@ -1,8 +1,6 @@
 package by.bsuir.phoneshop.core.beans;
 
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Date;
 import java.util.Set;
 
 public class Phone
@@ -17,9 +15,19 @@ public class Phone
 
 	private Integer discountPercent;
 
-	private BigDecimal actualPrice;
+	private String imageUrl;
+
+	private Long quantity;
+
+	private String description;
 
 	private BigDecimal displaySizeInches;
+
+	private String displayResolution;
+
+	private Integer pixelDensity;
+
+	private String displayTechnology;
 
 	private Integer weightGr;
 
@@ -29,25 +37,11 @@ public class Phone
 
 	private BigDecimal heightMm;
 
-	private Date announced;
-
 	private String deviceType;
-
-	private String os;
-
-	private Set<Color> colors = Collections.EMPTY_SET;
-
-	private String displayResolution;
-
-	private Integer pixelDensity;
-
-	private String displayTechnology;
 
 	private BigDecimal backCameraMegapixels;
 
 	private BigDecimal frontCameraMegapixels;
-
-	private BigDecimal ramGb;
 
 	private BigDecimal internalStorageGb;
 
@@ -59,11 +53,10 @@ public class Phone
 
 	private String bluetooth;
 
-	private String positioning;
+	private BigDecimal actualPrice;
 
-	private String imageUrl;
+	private Set<Color> colors;
 
-	private String description;
 
 	public String getBrand()
 	{
@@ -95,16 +88,6 @@ public class Phone
 		this.weightGr = weightGr;
 	}
 
-	public Date getAnnounced()
-	{
-		return announced;
-	}
-
-	public void setAnnounced(final Date announced)
-	{
-		this.announced = announced;
-	}
-
 	public String getDeviceType()
 	{
 		return deviceType;
@@ -113,26 +96,6 @@ public class Phone
 	public void setDeviceType(final String deviceType)
 	{
 		this.deviceType = deviceType;
-	}
-
-	public String getOs()
-	{
-		return os;
-	}
-
-	public void setOs(final String os)
-	{
-		this.os = os;
-	}
-
-	public Set<Color> getColors()
-	{
-		return colors;
-	}
-
-	public void setColors(final Set<Color> colors)
-	{
-		this.colors = colors;
 	}
 
 	public String getDisplayResolution()
@@ -183,16 +146,6 @@ public class Phone
 	public void setFrontCameraMegapixels(final BigDecimal frontCameraMegapixels)
 	{
 		this.frontCameraMegapixels = frontCameraMegapixels;
-	}
-
-	public BigDecimal getRamGb()
-	{
-		return ramGb;
-	}
-
-	public void setRamGb(final BigDecimal ramGb)
-	{
-		this.ramGb = ramGb;
 	}
 
 	public String getModel()
@@ -265,16 +218,6 @@ public class Phone
 		this.bluetooth = bluetooth;
 	}
 
-	public String getPositioning()
-	{
-		return positioning;
-	}
-
-	public void setPositioning(final String positioning)
-	{
-		this.positioning = positioning;
-	}
-
 	public String getImageUrl()
 	{
 		return imageUrl;
@@ -325,12 +268,32 @@ public class Phone
 		this.heightMm = heightMm;
 	}
 
+	public Integer getDiscountPercent()
+	{
+		return discountPercent;
+	}
+
+	public void setDiscountPercent(Integer discountPercent)
+	{
+		this.discountPercent = discountPercent;
+	}
+
+	public Long getQuantity()
+	{
+		return quantity;
+	}
+
+	public void setQuantity(final Long quantity)
+	{
+		this.quantity = quantity;
+	}
+
 	public Long getId()
 	{
 		return id;
 	}
 
-	public void setId(final Long id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
@@ -338,6 +301,21 @@ public class Phone
 	public BigDecimal getActualPrice()
 	{
 		return actualPrice;
+	}
+
+	public void setActualPrice(BigDecimal actualPrice)
+	{
+		this.actualPrice = actualPrice;
+	}
+
+	public Set<Color> getColors()
+	{
+		return colors;
+	}
+
+	public void setColors(Set<Color> colors)
+	{
+		this.colors = colors;
 	}
 
 	public void setActualPrice()
@@ -362,16 +340,6 @@ public class Phone
 		int result = 1;
 		result = prime * result + id.hashCode() + brand.hashCode() + model.hashCode();
 		return result;
-	}
-
-	public Integer getDiscountPercent()
-	{
-		return discountPercent;
-	}
-
-	public void setDiscountPercent(Integer discountPercent)
-	{
-		this.discountPercent = discountPercent;
 	}
 
 	@Override

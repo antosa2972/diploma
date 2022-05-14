@@ -28,7 +28,7 @@
 			  crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light nav-borderb sticky-top" style="background-color:deepskyblue">
 	<a href="${pageContext.servletContext.contextPath}/product-list" class="navbar-brand"><spring:message
 			code="page.phoneshop.logo"/>
 	</a>
@@ -55,7 +55,7 @@
 			<input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search"
 					 aria-describedby="basic-addon2"
 					 value="${not empty param.search ? param.search : ''}">
-			<button class="btn btn-outline-primary my-2 my-sm-0"><spring:message code="search"/></button>
+			<button class="btn btn-outline-light my-2 my-sm-0"><spring:message code="search"/></button>
 		</form>
 		<div class="mr-lg-auto">
 			<a href="?lang=en"><img src="${pageContext.servletContext.contextPath}/images/english.svg" alt="English"
@@ -72,7 +72,7 @@
 			</sec:authorize>
 			<sec:authorize access="hasRole('ADMIN') eq false">
 				<a href="${pageContext.servletContext.contextPath}/login"
-					class="btn btn-outline-primary btn-sm"><spring:message
+					class="btn btn-light btn-sm"><spring:message
 						code="page.login"/></a>
 			</sec:authorize>
 			<sec:authorize access="!hasRole('ADMIN')">

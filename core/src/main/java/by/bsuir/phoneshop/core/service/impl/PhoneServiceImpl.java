@@ -13,6 +13,7 @@ import by.bsuir.phoneshop.core.beans.ParamsForSearch;
 import by.bsuir.phoneshop.core.beans.Phone;
 import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.dao.StockDao;
+import by.bsuir.phoneshop.core.dto.PhoneAddDto;
 import by.bsuir.phoneshop.core.service.PhoneService;
 
 @Component
@@ -41,7 +42,7 @@ public class PhoneServiceImpl implements PhoneService
 
 	public void savePhone(final Phone phone, final Long quantity, final String[] colors)
 	{
-		jdbcPhoneDao.save(phone, colors);
+		jdbcPhoneDao.save(phone);
 
 		final Phone savedPhone = getPhoneByModel(phone.getModel()).get();
 
@@ -94,5 +95,59 @@ public class PhoneServiceImpl implements PhoneService
 	public void deletePhone(final Long id)
 	{
 		jdbcPhoneDao.deletePhone(id);
+	}
+
+	@Override
+	public Phone populateFields(final PhoneAddDto phoneAddDto)
+	{
+		final Phone phone = new Phone();
+		phone.setBrand(phoneAddDto.getBrand());
+		phone.setModel(phoneAddDto.getModel());
+		phone.setPrice(phoneAddDto.getPrice());
+		if (phoneAddDto.getDiscountPercent() != null)
+		{
+			phone.setDiscountPercent(phoneAddDto.getDiscountPercent());
+		}
+		else
+		{
+			phone.setDiscountPercent(0);
+		}
+		phone.setImageUrl(phoneAddDto.getImageUrl());
+		phone.setDescription(phoneAddDto.getDescription());
+		phone.setDisplaySizeInches(phoneAddDto.getDisplaySizeInches());
+		phone.setDisplayResolution(phoneAddDto.getDisplayResolution());
+		phone.setPixelDensity(phoneAddDto.getPixelDensity());
+		phone.setDisplayTechnology(phoneAddDto.getDisplayTechnology());
+		phone.setWeightGr(phoneAddDto.getWeightGr());
+		phone.setLengthMm(phoneAddDto.getLengthMm());
+		phone.setWidthMm(phoneAddDto.getWidthMm());
+		phone.setHeightMm(phoneAddDto.getHeightMm());
+		phone.setDeviceType(phoneAddDto.getDeviceType());
+		phone.setBackCameraMegapixels(phoneAddDto.getBackCameraMegapixels());
+		phone.setFrontCameraMegapixels(phoneAddDto.getFrontCameraMegapixels());
+		phone.setInternalStorageGb(phoneAddDto.getInternalStorageGb());
+		phone.setBatteryCapacityMah(phoneAddDto.getBatteryCapacityMah());
+		phone.setTalkTimeHours(phoneAddDto.getTalkTimeHours());
+		phone.setStandByTimeHours(phoneAddDto.getStandByTimeHours());
+		phone.setBluetooth(phoneAddDto.getBluetooth());
+
+		return phone;
+	}
+
+	@Override
+	public void updateDevice(final Phone phone, final Long quantity, final String[] colors, final Long id)
+	{
+		phone.setId(id);
+		jdbcPhoneDao.updateDevice(phone);
+
+		final Phone savedPhone = getPhoneByModel(phone.getModel()).get();
+
+		jdbcStockDao.update(savedPhone.getId(), quantity, 0L, false);
+
+		for (final String color : colors)
+		{
+			jdbcTemplate.update("delete from phone2color where phoneId=?", savedPhone.getId());
+			jdbcTemplate.update("insert into phone2color(phoneId,colorId) values (?,?)", savedPhone.getId(), color);
+		}
 	}
 }

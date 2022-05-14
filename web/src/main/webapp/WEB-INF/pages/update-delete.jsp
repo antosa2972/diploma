@@ -76,9 +76,9 @@
 					<button class="btn btn-outline-danger" onclick="deleteDevice(${phone.id},this)">
 						<spring:message code="page.admin.delete.device"/>
 					</button>
-					<button class="btn btn-outline-primary">
+					<a class="btn btn-outline-primary" href="${pageContext.servletContext.contextPath}/admin/device-operations/update-delete/update/${phone.id}">
 						<spring:message code="page.admin.update.device"/>
-					</button>
+					</a>
 				</td>
 			</tr>
 		</c:forEach>

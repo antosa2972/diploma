@@ -29,12 +29,12 @@ import by.bsuir.phoneshop.core.dao.extractors.PhoneResultSetExtractor;
 public class JdbcPhoneDao implements PhoneDao
 {
 	private static final String SQL_INSERT_PHONE = "insert into phones (id,brand,model,price,discountPercent,displaySizeInches,weightGr," +
-				 "lengthMm,widthMm,heightMm,announced,deviceType,os,displayResolution,pixelDensity,displayTechnology," +
-				 "backCameraMegapixels,frontCameraMegapixels,ramGb,internalStorageGb,batteryCapacityMah,talkTimeHours," +
-				 "standByTimeHours,bluetooth,positioning,imageUrl,description) values (:id,:brand,:model,:price,:discountPercent,:displaySizeInches,:weightGr," +
-				 ":lengthMm,:widthMm,:heightMm,:announced,:deviceType,:os,:displayResolution,:pixelDensity," +
-				 ":displayTechnology,:backCameraMegapixels,:frontCameraMegapixels,:ramGb,:internalStorageGb," +
-				 ":batteryCapacityMah,:talkTimeHours,:standByTimeHours,:bluetooth,:positioning,:imageUrl,:description)";
+				 "lengthMm,widthMm,heightMm,deviceType,displayResolution,pixelDensity,displayTechnology," +
+				 "backCameraMegapixels,frontCameraMegapixels,internalStorageGb,batteryCapacityMah,talkTimeHours," +
+				 "standByTimeHours,bluetooth,imageUrl,description) values (:id,:brand,:model,:price,:discountPercent,:displaySizeInches,:weightGr," +
+				 ":lengthMm,:widthMm,:heightMm,:deviceType,:displayResolution,:pixelDensity," +
+				 ":displayTechnology,:backCameraMegapixels,:frontCameraMegapixels,:internalStorageGb," +
+				 ":batteryCapacityMah,:talkTimeHours,:standByTimeHours,:bluetooth,:imageUrl,:description)";
 	private static final String SQL_GET_ALL_PHONES = "select * from phones left join phone2color " +
 				 "on phones.id=phone2color.phoneId left join colors on colors.id = phone2color.colorId ";
 	private static final String SQL_GET_MAX_DISCOUNTED_PHONES = "select * from phones left join phone2color " +
@@ -46,6 +46,10 @@ public class JdbcPhoneDao implements PhoneDao
 	public static final String SQL_SELECT_COLOR_IDS = "select colorId from phone2color where phoneId= ";
 	public static final String SQL_GET_PHONE_BY_MODEL = "select * from phones where phones.model = '";
 	public static final String DELETE_PHONE_SQL = "delete from phones where phones.id=?";
+	public static final String SQL_UPDATE_PHONE = "update phones set brand= :brand,model= :model,price= :price,discountPercent= :discountPercent," +
+				 "displaySizeInches= :displaySizeInches,weightGr= :weightGr,lengthMm= :lengthMm,widthMm= :widthMm,heightMm= :heightMm,deviceType= :deviceType,displayResolution= :displayResolution,pixelDensity= :pixelDensity," +
+				 "displayTechnology= :displayTechnology,backCameraMegapixels= :backCameraMegapixels,frontCameraMegapixels= :frontCameraMegapixels,internalStorageGb= :internalStorageGb,batteryCapacityMah= :batteryCapacityMah," +
+				 "talkTimeHours= :talkTimeHours,standByTimeHours= :standByTimeHours,bluetooth= :bluetooth,imageUrl= :imageUrl,description= :description where id= :id";
 
 	@Resource
 	private JdbcTemplate jdbcTemplate;
@@ -103,37 +107,10 @@ public class JdbcPhoneDao implements PhoneDao
 	}
 
 	@Override
-	public void save(final Phone phone, final String[] colors)
+	@Transactional
+	public void save(final Phone phone)
 	{
-		MapSqlParameterSource in = new MapSqlParameterSource();
-		in.addValue("id", phone.getId());
-		in.addValue("brand", phone.getBrand());
-		in.addValue("model", phone.getModel());
-		in.addValue("price", phone.getPrice());
-		in.addValue("discountPercent", phone.getDiscountPercent().intValue());
-		in.addValue("displaySizeInches", phone.getDisplaySizeInches());
-		in.addValue("weightGr", phone.getWeightGr());
-		in.addValue("lengthMm", phone.getLengthMm());
-		in.addValue("widthMm", phone.getWidthMm());
-		in.addValue("heightMm", phone.getHeightMm());
-		in.addValue("announced", phone.getAnnounced());
-		in.addValue("deviceType", phone.getDeviceType());
-		in.addValue("os", phone.getOs());
-		in.addValue("displayResolution", phone.getDisplayResolution());
-		in.addValue("pixelDensity", phone.getPixelDensity());
-		in.addValue("displayTechnology", phone.getDisplayTechnology());
-		in.addValue("backCameraMegapixels", phone.getBackCameraMegapixels());
-		in.addValue("frontCameraMegapixels", phone.getFrontCameraMegapixels());
-		in.addValue("ramGb", phone.getRamGb());
-		in.addValue("internalStorageGb", phone.getInternalStorageGb());
-		in.addValue("batteryCapacityMah", phone.getBatteryCapacityMah());
-		in.addValue("talkTimeHours", phone.getTalkTimeHours());
-		in.addValue("standByTimeHours", phone.getStandByTimeHours());
-		in.addValue("bluetooth", phone.getBluetooth());
-		in.addValue("positioning", phone.getPositioning());
-		in.addValue("imageUrl", phone.getImageUrl());
-		in.addValue("description", phone.getDescription());
-		namedParameterJdbcTemplate.update(SQL_INSERT_PHONE, in);
+		namedParameterJdbcTemplate.update(SQL_INSERT_PHONE, populateNamedParams(phone));
 	}
 
 	@Override
@@ -210,6 +187,43 @@ public class JdbcPhoneDao implements PhoneDao
 	public void deletePhone(final Long id)
 	{
 		jdbcTemplate.update(DELETE_PHONE_SQL, id);
+	}
+
+	@Override
+	@Transactional
+	public void updateDevice(final Phone phone)
+	{
+		namedParameterJdbcTemplate.update(SQL_UPDATE_PHONE, populateNamedParams(phone));
+	}
+
+	private MapSqlParameterSource populateNamedParams(final Phone phone)
+	{
+		MapSqlParameterSource in = new MapSqlParameterSource();
+		in.addValue("id", phone.getId());
+		in.addValue("brand", phone.getBrand());
+		in.addValue("model", phone.getModel());
+		in.addValue("price", phone.getPrice());
+		in.addValue("discountPercent", phone.getDiscountPercent());
+		in.addValue("displaySizeInches", phone.getDisplaySizeInches());
+		in.addValue("weightGr", phone.getWeightGr());
+		in.addValue("lengthMm", phone.getLengthMm());
+		in.addValue("widthMm", phone.getWidthMm());
+		in.addValue("heightMm", phone.getHeightMm());
+		in.addValue("deviceType", phone.getDeviceType());
+		in.addValue("displayResolution", phone.getDisplayResolution());
+		in.addValue("pixelDensity", phone.getPixelDensity());
+		in.addValue("displayTechnology", phone.getDisplayTechnology());
+		in.addValue("backCameraMegapixels", phone.getBackCameraMegapixels());
+		in.addValue("frontCameraMegapixels", phone.getFrontCameraMegapixels());
+		in.addValue("internalStorageGb", phone.getInternalStorageGb());
+		in.addValue("batteryCapacityMah", phone.getBatteryCapacityMah());
+		in.addValue("talkTimeHours", phone.getTalkTimeHours());
+		in.addValue("standByTimeHours", phone.getStandByTimeHours());
+		in.addValue("bluetooth", phone.getBluetooth());
+		in.addValue("imageUrl", phone.getImageUrl());
+		in.addValue("description", phone.getDescription());
+
+		return in;
 	}
 }
 

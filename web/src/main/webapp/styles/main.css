@@ -157,3 +157,18 @@ html, body {
 .admin-list li{
     margin-bottom: 2%;
 }
+
+.nav-borderb {
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+}
+
+.flex-container {
+    display: flex;
+    margin: 0 -5px;
+}
+
+.flex-child {
+    flex: 1 1 auto;
+    margin: 0 5px;
+}

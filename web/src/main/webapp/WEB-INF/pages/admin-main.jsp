@@ -28,7 +28,7 @@
 			<spring:message code="page.admin.add.device"/></a>
 			<a class="btn btn-outline-primary"
 				href="${pageContext.servletContext.contextPath}/admin/device-operations/update-delete"><spring:message
-					code="page.admin.update.device"/></a>
+					code="page.admin.add.phone"/></a>
 		</li>
 	</ul>
 </tags:masterLogged>

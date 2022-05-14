@@ -36,7 +36,10 @@
                 <a href="${pageContext.servletContext.contextPath}/admin/orders" class="nav-link"><spring:message code="page.admin.order.management"/></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><spring:message code="page.admin.add.phone"/></a>
+                <a href="${pageContext.servletContext.contextPath}/admin/device-operations/add" class="nav-link"><spring:message code="page.admin.add.device"/></a>
+            </li>
+            <li class="nav-item">
+                <a href="${pageContext.servletContext.contextPath}/admin/device-operations/update-delete" class="nav-link"><spring:message code="page.admin.add.phone"/></a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link"><spring:message code="page.admin.users"/></a>

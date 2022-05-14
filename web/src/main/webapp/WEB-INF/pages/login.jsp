@@ -15,10 +15,23 @@
         </c:if>
     </div>
     <form action="${pageContext.servletContext.contextPath}/login" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <table>
+            <tr>
+                <td style="border:none"><spring:message code="page.login.username"/></td>
+                <td style="border:none">
+                    <input type="text" name="username"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="border:none"><spring:message code="page.login.password"/></td>
+                <td style="border:none">
+                    <input type="password" name="password"/>
+                </td>
+            </tr>
+        </table>
+        <br>
         <div>
-            <button class="btn btn-outline-primary" type="submit">Sign in</button>
+            <button class="btn btn-outline-primary" type="submit"><spring:message code="page.login"/></button>
         </div>
     </form>
     </body>

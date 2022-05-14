@@ -58,22 +58,17 @@ public class PhoneResultSetExtractor implements ResultSetExtractor<List<Phone>>
 		phone.setWeightGr(resultSet.getInt("weightGr"));
 		phone.setWidthMm(BigDecimal.valueOf(resultSet.getFloat("lengthMm")));
 		phone.setHeightMm(BigDecimal.valueOf(resultSet.getFloat("heightMm")));
-		phone.setAnnounced(resultSet.getDate("announced"));
 		phone.setDeviceType(resultSet.getString("deviceType"));
-		phone.setOs(resultSet.getString("os"));
 		phone.setDisplayResolution(resultSet.getString("displayResolution"));
 		phone.setPixelDensity(resultSet.getInt("pixelDensity"));
 		phone.setDisplayTechnology(resultSet.getString("displayTechnology"));
 		phone.setBackCameraMegapixels(BigDecimal.valueOf(resultSet.getFloat("backCameraMegapixels")));
 		phone.setFrontCameraMegapixels(BigDecimal.valueOf(resultSet.getFloat("frontCameraMegapixels")));
-		phone.setRamGb(BigDecimal.valueOf(resultSet.getFloat("ramGb")));
 		phone.setInternalStorageGb(BigDecimal.valueOf(resultSet.getFloat("internalStorageGb")));
 		phone.setBatteryCapacityMah(resultSet.getInt("batteryCapacityMah"));
 		phone.setTalkTimeHours(BigDecimal.valueOf(resultSet.getFloat("talkTimeHours")));
 		phone.setStandByTimeHours(BigDecimal.valueOf(resultSet.getFloat("standByTimeHours")));
 		phone.setBluetooth(resultSet.getString("bluetooth"));
-		phone.setPositioning(resultSet.getString("positioning"));
-		phone.setPositioning(resultSet.getString("positioning"));
 		phone.setImageUrl(resultSet.getString("imageUrl"));
 		phone.setDescription(resultSet.getString("description"));
 

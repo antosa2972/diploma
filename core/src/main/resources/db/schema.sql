@@ -25,21 +25,17 @@ create table phones
     lengthMm              FLOAT,
     widthMm               FLOAT,
     heightMm              FLOAT,
-    announced             DATETIME,
     deviceType            VARCHAR(50),
-    os                    VARCHAR(100),
     displayResolution     VARCHAR(50),
     pixelDensity          SMALLINT,
     displayTechnology     VARCHAR(50),
     backCameraMegapixels  FLOAT,
     frontCameraMegapixels FLOAT,
-    ramGb                 FLOAT,
     internalStorageGb     FLOAT,
     batteryCapacityMah    SMALLINT,
     talkTimeHours         FLOAT,
     standByTimeHours      FLOAT,
     bluetooth             VARCHAR(50),
-    positioning           VARCHAR(100),
     imageUrl              VARCHAR(254),
     description           VARCHAR(4096),
     CONSTRAINT UC_phone UNIQUE (brand, model)
@@ -86,9 +82,16 @@ create table orderItems
 );
 create table employees
 (
-    id        BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(50) NOT NULL,
-    lastName  VARCHAR(50) NOT NULL,
-    position  VARCHAR(50) NOT NULL,
-    employeeType ENUM('MALE','FEMALE','GEEK') NOT NULL
+    id           BIGINT                        NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstName    VARCHAR(50)                   NOT NULL,
+    lastName     VARCHAR(50)                   NOT NULL,
+    position     VARCHAR(50)                   NOT NULL,
+    employeeType ENUM ('MALE','FEMALE','GEEK') NOT NULL
+);
+
+create table users
+(
+    username VARCHAR(50) NOT NULL PRIMARY KEY,
+    password VARCHAR(50) NOT NULL,
+    account_non_locked TINYINT NOT NULL DEFAULT 1 ,
 );

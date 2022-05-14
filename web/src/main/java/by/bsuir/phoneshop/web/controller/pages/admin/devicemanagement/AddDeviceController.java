@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import by.bsuir.phoneshop.core.beans.Phone;
 import by.bsuir.phoneshop.core.dto.PhoneAddDto;
 import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
@@ -52,44 +51,8 @@ public class AddDeviceController
 			model.addAttribute("error", messageSource.getMessage("page.admin.error.while.adding.device.to.db", null, LocaleContextHolder.getLocale()));
 			return PhoneshopPages.AdminPages.AddDevicePage;
 		}
-		phoneServiceImpl.savePhone(populateFields(phoneAddDto), phoneAddDto.getQuantity(), stringColors);
+		phoneServiceImpl.savePhone(phoneServiceImpl.populateFields(phoneAddDto), phoneAddDto.getQuantity(), stringColors);
 		model.addAttribute("success",  messageSource.getMessage("page.admin.success.while.adding.device.to.db", null, LocaleContextHolder.getLocale()));
 		return PhoneshopPages.AdminPages.AddDevicePage;
-	}
-
-	private Phone populateFields(final PhoneAddDto phoneAddDto)
-	{
-		final Phone phone = new Phone();
-		phone.setBrand(phoneAddDto.getBrand());
-		phone.setModel(phoneAddDto.getModel());
-		phone.setPrice(phoneAddDto.getPrice());
-		if (phoneAddDto.getDiscountPercent() != null)
-		{
-			phone.setDiscountPercent(phoneAddDto.getDiscountPercent());
-		}
-		else
-		{
-			phone.setDiscountPercent(0);
-		}
-		phone.setImageUrl(phoneAddDto.getImageUrl());
-		phone.setDescription(phoneAddDto.getDescription());
-		phone.setDisplaySizeInches(phoneAddDto.getDisplaySizeInches());
-		phone.setDisplayResolution(phoneAddDto.getDisplayResolution());
-		phone.setPixelDensity(phoneAddDto.getPixelDensity());
-		phone.setDisplayTechnology(phoneAddDto.getDisplayTechnology());
-		phone.setWeightGr(phoneAddDto.getWeightGr());
-		phone.setLengthMm(phoneAddDto.getLengthMm());
-		phone.setWidthMm(phoneAddDto.getWidthMm());
-		phone.setHeightMm(phoneAddDto.getHeightMm());
-		phone.setDeviceType(phoneAddDto.getDeviceType());
-		phone.setBackCameraMegapixels(phoneAddDto.getBackCameraMegapixels());
-		phone.setFrontCameraMegapixels(phoneAddDto.getFrontCameraMegapixels());
-		phone.setInternalStorageGb(phoneAddDto.getInternalStorageGb());
-		phone.setBatteryCapacityMah(phoneAddDto.getBatteryCapacityMah());
-		phone.setTalkTimeHours(phoneAddDto.getTalkTimeHours());
-		phone.setStandByTimeHours(phoneAddDto.getStandByTimeHours());
-		phone.setBluetooth(phoneAddDto.getBluetooth());
-
-		return phone;
 	}
 }
