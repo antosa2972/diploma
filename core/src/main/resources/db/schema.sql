@@ -91,7 +91,11 @@ create table employees
 
 create table users
 (
-    username VARCHAR(50) NOT NULL PRIMARY KEY,
-    password VARCHAR(50) NOT NULL,
-    account_non_locked TINYINT NOT NULL DEFAULT 1 ,
+    userName  VARCHAR(50) NOT NULL PRIMARY KEY,
+    password  VARCHAR(50) NOT NULL,
+    role ENUM('ROLE_ADMIN','ROLE_CUSTOMER') NOT NULL ,
+    isAccountNonLocked boolean NOT NULL
 );
+
+insert into users(userName,password,role,isAccountNonLocked) values('phoneshop_admin','pHoNeShOp@dMin','ROLE_ADMIN',true);
+

@@ -1,7 +1,6 @@
 package by.bsuir.phoneshop.web.controller.pages.admin;
 
-import java.security.Principal;
-
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 public class AdminMainPageController
 {
 	@GetMapping
-	public String showMainAdminPage(final Model model, final Principal principal)
+	public String showMainAdminPage(final Model model, final Authentication principal)
 	{
 		model.addAttribute("username", principal.getName());
 		return PhoneshopPages.AdminPages.AdminMainPage;

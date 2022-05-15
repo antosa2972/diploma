@@ -48,7 +48,7 @@
         <span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
 				<a href="${pageContext.servletContext.contextPath}/admin/orders">
-					<sec:authentication property="principal.username"/>
+					<c:out value="${pageContext.request.userPrincipal.name}"/>
 				</a>,
              <a href="${pageContext.servletContext.contextPath}/logout"><spring:message code="page.logout"/></a>
          </sec:authorize>

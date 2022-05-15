@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<tags:masterLogged pageTitle="Order overview">
+<tags:master pageTitle="Order overview">
     <head>
         <title><spring:message code="page.order.overview"/></title>
     </head>
@@ -122,4 +122,4 @@
         </button>
     </form>
     </body>
-</tags:masterLogged>
+</tags:master>

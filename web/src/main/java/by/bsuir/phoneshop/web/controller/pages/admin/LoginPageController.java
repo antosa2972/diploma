@@ -1,6 +1,8 @@
 package by.bsuir.phoneshop.web.controller.pages.admin;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,12 +19,12 @@ import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 public class LoginPageController
 {
 
-	@Autowired
+	@Resource
 	private Environment environment;
 
 	@GetMapping
 	public String getLoginPage(final @RequestParam(required = false) String error, final Authentication authentication,
-										final Model model)
+										final Model model, final HttpSession httpSession)
 	{
 		if (authentication != null && authentication.isAuthenticated())
 		{

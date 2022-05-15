@@ -28,7 +28,8 @@
 			  crossorigin="anonymous"></script>
 </head>
 <body>
-<nav id="navbar" class="navbar navbar-expand-lg navbar-light nav-borderb sticky-top" style="background-color:deepskyblue">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light nav-borderb sticky-top"
+	  style="background-color:deepskyblue">
 	<a href="${pageContext.servletContext.contextPath}/product-list" class="navbar-brand"><spring:message
 			code="page.phoneshop.logo"/>
 	</a>
@@ -47,7 +48,8 @@
 						code="page.contacts"/></a>
 			</li>
 			<li class="nav-item">
-				<a href="${pageContext.servletContext.contextPath}/about-us" class="nav-link"><spring:message code="page.about.us.page.name"/> </a>
+				<a href="${pageContext.servletContext.contextPath}/about-us" class="nav-link"><spring:message
+						code="page.about.us.page.name"/> </a>
 			</li>
 		</ul>
 		<form method="get" class="form-inline my-2 my-lg-0 mr-auto"
@@ -66,17 +68,22 @@
 		<span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
 				<a href="${pageContext.servletContext.contextPath}/admin/orders">
-					<sec:authentication property="principal.username"/>
+					<c:out value="${pageContext.request.userPrincipal.name}"/>
 				</a>,
 				<a href="${pageContext.servletContext.contextPath}/logout"><spring:message code="page.logout"/></a>
 			</sec:authorize>
-			<sec:authorize access="hasRole('ADMIN') eq false">
+
+			<sec:authorize access="isAuthenticated() eq false">
 				<a href="${pageContext.servletContext.contextPath}/login"
 					class="btn btn-light btn-sm"><spring:message
 						code="page.login"/></a>
 			</sec:authorize>
-			<sec:authorize access="!hasRole('ADMIN')">
-			<a href="${pageContext.servletContext.contextPath}/cart">
+
+			<sec:authorize access="hasRole('CUSTOMER')">
+				<a style="font-weight: bold"><c:out value="${pageContext.request.userPrincipal.name}"/>,</a>
+				<a class="btn btn-light btn-sm" href="${pageContext.servletContext.contextPath}/logout"><spring:message
+						code="page.logout"/></a>
+				<a href="${pageContext.servletContext.contextPath}/cart">
 				<spring:message code="cart"/>
 				<div id="cart-quantity" class="l">
 					<c:out value="${cart.totalQuantity}"/>,
