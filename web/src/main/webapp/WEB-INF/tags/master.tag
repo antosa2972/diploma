@@ -51,6 +51,11 @@
 				<a href="${pageContext.servletContext.contextPath}/about-us" class="nav-link"><spring:message
 						code="page.about.us.page.name"/> </a>
 			</li>
+			<sec:authorize access="hasRole('ADMIN')">
+				<li class="nav-item">
+					<a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/main"><spring:message code="page.admin.go.to.admin.console"/></a>
+				</li>
+			</sec:authorize>
 		</ul>
 		<form method="get" class="form-inline my-2 my-lg-0 mr-auto"
 				action="${pageContext.servletContext.contextPath}/product-list">

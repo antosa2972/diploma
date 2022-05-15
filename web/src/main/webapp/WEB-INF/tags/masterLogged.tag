@@ -42,12 +42,15 @@
                 <a href="${pageContext.servletContext.contextPath}/admin/device-operations/update-delete" class="nav-link"><spring:message code="page.admin.add.phone"/></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><spring:message code="page.admin.users"/></a>
+                <a href="${pageContext.servletContext.contextPath}/admin/user-management" class="nav-link"><spring:message code="page.admin.users"/></a>
+            </li>
+            <li class="nav-item">
+                <a href="${pageContext.servletContext.contextPath}/product-list" class="nav-link"><spring:message code="page.admin.back.to.user.part"/></a>
             </li>
         </ul>
         <span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
-				<a href="${pageContext.servletContext.contextPath}/admin/orders">
+				<a href="${pageContext.servletContext.contextPath}/admin/main">
 					<c:out value="${pageContext.request.userPrincipal.name}"/>
 				</a>,
              <a href="${pageContext.servletContext.contextPath}/logout"><spring:message code="page.logout"/></a>

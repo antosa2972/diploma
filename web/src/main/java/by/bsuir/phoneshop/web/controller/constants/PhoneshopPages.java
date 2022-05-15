@@ -10,6 +10,7 @@ public interface PhoneshopPages
 		String ChooseOperationPage="choose-operation";
 		String AddDevicePage="add-device";
 		String UpdateDeletePage="update-delete";
+		String UserManagementPage = "user-management";
 	}
 
 	interface UserPages
@@ -24,5 +25,6 @@ public interface PhoneshopPages
 		String QuickOrderPage = "quick-order";
 		String ContactsPage = "contacts-page";
 		String AboutUsPage = "about-us";
+		String RegisterPage="registration-page";
 	}
 }

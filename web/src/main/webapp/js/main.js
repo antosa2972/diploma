@@ -32,10 +32,44 @@ function addToCart(phoneId) {
       //when there is an AJAX request and the user is not authenticated -> redirect to the login page
       if (xhr.status === 200) { // 403 - Forbidden
          window.location = '/phoneshop-web/login';
-         alert('Admin cant do this');
+         alert('Please authorize to do this');
       }
       if (xhr.status === 403) { // 403 - Forbidden
          window.location = '/phoneshop-web/admin/main';
+         alert('Admin cant do this');
       }
    });
+}
+
+function checkPassword(form) {
+   $('#password1-err').fadeOut(700, function () {
+      $(this).text('').fadeIn();
+   })
+   $('#password2-err').fadeOut(700, function () {
+      $(this).text('').fadeIn();
+   })
+   $('#password-mismatch').fadeOut(700, function () {
+      $(this).text('').fadeIn();
+   })
+   password1 = form.password1.value;
+   password2 = form.password2.value;
+   if (password1 == '' && password1.length < 5)
+      $('#password1-err').fadeOut(700, function () {
+         $(this).text('Password cant be empty and it should be >5 symbols').fadeIn();
+      })
+   else if (password2 == '' && password2.length < 5)
+      $('#password2-err').fadeOut(700, function () {
+         $(this).text('Password cant be empty and it should be >5 symbols').fadeIn();
+      })
+   else if (password1 != password2) {
+      $('#password-mismatch').fadeOut(700, function () {
+         $(this).text('Password mismatch').fadeIn();
+      })
+      return false;
+   } else {
+      $('#password1-err').text('');
+      $('#password2-err').text("");
+      $('#password-mismatch').text("");
+      return true;
+   }
 }

@@ -30,3 +30,35 @@ function addToCart(phoneId) {
         }
     });
 }
+function checkPassword(form) {
+    $('#password1-err').fadeOut(700, function () {
+        $(this).text('').fadeIn();
+    })
+    $('#password2-err').fadeOut(700, function () {
+        $(this).text('').fadeIn();
+    })
+    $('#password-mismatch').fadeOut(700, function () {
+        $(this).text('').fadeIn();
+    })
+    password1 = form.password1.value;
+    password2 = form.password2.value;
+    if (password1 == '' && password1.length < 5)
+        $('#password1-err').fadeOut(700, function () {
+            $(this).text('\u041f\u0430\u0440\u043e\u043b\u044c\u0020\u043d\u0435\u0020\u0434\u043e\u043b\u0436\u0435\u043d\u0020\u0431\u044b\u0442\u044c\u0020\u043f\u0443\u0441\u0442\u0020\u0438\u0020\u0434\u043e\u043b\u0436\u0435\u043d\u0020\u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0442\u044c\u0020\u003e\u0020\u0035\u0020\u0441\u0438\u043c\u0432\u043e\u043b\u043e\u0432').fadeIn();
+        })
+    else if (password2 == '' && password2.length < 5)
+        $('#password2-err').fadeOut(700, function () {
+            $(this).text('\u041f\u0430\u0440\u043e\u043b\u044c\u0020\u043d\u0435\u0020\u0434\u043e\u043b\u0436\u0435\u043d\u0020\u0431\u044b\u0442\u044c\u0020\u043f\u0443\u0441\u0442\u0020\u0438\u0020\u0434\u043e\u043b\u0436\u0435\u043d\u0020\u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0442\u044c\u0020\u003e\u0020\u0035\u0020\u0441\u0438\u043c\u0432\u043e\u043b\u043e\u0432').fadeIn();
+        })
+    else if (password1 != password2) {
+        $('#password-mismatch').fadeOut(700, function () {
+            $(this).text('\u041d\u0435\u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435\u0020\u043f\u0430\u0440\u043e\u043b\u0435\u0439').fadeIn();
+        })
+        return false;
+    } else {
+        $('#password1-err').text('');
+        $('#password2-err').text("");
+        $('#password-mismatch').text("");
+        return true;
+    }
+}

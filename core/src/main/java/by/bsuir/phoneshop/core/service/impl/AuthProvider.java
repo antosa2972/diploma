@@ -15,12 +15,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import by.bsuir.phoneshop.core.beans.User;
+import by.bsuir.phoneshop.core.service.UserService;
 
 @Component
 public class AuthProvider implements AuthenticationProvider
 {
 	@Resource
-	private SecurityUserDetailsService userDetailsService;
+	private UserService userDetailsService;
 
 	@Override
 	public Authentication authenticate(final Authentication authentication) throws AuthenticationException

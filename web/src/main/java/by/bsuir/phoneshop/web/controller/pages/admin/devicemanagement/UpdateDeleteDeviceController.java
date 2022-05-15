@@ -65,7 +65,7 @@ public class UpdateDeleteDeviceController
 	}
 
 	@PostMapping(value = "/delete", consumes = "application/json")
-	public ResponseEntity<?> deleteFromCart(final @RequestBody Long id, final BindingResult bindingResult)
+	public ResponseEntity<?> delete(final @RequestBody Long id, final BindingResult bindingResult)
 	{
 		try
 		{
