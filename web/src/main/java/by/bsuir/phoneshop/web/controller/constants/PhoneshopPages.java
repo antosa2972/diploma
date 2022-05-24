@@ -2,19 +2,15 @@ package by.bsuir.phoneshop.web.controller.constants;
 
 public interface PhoneshopPages
 {
-	interface AdminPages
+
+	interface UserPages
 	{
 		String OrdersPage = "orders";
 		String OrderOverviewPageAdmin = "order-overview-admin";
 		String AdminMainPage = "admin-main";
-		String ChooseOperationPage="choose-operation";
 		String AddDevicePage="add-device";
 		String UpdateDeletePage="update-delete";
 		String UserManagementPage = "user-management";
-	}
-
-	interface UserPages
-	{
 		String HotPricesPage = "hot-prices";
 		String LoginPage = "login";
 		String CartPage = "cart";

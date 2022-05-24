@@ -15,6 +15,13 @@
 		<h2>
 			<spring:message code="found"/>
 			<c:out value="${phoneQuantity}"/> <spring:message code="phones"/>
+			<div style="">
+				<a href="${pageContext.request.contextPath}/product-list?field=${not empty param.field ? param.field : null}&order=${not empty param.order ? param.order : null}&search=${not empty param.search ? param.search : null}&page=${empty param.page ? 1 : (param.page > 1 ? param.page - 1 : 1)}"><img
+						src="${pageContext.servletContext.contextPath}/images/previous.png" alt="Prev Page" height="30"
+						width="30"/></a>
+				<a href="${pageContext.request.contextPath}/product-list?field=${not empty param.field ? param.field : null}&order=${not empty param.order ? param.order : null}&search=${not empty param.search ? param.search : null}&page=${empty param.page ? (pages eq 1 ? 1 : 2) : (param.page < pages ? param.page + 1 : pages)}"><img
+						src="${pageContext.servletContext.contextPath}/images/next.png" alt="Next Page" height="30" width="30"/></a>
+			</div>
 			<div id="success-result">
 			</div>
 			<div id="error-result">
@@ -23,19 +30,6 @@
 			</div>
 		</h2>
 	</div>
-	<br>
-	<br>
-	<br>
-	<div id="tableContainer-1">
-		<div id="tableContainer-2">
-			<tags:phone-list/>
-		</div>
-	</div>
-	<div style="text-align:center; position: center;">
-		<a href="${pageContext.request.contextPath}/product-list?field=${not empty param.field ? param.field : null}&order=${not empty param.order ? param.order : null}&search=${not empty param.search ? param.search : null}&page=${empty param.page ? 1 : (param.page > 1 ? param.page - 1 : 1)}"><img
-				src="${pageContext.servletContext.contextPath}/images/previous.png" alt="Prev Page" height="30" width="30"/></a>
-		<a href="${pageContext.request.contextPath}/product-list?field=${not empty param.field ? param.field : null}&order=${not empty param.order ? param.order : null}&search=${not empty param.search ? param.search : null}&page=${empty param.page ? (pages eq 1 ? 1 : 2) : (param.page < pages ? param.page + 1 : pages)}"><img
-				src="${pageContext.servletContext.contextPath}/images/next.png" alt="Next Page" height="30" width="30"/></a>
-	</div>
+	<tags:phone-list/>
 	</body>
 </tags:master>

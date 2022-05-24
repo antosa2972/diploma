@@ -12,7 +12,19 @@
 	</head>
 	<br>
 	<h2>
-		<spring:message code="order.page"/> ${id}, <spring:message code="admin.status"/> : ${order.status}
+		<spring:message code="order.page"/> ${id}, <spring:message code="admin.status"/>:
+		<c:if test="${order.status.name() eq 'NEW'}">
+			<spring:message code="order.new"/>
+		</c:if>
+		<c:if test="${order.status.name() eq 'DELIVERED'}">
+			<spring:message code="admin.button.delivered"/>
+		</c:if>
+		<c:if test="${order.status.name() eq 'IN_DELIVERY'}">
+			<spring:message code="admin.button.in.delivery"/>
+		</c:if>
+		<c:if test="${order.status.name() eq 'REJECTED'}">
+			<spring:message code="admin.button.rejected"/>
+		</c:if>
 	</h2>
 	<table class="table-bordered w-50">
 		<tr>
@@ -44,7 +56,7 @@
 				<td><c:out value="${orderItem.phone.displaySizeInches}"/>"</td>
 				<td><c:out value="${orderItem.quantity}"/></td>
 				<td><c:out value="${orderItem.phone.price.multiply(orderItem.quantity)}"/> <spring:message
-						code="usd"/></td>
+						code="currency"/></td>
 			</tr>
 		</c:forEach>
 		<tr>

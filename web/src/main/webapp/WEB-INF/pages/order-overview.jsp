@@ -13,7 +13,19 @@
     <body>
     <br>
     <h2>
-        <spring:message code="order.page"/> ${id}
+        <spring:message code="order.page"/> ${id} <spring:message code="admin.status"/>:
+        <c:if test="${order.status.name() eq 'NEW'}">
+            <spring:message code="order.new"/>
+        </c:if>
+        <c:if test="${order.status.name() eq 'DELIVERED'}">
+            <spring:message code="admin.button.delivered"/>
+        </c:if>
+        <c:if test="${order.status.name() eq 'IN_DELIVERY'}">
+            <spring:message code="admin.button.in.delivery"/>
+        </c:if>
+        <c:if test="${order.status.name() eq 'REJECTED'}">
+            <spring:message code="admin.button.rejected"/>
+        </c:if>
     </h2>
     <table class="table-bordered w-50">
         <tr>
@@ -37,14 +49,14 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="color" items="${orderItem.phone.colors}">
-                                <c:out value="${color.code},"/>
+                                <span class="dot" style="background-color: ${color.code}"></span>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
                 </td>
                 <td><c:out value="${orderItem.phone.displaySizeInches}"/>"</td>
                 <td><c:out value="${orderItem.quantity}"/></td>
-                <td><c:out value="${orderItem.phone.price.multiply(orderItem.quantity)}"/> <spring:message code="usd"/></td>
+                <td><c:out value="${orderItem.phone.actualPrice.multiply(orderItem.quantity)}"/> <spring:message code="currency"/></td>
             </tr>
         </c:forEach>
         <tr>
@@ -53,7 +65,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td><spring:message code="order.subtotal"/></td>
-            <td><c:out value="${order.subtotal} $"/></td>
+            <td><c:out value="${order.subtotal}"/> <spring:message code="currency"/></td>
         </tr>
         <tr>
             <td style="border: none!important;"></td>
@@ -61,7 +73,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td><spring:message code="order.delivery"/></td>
-            <td><c:out value="${order.deliveryPrice} $"/></td>
+            <td><c:out value="${order.deliveryPrice}"/> <spring:message code="currency"/></td>
         </tr>
         <tr>
             <td style="border: none!important;"></td>
@@ -69,7 +81,7 @@
             <td style="border: none!important;"></td>
             <td style="border: none!important;"></td>
             <td><spring:message code="order.total"/></td>
-            <td><c:out value="${order.totalPrice} $"/></td>
+            <td><c:out value="${order.totalPrice}"/> <spring:message code="currency"/></td>
         </tr>
     </table>
     <br>

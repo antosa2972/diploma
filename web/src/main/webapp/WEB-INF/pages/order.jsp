@@ -52,14 +52,14 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="color" items="${cartItem.phone.colors}">
-								<c:out value="${color.code},"/>
+								<span class="dot" style="background-color: ${color.code}"></span>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
 				</td>
 				<td><c:out value="${cartItem.phone.displaySizeInches}"/>"</td>
 				<td><c:out value="${cartItem.quantity}"/></td>
-				<td><c:out value="${cartItem.price}"/> <spring:message code="usd"/> * ${cartItem.quantity}</td>
+				<td><c:out value="${cartItem.price}"/> <spring:message code="currency"/> * ${cartItem.quantity}</td>
 			</tr>
 		</c:forEach>
 		<tr>
@@ -68,7 +68,7 @@
 			<td style="border: none!important;"></td>
 			<td style="border: none!important;"></td>
 			<td><spring:message code="order.subtotal"/></td>
-			<td><c:out value="${cart.totalCost} $"/></td>
+			<td><c:out value="${cart.totalCost}"/> <spring:message code="currency"/></td>
 		</tr>
 		<tr>
 			<td style="border: none!important;"></td>
@@ -76,7 +76,7 @@
 			<td style="border: none!important;"></td>
 			<td style="border: none!important;"></td>
 			<td><spring:message code="order.delivery"/></td>
-			<td><c:out value="${deliveryPrice} $"/></td>
+			<td><c:out value="${deliveryPrice}"/> <spring:message code="currency"/></td>
 		</tr>
 		<tr>
 			<td style="border: none!important;"></td>
@@ -84,7 +84,7 @@
 			<td style="border: none!important;"></td>
 			<td style="border: none!important;"></td>
 			<td><spring:message code="order.total"/></td>
-			<td><c:out value="${totalCost} $"/></td>
+			<td><c:out value="${totalCost}"/> <spring:message code="currency"/></td>
 		</tr>
 	</table>
 	<br>

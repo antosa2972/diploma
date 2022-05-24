@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
-import by.bsuir.phoneshop.core.beans.User;
+import by.bsuir.phoneshop.core.models.User;
 
 @Component
 public class UserListResultSetExtractor implements ResultSetExtractor<List<User>>

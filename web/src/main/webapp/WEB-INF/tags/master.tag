@@ -91,13 +91,13 @@
 				<a href="${pageContext.servletContext.contextPath}/cart">
 				<spring:message code="cart"/>
 				<div id="cart-quantity" class="l">
-					<c:out value="${cart.totalQuantity}"/>,
+					<c:out value="${cart.totalQuantity}"/>
 				</div>
-				<spring:message code="items"/>:
+				<spring:message code="items"/>,
 				<div id="cart-totalCost" class="l">
 					<c:out value="${cart.totalCost}"/>
 				</div>
-				<spring:message code="usd"/>
+				<spring:message code="currency"/>
 			</a>
 			</sec:authorize>
 		</span>
@@ -106,21 +106,7 @@
 <main>
 	<jsp:doBody/>
 </main>
-<footer class="card-footer">
-	<div class="bg-light align-content-lg-center" style="text-align:center; position: center;">
-		<ul class="social mb-0 list-inline mt-3">
-			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
-			</li>
-			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
-			</li>
-			<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-youtube"></i></a>
-			</li>
-		</ul>
-		<h5>
-			(c) Anton Pushnenkov (BSUIR)
-		</h5>
-	</div>
-</footer>
+<br>
+<br>
 </body>
 </html>

@@ -11,13 +11,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.beans.CartItem;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
-import by.bsuir.phoneshop.core.beans.Phone;
 import by.bsuir.phoneshop.core.dao.PhoneDao;
-import by.bsuir.phoneshop.core.beans.Stock;
 import by.bsuir.phoneshop.core.dao.StockDao;
+import by.bsuir.phoneshop.core.models.Cart;
+import by.bsuir.phoneshop.core.models.CartItem;
+import by.bsuir.phoneshop.core.models.Phone;
+import by.bsuir.phoneshop.core.models.Stock;
 import by.bsuir.phoneshop.core.service.CartService;
 
 @Service
@@ -45,7 +44,7 @@ public class HttpSessionCartService implements CartService
 
 	@Override
 	@Transactional(rollbackFor = DataAccessException.class)
-	public synchronized void addPhone(final Long phoneId, final Long quantity, final Cart cart) throws OutOfStockException, IllegalArgumentException
+	public synchronized void addPhone(final Long phoneId, final Long quantity, final Cart cart) throws RuntimeException
 	{
 		final Optional<Phone> optionalPhone = jdbcPhoneDao.get(phoneId);
 		final Optional<Stock> optionalStock = jdbcStockDao.get(phoneId);
@@ -60,7 +59,7 @@ public class HttpSessionCartService implements CartService
 			}
 			else
 			{
-				throw new OutOfStockException();
+				throw new RuntimeException();
 			}
 		}
 		else

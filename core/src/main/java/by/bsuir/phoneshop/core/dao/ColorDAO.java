@@ -2,7 +2,7 @@ package by.bsuir.phoneshop.core.dao;
 
 import java.util.Optional;
 
-import by.bsuir.phoneshop.core.beans.Color;
+import by.bsuir.phoneshop.core.models.Color;
 
 public interface ColorDAO
 {

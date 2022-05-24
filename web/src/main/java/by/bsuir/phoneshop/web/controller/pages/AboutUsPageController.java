@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import by.bsuir.phoneshop.core.service.EmployeeService;
+import by.bsuir.phoneshop.core.service.UserService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
 @Controller
@@ -15,11 +15,11 @@ import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 public class AboutUsPageController
 {
 	@Resource
-	private EmployeeService employeeService;
+	private UserService userService;
 	@GetMapping
 	public String showAboutUsPage(final Model model)
 	{
-		model.addAttribute("employees", employeeService.getEmployees());
+		model.addAttribute("employees", userService.getEmployees());
 		return PhoneshopPages.UserPages.AboutUsPage;
 	}
 }

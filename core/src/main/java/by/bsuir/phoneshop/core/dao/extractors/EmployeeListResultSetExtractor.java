@@ -9,8 +9,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
-import by.bsuir.phoneshop.core.beans.Employee;
-import by.bsuir.phoneshop.core.enums.EmployeeType;
+import by.bsuir.phoneshop.core.models.Employee;
+import by.bsuir.phoneshop.core.models.enums.EmployeeType;
 
 @Component
 public class EmployeeListResultSetExtractor implements ResultSetExtractor<List<Employee>>

@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.beans.errors.ResponseErrors;
-import by.bsuir.phoneshop.core.beans.errors.ValidationErrors;
+import by.bsuir.phoneshop.core.models.Cart;
+import by.bsuir.phoneshop.core.exception.errors.ResponseErrors;
+import by.bsuir.phoneshop.core.exception.errors.ValidationErrors;
 import by.bsuir.phoneshop.core.dto.PhoneDto;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
 import by.bsuir.phoneshop.core.service.CartService;
 
 @Controller
@@ -51,7 +50,7 @@ public class AjaxCartController
 			cartService.addPhone(phoneDto.getId(), phoneDto.getQuantity(), currentCart);
 			return ResponseEntity.ok(cartService.getCart(httpSession));
 		}
-		catch (final OutOfStockException | IllegalArgumentException e)
+		catch (final  RuntimeException e)
 		{
 			final ResponseErrors errors = new ResponseErrors(e.getMessage());
 			return ResponseEntity.badRequest().body(errors);

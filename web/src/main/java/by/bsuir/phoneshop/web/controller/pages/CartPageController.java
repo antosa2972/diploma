@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.models.Cart;
+import by.bsuir.phoneshop.core.models.Phone;
 import by.bsuir.phoneshop.core.dto.PhoneArrayDto;
 import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.service.PhoneService;

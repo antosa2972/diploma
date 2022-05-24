@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.beans.Phone;
-import by.bsuir.phoneshop.core.beans.QuickOrderElement;
+import by.bsuir.phoneshop.core.models.Cart;
+import by.bsuir.phoneshop.core.models.Phone;
+import by.bsuir.phoneshop.core.dto.QuickOrderElement;
 import by.bsuir.phoneshop.core.dto.QuickOrderElementsDto;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
 import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
@@ -99,7 +98,7 @@ public class QuickOrderController
 					httpSessionCartService.addPhone(phone.getId(), quantity, cart);
 					quickOrderElementsDto.getQuickOrderElements().set(indexInList, new QuickOrderElement());
 				}
-				catch (OutOfStockException e)
+				catch (RuntimeException e)
 				{
 					bindingResult.rejectValue("quickOrderElements[" + indexInList + "].quantity",
 								 "errors.quantity.outOfStock", "Out of stock!");

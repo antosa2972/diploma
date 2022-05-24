@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.models.Phone;
 import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;

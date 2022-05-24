@@ -21,7 +21,7 @@
 		<li><a class="btn btn-outline-primary" href="${pageContext.servletContext.contextPath}/admin/orders"><spring:message
 				code="page.admin.order.management"/></a></li>
 		<li><a class="btn btn-outline-primary"
-				 href="#"><spring:message
+				 href="${pageContext.servletContext.contextPath}/admin/user-management"><spring:message
 				code="page.admin.users"/></a></li>
 		<li><a class="btn btn-outline-primary"
 				 href="${pageContext.servletContext.contextPath}/admin/device-operations/add">

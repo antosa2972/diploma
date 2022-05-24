@@ -112,7 +112,8 @@
 								</tr>
 								<tr>
 									<td><spring:message code="page.admin.description"/></td>
-									<td><textarea name="description" rows="4" cols="50" style="resize: none">${recentData.description}</textarea><c:if
+									<td><textarea name="description" rows="4" cols="50"
+													  style="resize: none">${recentData.description}</textarea><c:if
 											test="${not empty errors.getFieldError('frontCameraMegapixels')}">
 										<font style="color:red"><spring:message
 												code="page.admin.validation.invalid.field"/></font>
@@ -196,6 +197,19 @@
 									</c:if>
 							</tr>
 						</table>
+						<div style="position: absolute; right: 450px; bottom: 0px;">
+							<spring:message code="color.black"/>
+							<br>
+							<spring:message code="color.white"/>
+							<br>
+							<spring:message code="color.gold"/>
+							<br>
+							<spring:message code="color.blue"/>
+							<br>
+							<spring:message code="color.gray"/>
+							<br>
+							<spring:message code="color.red"/>
+						</div>
 					</div>
 				</div>
 				<div style="width: 50%; margin-top: -320px; bottom: 35px">
@@ -363,7 +377,8 @@
 								</tr>
 								<tr>
 									<td><spring:message code="page.admin.description"/></td>
-									<td><textarea name="description" rows="4" cols="50" style="resize: none">${recentData.description}</textarea><c:if
+									<td><textarea name="description" rows="4" cols="50"
+													  style="resize: none">${recentData.description}</textarea><c:if
 											test="${not empty errors.getFieldError('frontCameraMegapixels')}">
 										<font style="color:red"><spring:message
 												code="page.admin.validation.invalid.field"/></font>

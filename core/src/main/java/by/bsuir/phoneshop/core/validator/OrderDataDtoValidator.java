@@ -11,7 +11,7 @@ import org.springframework.validation.Validator;
 import by.bsuir.phoneshop.core.dto.OrderDataDto;
 
 @Service
-public class OrderDataDtoValidator implements Validator
+public class 	OrderDataDtoValidator implements Validator
 {
 
 	private static final String REGEX_PHONE = "^\\\\+\\\\d{12}$";

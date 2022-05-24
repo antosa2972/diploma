@@ -59,7 +59,18 @@
                     <c:out value="${order.totalPrice}"/>
                 </td>
                 <td>
-                    <c:out value="${order.status.name()}"/>
+                    <c:if test="${order.status.name() eq 'NEW'}">
+                        <spring:message code="order.new"/>
+                    </c:if>
+                    <c:if test="${order.status.name() eq 'DELIVERED'}">
+                        <spring:message code="admin.button.delivered"/>
+                    </c:if>
+                    <c:if test="${order.status.name() eq 'IN_DELIVERY'}">
+                        <spring:message code="admin.button.in.delivery"/>
+                    </c:if>
+                    <c:if test="${order.status.name() eq 'REJECTED'}">
+                        <spring:message code="admin.button.rejected"/>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>

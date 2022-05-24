@@ -9,8 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import by.bsuir.phoneshop.core.beans.ParamsForSearch;
-import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.models.ParamsForSearch;
+import by.bsuir.phoneshop.core.models.Phone;
 import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.dao.StockDao;
 import by.bsuir.phoneshop.core.dto.PhoneAddDto;
@@ -40,6 +40,7 @@ public class PhoneServiceImpl implements PhoneService
 		return jdbcPhoneDao.get(model);
 	}
 
+	@Override
 	public void savePhone(final Phone phone, final Long quantity, final String[] colors)
 	{
 		jdbcPhoneDao.save(phone);

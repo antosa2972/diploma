@@ -12,12 +12,12 @@
     <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
     <c:if test="${pageContext.response.locale eq 'en'}">
         <script type="text/javascript">
-            <%@include file="/js/delete-device.js"%>
+            <%@include file="/js/main.js"%>
         </script>
     </c:if>
     <c:if test="${pageContext.response.locale eq 'ru'}">
         <script type="text/javascript" charset="UTF-8">
-            <%@include file="/js/delete-device_RU.js"%>
+            <%@include file="/js/main_ru.js"%>
         </script>
     </c:if>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -48,6 +48,12 @@
                 <a href="${pageContext.servletContext.contextPath}/product-list" class="nav-link"><spring:message code="page.admin.back.to.user.part"/></a>
             </li>
         </ul>
+        <div class="mr-lg-auto">
+            <a href="?lang=en"><img src="${pageContext.servletContext.contextPath}/images/english.svg" alt="English"
+                                    width="55" height="40"></a>
+            <a href="?lang=ru"><img src="${pageContext.servletContext.contextPath}/images/russian.svg" alt="English"
+                                    width="55" height="40"></a>
+        </div>
         <span class="navbar-text">
 			<sec:authorize access="hasRole('ADMIN')">
 				<a href="${pageContext.servletContext.contextPath}/admin/main">
@@ -66,21 +72,5 @@
 <main>
     <jsp:doBody/>
 </main>
-<footer class="card-footer">
-    <div class="bg-light align-content-lg-center" style="text-align:center; position: center;">
-        <ul class="social mb-0 list-inline mt-3">
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a>
-            </li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
-            </li>
-            <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-youtube"></i></a>
-            </li>
-        </ul>
-        <h5>
-            (c) Anton Pushnenkov (BSUIR)
-        </h5>
-    </div>
-</footer>
 </body>
 </html>

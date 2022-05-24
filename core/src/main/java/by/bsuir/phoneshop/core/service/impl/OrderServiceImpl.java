@@ -12,14 +12,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.bsuir.phoneshop.core.beans.Cart;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
-import by.bsuir.phoneshop.core.beans.Order;
+import by.bsuir.phoneshop.core.models.Cart;
+import by.bsuir.phoneshop.core.models.Order;
 import by.bsuir.phoneshop.core.dao.OrderDao;
 import by.bsuir.phoneshop.core.dto.OrderDataDto;
-import by.bsuir.phoneshop.core.beans.OrderItem;
-import by.bsuir.phoneshop.core.enums.OrderStatus;
-import by.bsuir.phoneshop.core.beans.Stock;
+import by.bsuir.phoneshop.core.models.OrderItem;
+import by.bsuir.phoneshop.core.models.enums.OrderStatus;
+import by.bsuir.phoneshop.core.models.Stock;
 import by.bsuir.phoneshop.core.dao.StockDao;
 import by.bsuir.phoneshop.core.service.OrderService;
 
@@ -34,7 +33,7 @@ public class OrderServiceImpl implements OrderService
 
 	@Override
 	@Transactional(rollbackFor = DataAccessException.class)
-	public Long placeOrder(final Cart cart, OrderDataDto orderDataDto, final Long deliveryPrice) throws OutOfStockException
+	public Long placeOrder(final Cart cart, OrderDataDto orderDataDto, final Long deliveryPrice) throws RuntimeException
 	{
 		final AtomicBoolean isOutOfStock = new AtomicBoolean(false);
 		final Order order = createOrderFromCart(cart, orderDataDto, deliveryPrice);
@@ -54,7 +53,7 @@ public class OrderServiceImpl implements OrderService
 
 		if (isOutOfStock.get())
 		{
-			throw new OutOfStockException();
+			throw new RuntimeException();
 		}
 
 		order.setId(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);

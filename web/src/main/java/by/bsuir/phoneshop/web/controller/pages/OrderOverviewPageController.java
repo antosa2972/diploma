@@ -29,8 +29,8 @@ public class OrderOverviewPageController
 	}
 
 	@ExceptionHandler(RuntimeException.class)
-	public String handleOutOfStock()
+	public String handleError()
 	{
-		return "redirect:/404?message=" + "no such order";
+		return "redirect:/error?message=" + "no such order";
 	}
 }

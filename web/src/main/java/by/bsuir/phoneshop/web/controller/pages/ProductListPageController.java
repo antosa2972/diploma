@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.bsuir.phoneshop.core.beans.ParamsForSearch;
-import by.bsuir.phoneshop.core.beans.Phone;
-import by.bsuir.phoneshop.core.enums.SortField;
-import by.bsuir.phoneshop.core.enums.SortOrder;
+import by.bsuir.phoneshop.core.models.ParamsForSearch;
+import by.bsuir.phoneshop.core.models.Phone;
+import by.bsuir.phoneshop.core.models.enums.SortField;
+import by.bsuir.phoneshop.core.models.enums.SortOrder;
 import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.service.PhoneService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
@@ -59,7 +59,8 @@ public class ProductListPageController
 			}
 		}
 		long offset = (page - 1) * QUANTITY_ON_PAGE;
-		final ParamsForSearch paramsForSearch = new ParamsForSearch(search, field, order, (int) offset,
+		final ParamsForSearch paramsForSearch = new ParamsForSearch(search,
+					 field, order, (int) offset,
 					 QUANTITY_ON_PAGE.intValue());
 
 

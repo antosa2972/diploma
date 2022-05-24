@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.bsuir.phoneshop.core.beans.User;
-import by.bsuir.phoneshop.core.beans.errors.ResponseErrors;
+import by.bsuir.phoneshop.core.models.User;
+import by.bsuir.phoneshop.core.exception.errors.ResponseErrors;
 import by.bsuir.phoneshop.core.dto.UserDto;
 import by.bsuir.phoneshop.core.service.UserService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
@@ -40,7 +40,7 @@ public class UserManagementController
 		final List<User> users = userServiceImpl.getUsersExceptAdmin(LIMIT_ON_PAGE, offset);
 		model.addAttribute("users", users);
 
-		return PhoneshopPages.AdminPages.UserManagementPage;
+		return PhoneshopPages.UserPages.UserManagementPage;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/update-status", consumes = "application/json")

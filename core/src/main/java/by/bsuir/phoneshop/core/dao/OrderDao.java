@@ -3,8 +3,8 @@ package by.bsuir.phoneshop.core.dao;
 import java.util.List;
 import java.util.Optional;
 
-import by.bsuir.phoneshop.core.beans.Order;
-import by.bsuir.phoneshop.core.enums.OrderStatus;
+import by.bsuir.phoneshop.core.models.Order;
+import by.bsuir.phoneshop.core.models.enums.OrderStatus;
 
 public interface OrderDao
 {

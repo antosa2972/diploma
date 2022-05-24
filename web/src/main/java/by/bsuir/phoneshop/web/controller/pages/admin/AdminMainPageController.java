@@ -16,12 +16,6 @@ public class AdminMainPageController
 	public String showMainAdminPage(final Model model, final Authentication principal)
 	{
 		model.addAttribute("username", principal.getName());
-		return PhoneshopPages.AdminPages.AdminMainPage;
-	}
-
-	@GetMapping(value = "/device-operations")
-	public String showDeviceOperationsPage()
-	{
-		return PhoneshopPages.AdminPages.ChooseOperationPage;
+		return PhoneshopPages.UserPages.AdminMainPage;
 	}
 }

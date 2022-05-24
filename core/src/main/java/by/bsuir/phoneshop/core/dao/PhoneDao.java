@@ -3,8 +3,8 @@ package by.bsuir.phoneshop.core.dao;
 import java.util.List;
 import java.util.Optional;
 
-import by.bsuir.phoneshop.core.beans.ParamsForSearch;
-import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.models.ParamsForSearch;
+import by.bsuir.phoneshop.core.models.Phone;
 
 public interface PhoneDao
 {

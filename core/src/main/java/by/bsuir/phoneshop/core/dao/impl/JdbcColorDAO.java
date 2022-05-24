@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import by.bsuir.phoneshop.core.dao.ColorDAO;
-import by.bsuir.phoneshop.core.beans.Color;
+import by.bsuir.phoneshop.core.models.Color;
 
 @Component
 public class JdbcColorDAO implements ColorDAO

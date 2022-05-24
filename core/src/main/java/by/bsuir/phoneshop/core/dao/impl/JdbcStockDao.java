@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import by.bsuir.phoneshop.core.beans.Stock;
+import by.bsuir.phoneshop.core.models.Stock;
 import by.bsuir.phoneshop.core.dao.StockDao;
 
 @Component

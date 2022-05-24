@@ -18,9 +18,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import by.bsuir.phoneshop.core.beans.Color;
-import by.bsuir.phoneshop.core.beans.ParamsForSearch;
-import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.models.Color;
+import by.bsuir.phoneshop.core.models.ParamsForSearch;
+import by.bsuir.phoneshop.core.models.Phone;
 import by.bsuir.phoneshop.core.dao.ColorDAO;
 import by.bsuir.phoneshop.core.dao.PhoneDao;
 import by.bsuir.phoneshop.core.dao.extractors.PhoneResultSetExtractor;
@@ -178,8 +178,6 @@ public class JdbcPhoneDao implements PhoneDao
 	@Override
 	public List<Phone> findMaxDiscountPercentPhones()
 	{
-
-
 		return jdbcTemplate.query(SQL_GET_MAX_DISCOUNTED_PHONES, phoneResultSetExtractor);
 	}
 

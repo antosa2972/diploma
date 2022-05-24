@@ -25,12 +25,10 @@
 			<h3>
 				<strong>${phone.model}</strong>
 			</h3>
-			<img class="img"
-				  src="https://raw.githubusercontent.com/andrewosipenko/phoneshop-ext-images/master/${phone.imageUrl}">
+			<img class="img" src="${phone.imageUrl}">
 			<br>
-			<textarea disabled readonly rows="4" cols="50">
-					${phone.description}
-			</textarea>
+			<br>
+			<textarea disabled readonly rows="4" cols="50" translate="yes">${phone.description}</textarea>
 			<br>
 			<br>
 			<h3>
@@ -40,17 +38,17 @@
 					<br>
 
 					<div style="color:green">
-						$ <c:out value="${phone.actualPrice}"/>
+						<spring:message code="currency"/> <c:out value="${phone.actualPrice}"/>
 					</div>
 				</c:if>
 			</h3>
-			<div class="input-group mb-3 w-25">
-				<input type="text" id="quantity${phone.id}" name="quantity" class="form-control"
+			<div class="form-inline my-2 my-lg-0 mr-auto">
+				<input type="text" id="quantity${phone.id}" name="quantity" class="form-control mr-sm-2"
 						 placeholder="quantity" aria-label="quantity" aria-describedby="basic-addon2"
 						 value="1">
 				<input id="phoneId${phone.id}" name="phoneId" type="hidden" value="${phone.id}"/>
 				<div class="input-group-append">
-					<button onclick="addToCart(${phone.id})" class="btn btn-success"><spring:message
+					<button onclick="addToCart(${phone.id})" class="btn btn-outline-primary"><spring:message
 							code="addToCart"/></button>
 				</div>
 				<div class="result-error" id="result${phone.id}"></div>
@@ -97,7 +95,7 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach var="color" items="${phone.colors}">
-									<c:out value="${color.code},"/>
+									<span class="dot" style="background-color: ${color.code}"></span>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
@@ -131,7 +129,7 @@
                                    </span>
 							</c:when>
 							<c:otherwise>
-								${phone.talkTimeHours} hours
+								${phone.talkTimeHours} часов
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -146,7 +144,7 @@
                                    </span>
 							</c:when>
 							<c:otherwise>
-								${phone.standByTimeHours} hours
+								${phone.standByTimeHours} часов
 							</c:otherwise>
 						</c:choose>
 					</td>

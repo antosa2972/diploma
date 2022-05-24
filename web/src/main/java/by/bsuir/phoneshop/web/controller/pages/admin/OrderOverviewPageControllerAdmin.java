@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import by.bsuir.phoneshop.core.enums.OrderStatus;
+import by.bsuir.phoneshop.core.models.enums.OrderStatus;
 import by.bsuir.phoneshop.core.service.OrderService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
@@ -27,7 +27,7 @@ public class OrderOverviewPageControllerAdmin
 	{
 		orderServiceImpl.getOrderById(id).ifPresent(order -> model.addAttribute("order", order));
 		model.addAttribute("id", id);
-		return PhoneshopPages.AdminPages.OrderOverviewPageAdmin;
+		return PhoneshopPages.UserPages.OrderOverviewPageAdmin;
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -55,6 +55,6 @@ public class OrderOverviewPageControllerAdmin
 	@ExceptionHandler(RuntimeException.class)
 	public String handleOutOfStock()
 	{
-		return "redirect:/404?message=" + "no such order";
+		return "redirect:/error?message=" + "no such order";
 	}
 }

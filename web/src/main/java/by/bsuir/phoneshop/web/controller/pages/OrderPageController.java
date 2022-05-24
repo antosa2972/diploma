@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import by.bsuir.phoneshop.core.beans.Cart;
+import by.bsuir.phoneshop.core.models.Cart;
 import by.bsuir.phoneshop.core.dto.OrderDataDto;
-import by.bsuir.phoneshop.core.exception.OutOfStockException;
 import by.bsuir.phoneshop.core.service.CartService;
 import by.bsuir.phoneshop.core.service.OrderService;
 import by.bsuir.phoneshop.core.validator.OrderDataDtoValidator;
@@ -39,8 +38,8 @@ public class OrderPageController
 	private HttpSession httpSession;
 	@Resource
 	private OrderDataDtoValidator orderDataDtoValidator;
-	@Autowired
-	private Environment environment;
+	@Resource
+	private MessageSource messageSource;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getOrder(final Model model)
@@ -56,9 +55,8 @@ public class OrderPageController
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String placeOrder(final @Validated @ModelAttribute(name = "orderDataDto") OrderDataDto orderDataDto,
-									 final Model model,
 									 final BindingResult bindingResult,
-									 final RedirectAttributes redirectAttributes) throws OutOfStockException
+									 final RedirectAttributes redirectAttributes) throws RuntimeException
 	{
 		final Cart cart = cartService.getCart(httpSession);
 		if (cart.getCartItems().isEmpty())
@@ -73,7 +71,7 @@ public class OrderPageController
 			return prepareModelForValidationErrors(bindingResult, redirectAttributes);
 		}
 
-		final Long id = orderService.placeOrder(cart, orderDataDto, Long.parseLong(environment.getProperty("delivery.price")));
+		final Long id = orderService.placeOrder(cart, orderDataDto, Long.parseLong(messageSource.getMessage("delivery.price", null, LocaleContextHolder.getLocale())));
 		cartService.deleteCart(httpSession);
 
 		return "redirect:/" + PhoneshopPages.UserPages.OrderOverviewPage + "/" + id;
@@ -97,15 +95,15 @@ public class OrderPageController
 	{
 		model.addAttribute("cart", cart);
 		final BigDecimal deliveryPrice = BigDecimal.valueOf(Long.parseLong(
-					 environment.getProperty("delivery.price")));
+					 messageSource.getMessage("delivery.price", null, LocaleContextHolder.getLocale())));
 
 		model.addAttribute("deliveryPrice", deliveryPrice);
 		model.addAttribute("totalCost", cart.getTotalCost().add(deliveryPrice));
 	}
 
-	@ExceptionHandler(OutOfStockException.class)
-	public String handleOutOfStock()
+	@ExceptionHandler(RuntimeException.class)
+	public String handleError()
 	{
-		return "redirect:/404?message=" + environment.getProperty("exception.outOfStock");
+		return "redirect:/error?message=" + messageSource.getMessage("exception.outOfStock", null, LocaleContextHolder.getLocale());
 	}
 }

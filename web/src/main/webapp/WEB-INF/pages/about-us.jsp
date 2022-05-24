@@ -106,7 +106,7 @@
 								</div>
 							</div>
 						</c:when>
-						<c:when test="${employee.employeeType eq 'GEEK'}">
+						<c:when test="${employee.employeeType eq 'GEEK_MALE'}">
 							<div class="col-xl-3 col-sm-6 mb-5">
 								<div class="bg-white rounded shadow-sm py-5 px-4"><img
 										src="https://bootstrapious.com/i/snippets/sn-about/avatar-2.png" alt="" width="100"

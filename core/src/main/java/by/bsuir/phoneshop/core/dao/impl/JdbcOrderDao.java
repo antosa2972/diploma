@@ -11,11 +11,11 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import by.bsuir.phoneshop.core.dao.OrderDao;
-import by.bsuir.phoneshop.core.beans.Order;
-import by.bsuir.phoneshop.core.beans.OrderItem;
+import by.bsuir.phoneshop.core.models.Order;
+import by.bsuir.phoneshop.core.models.OrderItem;
 import by.bsuir.phoneshop.core.dao.extractors.OrderListResultSetExtractor;
 import by.bsuir.phoneshop.core.dao.extractors.OrderResultSetExtractor;
-import by.bsuir.phoneshop.core.enums.OrderStatus;
+import by.bsuir.phoneshop.core.models.enums.OrderStatus;
 
 @Component
 public class JdbcOrderDao implements OrderDao
@@ -76,7 +76,7 @@ public class JdbcOrderDao implements OrderDao
 	@Override
 	public List<Order> getOrders(final int limit, final int offset)
 	{
-		String query = SELECT_ORDERS + " limit " + limit + " offset " + offset;
+		String query = SELECT_ORDERS + " order by orders.date DESC " + " limit " + limit + " offset " + offset;
 		return jdbcTemplate.query(query, orderListResultSetExtractor);
 	}
 

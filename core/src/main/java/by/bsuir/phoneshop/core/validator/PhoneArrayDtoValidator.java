@@ -7,7 +7,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import by.bsuir.phoneshop.core.dto.PhoneArrayDto;
-import by.bsuir.phoneshop.core.beans.Stock;
+import by.bsuir.phoneshop.core.models.Stock;
 import by.bsuir.phoneshop.core.dao.StockDao;
 
 

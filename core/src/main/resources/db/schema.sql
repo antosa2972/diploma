@@ -5,6 +5,7 @@ drop table if exists phones;
 drop table if exists orders;
 drop table if exists orderItems;
 drop table if exists employees;
+drop table if exists users;
 
 create table colors
 (
@@ -82,20 +83,20 @@ create table orderItems
 );
 create table employees
 (
-    id           BIGINT                        NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    firstName    VARCHAR(50)                   NOT NULL,
-    lastName     VARCHAR(50)                   NOT NULL,
-    position     VARCHAR(50)                   NOT NULL,
-    employeeType ENUM ('MALE','FEMALE','GEEK') NOT NULL
+    id           BIGINT                             NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstName    VARCHAR(50)                        NOT NULL,
+    lastName     VARCHAR(50)                        NOT NULL,
+    position     VARCHAR(50)                        NOT NULL,
+    employeeType ENUM ('MALE','FEMALE','GEEK_MALE') NOT NULL
 );
 
 create table users
 (
-    userName  VARCHAR(50) NOT NULL PRIMARY KEY,
-    password  VARCHAR(50) NOT NULL,
-    role ENUM('ROLE_ADMIN','ROLE_CUSTOMER') NOT NULL ,
-    isAccountNonLocked boolean NOT NULL
+    userName           VARCHAR(50)                         NOT NULL PRIMARY KEY,
+    password           VARCHAR(150)                         NOT NULL,
+    role               ENUM ('ROLE_ADMIN','ROLE_CUSTOMER') NOT NULL,
+    isAccountNonLocked boolean                             NOT NULL
 );
 
-insert into users(userName,password,role,isAccountNonLocked) values('phoneshop_admin','pHoNeShOp@dMin','ROLE_ADMIN',true);
+
 

@@ -82,7 +82,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach var="color" items="${cartItem.phone.colors}">
-                                    <c:out value="${color.code},"/>
+                                    <span class="dot" style="background-color: ${color.code}"></span>
                                 </c:forEach>
                             </c:otherwise>
                         </c:choose>
@@ -91,7 +91,7 @@
                         <c:out value="${cartItem.phone.displaySizeInches}"/>"
                     </td>
                     <td>
-                        <c:out value="${cartItem.phone.actualPrice}"/> $
+                        <c:out value="${cartItem.phone.actualPrice}"/> <spring:message code="currency"/>
                     </td>
                     <td>
                         <input class="quantity-input" type="text" id="quantity${cartItem.phone.id}" name="quantity"

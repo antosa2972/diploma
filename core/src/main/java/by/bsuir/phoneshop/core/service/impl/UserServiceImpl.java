@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import by.bsuir.phoneshop.core.beans.User;
+import by.bsuir.phoneshop.core.models.Employee;
+import by.bsuir.phoneshop.core.models.User;
 import by.bsuir.phoneshop.core.dao.UserDao;
 import by.bsuir.phoneshop.core.service.UserService;
 
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService
 	@Resource
 	private UserDao jdbcUserDao;
 
+	@Value("${user.password.encryption.strength}")
+	private int ENCRYPTION_STRENGTH;
 
 	public User loadUserByUsername(final String username)
 				 throws UsernameNotFoundException
@@ -42,7 +46,7 @@ public class UserServiceImpl implements UserService
 	@Override
 	public void registerUser(final String username, final String password)
 	{
-		final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
+		final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(ENCRYPTION_STRENGTH);
 
 		final User user = new User();
 		user.setUserName(username);
@@ -51,5 +55,11 @@ public class UserServiceImpl implements UserService
 		user.setRole("ROLE_CUSTOMER");
 
 		jdbcUserDao.addNewUserToDb(user);
+	}
+
+	@Override
+	public List<Employee> getEmployees()
+	{
+		return jdbcUserDao.getMainEmployees();
 	}
 }

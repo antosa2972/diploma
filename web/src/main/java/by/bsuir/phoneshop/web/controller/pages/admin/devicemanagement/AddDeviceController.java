@@ -36,7 +36,7 @@ public class AddDeviceController
 	public String showAddDevicePage(final Model model)
 	{
 		model.addAttribute("phoneAddDto", new PhoneAddDto());
-		return PhoneshopPages.AdminPages.AddDevicePage;
+		return PhoneshopPages.UserPages.AddDevicePage;
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -49,10 +49,10 @@ public class AddDeviceController
 			model.addAttribute("recentData", phoneAddDto);
 			model.addAttribute("errors", bindingResult);
 			model.addAttribute("error", messageSource.getMessage("page.admin.error.while.adding.device.to.db", null, LocaleContextHolder.getLocale()));
-			return PhoneshopPages.AdminPages.AddDevicePage;
+			return PhoneshopPages.UserPages.AddDevicePage;
 		}
 		phoneServiceImpl.savePhone(phoneServiceImpl.populateFields(phoneAddDto), phoneAddDto.getQuantity(), stringColors);
 		model.addAttribute("success",  messageSource.getMessage("page.admin.success.while.adding.device.to.db", null, LocaleContextHolder.getLocale()));
-		return PhoneshopPages.AdminPages.AddDevicePage;
+		return PhoneshopPages.UserPages.AddDevicePage;
 	}
 }

@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.bsuir.phoneshop.core.beans.Order;
+import by.bsuir.phoneshop.core.models.Order;
 import by.bsuir.phoneshop.core.service.OrderService;
 import by.bsuir.phoneshop.web.controller.constants.PhoneshopPages;
 
@@ -22,7 +22,7 @@ public class OrdersPageController
 	private OrderService orderServiceImpl;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getCart(final Model model)
+	public String getOrders(final Model model)
 	{
 		final List<Order> orders = orderServiceImpl.getOrders(Integer.MAX_VALUE, 0);
 
@@ -31,6 +31,6 @@ public class OrdersPageController
 			model.addAttribute(orders);
 		}
 
-		return PhoneshopPages.AdminPages.OrdersPage;
+		return PhoneshopPages.UserPages.OrdersPage;
 	}
 }

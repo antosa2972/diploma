@@ -14,8 +14,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
-import by.bsuir.phoneshop.core.beans.Color;
-import by.bsuir.phoneshop.core.beans.Phone;
+import by.bsuir.phoneshop.core.models.Color;
+import by.bsuir.phoneshop.core.models.Phone;
 
 @Component
 public class PhoneResultSetExtractor implements ResultSetExtractor<List<Phone>>

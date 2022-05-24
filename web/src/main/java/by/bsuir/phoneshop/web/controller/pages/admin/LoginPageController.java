@@ -1,13 +1,14 @@
 package by.bsuir.phoneshop.web.controller.pages.admin;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.core.env.Environment;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,11 +21,11 @@ public class LoginPageController
 {
 
 	@Resource
-	private Environment environment;
+	private MessageSource messageSource;
 
 	@GetMapping
 	public String getLoginPage(final @RequestParam(required = false) String error, final Authentication authentication,
-										final Model model, final HttpSession httpSession)
+										final Model model)
 	{
 		if (authentication != null && authentication.isAuthenticated())
 		{
@@ -32,8 +33,15 @@ public class LoginPageController
 		}
 		if (error != null)
 		{
-			model.addAttribute("error", environment.getProperty("invalidCredentials"));
+			model.addAttribute("error", messageSource.getMessage("invalidCredentials", null, LocaleContextHolder.getLocale()));
 		}
+		return PhoneshopPages.UserPages.LoginPage;
+	}
+
+	@PostMapping
+	public String login(final Model model)
+	{
+		model.addAttribute("error", messageSource.getMessage("invalidCredentials", null, LocaleContextHolder.getLocale()));
 		return PhoneshopPages.UserPages.LoginPage;
 	}
 }

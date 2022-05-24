@@ -2,7 +2,7 @@ package by.bsuir.phoneshop.core.dao;
 
 import java.util.Optional;
 
-import by.bsuir.phoneshop.core.beans.Stock;
+import by.bsuir.phoneshop.core.models.Stock;
 
 public interface StockDao
 {

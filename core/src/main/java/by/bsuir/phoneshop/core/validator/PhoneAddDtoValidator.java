@@ -97,7 +97,7 @@ public class PhoneAddDtoValidator implements Validator
 			{
 				errors.rejectValue("standByTimeHours", "page.admin.wrong.standByTimeHours");
 			}
-			if (!validateWithRegex(phoneAddDto.getColors()))
+			if (!validateColorWithRegex(phoneAddDto.getColors()))
 			{
 				errors.rejectValue("colors", "bad.color");
 			}
@@ -105,7 +105,7 @@ public class PhoneAddDtoValidator implements Validator
 		}
 	}
 
-	private boolean validateWithRegex(final String parameter)
+	private boolean validateColorWithRegex(final String parameter)
 	{
 		Pattern pattern = Pattern.compile("^\\d[\\d,]+?\\d$", Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(parameter);

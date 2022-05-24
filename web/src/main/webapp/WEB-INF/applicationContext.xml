@@ -15,9 +15,8 @@
 	<mvc:annotation-driven/>
 
 	<import resource="classpath:context/applicationContext-core.xml"/>
-	<import resource="classpath:context/applicationContext-demoda.xml"/>
 
-	<bean name="SecurityConfig" class="by.bsuir.phoneshop.web.controller.WebSecurityConfig"/>
+	<bean name="SecurityConfig" class="by.bsuir.phoneshop.web.controller.config.WebSecurityConfig"/>
 
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages"/>
