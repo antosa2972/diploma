@@ -74,11 +74,11 @@ public class ProductListPageController
 
 		if (phoneQuantity % QUANTITY_ON_PAGE != 0)
 		{
-			lastPage = numOfPages + 2;
+			lastPage = numOfPages + 1;
 		}
 		else
 		{
-			lastPage = numOfPages + 1;
+			lastPage = numOfPages;
 		}
 
 		model.addAttribute("phones", phoneList);

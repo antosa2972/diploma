@@ -44,8 +44,8 @@
 			<tr>
 				<td>
 					<div class="d-flex align-items-center">
-						<img src="https://raw.githubusercontent.com/andrewosipenko/phoneshop-ext-images/master/${phone.imageUrl}"
-							  alt="logo" style="width: 85px; height: 85px" class="rounded-circle">
+						<img src="${phone.imageUrl}"
+							  alt="logo" style="width: 85px; height: 85px">
 					</div>
 				</td>
 				<td><c:out value="${phone.brand}"/></td>

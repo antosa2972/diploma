@@ -147,7 +147,7 @@ public class JdbcPhoneDao implements PhoneDao
 			query = query + String.format("group by phones.id,phone2color.colorId order by %s %s ", sortField, order);
 		}
 
-		query = query + " limit " + limit + " offset " + offset;
+			query = query + " limit " + limit + " offset " + offset;
 
 		final int[] typesArray = types.stream()
 					 .mapToInt(i -> i)

@@ -74,7 +74,6 @@ public class QuickOrderController
 		}
 
 		redirectAttributes.addFlashAttribute("success", true);
-
 		return "redirect:" + PhoneshopPages.UserPages.QuickOrderPage;
 	}
 

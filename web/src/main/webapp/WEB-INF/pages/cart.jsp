@@ -115,10 +115,10 @@
             </c:forEach>
         </table>
     </form:form>
-    <button form="update-form" class="btn btn-secondary">
+    <button form="update-form" class="btn btn-outline-primary">
         <spring:message code="cart.update.btn"/>
     </button>
-    <button form="goToOrder" class="btn btn-secondary">
+    <button form="goToOrder" class="btn btn-outline-primary">
         <spring:message code="order.make.btn"/>
     </button>
 

@@ -46,13 +46,15 @@ public class UserServiceImpl implements UserService
 	@Override
 	public void registerUser(final String username, final String password)
 	{
-		final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(ENCRYPTION_STRENGTH);
-
 		final User user = new User();
 		user.setUserName(username);
-		user.setPassword(bCryptPasswordEncoder.encode(password));
 		user.setIsAccountNonLocked(1);
 		user.setRole("ROLE_CUSTOMER");
+
+		final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(ENCRYPTION_STRENGTH);
+
+		user.setPassword(bCryptPasswordEncoder.encode(password));
+
 
 		jdbcUserDao.addNewUserToDb(user);
 	}

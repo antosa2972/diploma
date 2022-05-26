@@ -28,13 +28,13 @@ public class RegisterPageController
 	@PostMapping
 	public String registerUser(final @RequestParam String username, @RequestParam final String password1, final Model model)
 	{
+		if (username == null || username.isEmpty() || password1 == null || password1.isEmpty() || username.length() < 5 || password1.length() < 5)
+		{
+			model.addAttribute("errorEmpty", true);
+			return PhoneshopPages.UserPages.RegisterPage;
+		}
 		try
 		{
-			if (username == null || username.isEmpty() || password1 == null || password1.isEmpty() || username.length() < 5 || password1.length() < 5)
-			{
-				model.addAttribute("errorEmpty", true);
-				return PhoneshopPages.UserPages.RegisterPage;
-			}
 			userServiceImpl.registerUser(username, password1);
 		}
 		catch (final Exception e)
